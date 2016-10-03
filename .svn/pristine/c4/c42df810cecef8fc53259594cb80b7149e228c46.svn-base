@@ -1,0 +1,14 @@
+SUBDESIGN dtrigger
+(
+R, S, D, CLK : input;
+Q : output;
+)
+VARIABLE
+tr : DFF;
+BEGIN
+tr.prn = S;
+tr.clrn = R;
+tr.d = D;
+tr.clk = CLK;
+Q = tr.q;
+END;

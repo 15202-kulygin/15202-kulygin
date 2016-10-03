@@ -1,0 +1,78 @@
+INCLUDE "lpm_counter.inc";
+SUBDESIGN TR_LIGHT_TEST
+(
+CLK, reset: INPUT;
+red, yellow, green: output;
+)
+VARIABLE
+FSM: MACHINE OF BITS (R, Y, G) WITH STATES (RED, RED_YELLOW, GREEN, GREEN_BLINK, YELLOW);
+counter: lpm_counter with (LPM_WIDTH = 4);
+sgn [2..1]: node;
+BEGIN
+FSM.reset = reset;
+FSM.clk = CLK;
+counter.updown = GND;
+counter.clock = CLK;
+counter.sload = !sgn[1];
+
+CASE FSM IS
+	WHEN RED =>
+		counter.data[] = 2;
+	WHEN RED_YELLOW => 
+		counter.data[] = 10;
+	WHEN GREEN => 
+		counter.data[] = 2;
+	WHEN YELLOW => 
+		counter.data[] = 10;
+END CASE;
+
+CASE counter.q[] IS
+	WHEN 0 =>
+		sgn[] = 0;
+	WHEN OTHERS =>
+		sgn[] = 1;
+END CASE;
+%
+CASE FSM IS
+	WHEN RED =>
+		CASE sgn[] IS
+			WHEN 0 => 
+			counter.aload = 
+		FSM = RED_YELLOW;
+END CASE;
+%
+TABLE
+
+FSM, sgn[] => FSM;
+RED, 1  => RED;
+RED, 0 => RED_YELLOW;
+RED_YELLOW, 1  => RED_YELLOW;
+RED_YELLOW, 0  => GREEN;
+GREEN, 1 => GREEN;
+GREEN, 0 => YELLOW;
+YELLOW, 0 => RED;
+YELLOW, 1 => YELLOW;
+
+%
+GREEN_BLINK1, 0 => GREEN_BLINK1;
+GREEN_BLINK2, 0 => GREEN_BLINK2;
+GREEN_BLINK3, 0 => GREEN_BLINK3;
+GREEN_BLINK4, 0 => GREEN_BLINK4;
+GREEN_BLINK1, 1 => GREEN_BLINK2;
+GREEN_BLINK2, 1 => GREEN_BLINK3;
+GREEN_BLINK3, 1 => GREEN_BLINK4;
+GREEN_BLINK4, 1 => YELLOW;
+%
+
+END TABLE;
+TABLE
+FSM => red, yellow, green;
+
+RED => 1, 0, 0;
+RED_YELLOW => 1, 1, 0;
+GREEN => 0, 0, 1;
+YELLOW => 0, 1, 0;
+END TABLE;
+END;
+
+

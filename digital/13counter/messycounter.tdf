@@ -1,0 +1,12 @@
+SUBDESIGN 13counter
+(
+clk, in : INPUT;
+q[4..1] : OUTPUT;
+)
+VARIABLE
+tr[4..1] : DFF;
+BEGIN
+tr[].clk = clk;
+tr[].d = tr[].q + 1;
+q[] = tr[].q; 
+END;

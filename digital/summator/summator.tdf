@@ -1,0 +1,14 @@
+SUBDESIGN summator
+(
+a0, b0, a1, b1 : INPUT;
+s[2..0] : OUTPUT;
+)
+VARIABLE p[1..0] : NODE;
+BEGIN
+s0 = a0 $ b0;
+p0 = a0 & b0;
+s1 = a1 $ b1 $ p0;
+p1 = (a1 # b1 # !p0) & (a1 # !b1 # p0) & (!a1 # b1 # p0) & (a1 # b1 # p0);
+s2 = p1;
+END;
+

@@ -1,0 +1,25 @@
+SUBDESIGN 16div
+(
+in : INPUT;
+out[4..1] : OUTPUT;
+)
+VARIABLE
+t[4..1] : DFF;
+
+BEGIN
+%t1.d = !t1.q;
+t1.clk = in;
+
+t2.d = !t2.q;
+t2.clk = t1.q;
+
+t3.d = !t3.q;
+t3.clk = t2.q;
+
+t4.d = !t4.q;
+t4.clk = t3.q;%
+t[4..2].clk = t[3..1].q;
+t1.clk = in;
+t[].d = !t[].q;
+out[] = !t[].q;
+END;

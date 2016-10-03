@@ -1,0 +1,12 @@
+INCLUDE "lpm_counter.inc";
+SUBDESIGN lpcountertest
+(
+in : INPUT;
+q[15..0] : OUTPUT;
+)
+VARIABLE 
+ctr : lmp_counter WITH (LPM_WIDTH = 16);
+BEGIN
+ctr.clk = in;
+q[] = ctr.q[];
+END;

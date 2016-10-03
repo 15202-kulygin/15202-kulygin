@@ -1,0 +1,19 @@
+INCLUDE "lpm_shiftreg.inc";
+SUBDESIGN shiftreg
+(
+clk, d[8..1], load : INPUT;
+out[8..1] : OUTPUT;
+)
+VARIABLE
+reg1 : lpm_shiftreg
+WITH ( LPM_WIDTH = 8 );
+reg2 : lpm_shiftreg
+WITH ( LPM_WIDTH = 8 );
+BEGIN
+reg1.load = load;
+reg1.clock = clk;
+reg2.clock = clk;
+reg1.data[] = d[];
+reg2.shiftin = reg1.shiftout;
+out[] = reg2.q[];
+END;

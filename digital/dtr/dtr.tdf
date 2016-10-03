@@ -1,0 +1,12 @@
+SUBDESIGN dtr
+(
+D : input;
+Q : output;
+)
+VARIABLE
+tr : DFF;
+BEGIN
+tr.d = !Q;
+tr.clk = D;
+Q = tr.q;
+END;

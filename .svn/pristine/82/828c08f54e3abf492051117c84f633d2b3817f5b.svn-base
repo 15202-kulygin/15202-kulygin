@@ -1,0 +1,105 @@
+-- MAX+plus II Compiler Fit File      
+-- Version 10.2 07/10/2002            
+-- Compiled: 05/05/2016 10:23:24      
+
+-- Copyright (C) 1988-2002 Altera Corporation
+-- Any megafunction design, and related net list (encrypted or decrypted),
+-- support information, device programming or simulation file, and any other
+-- associated documentation or information provided by Altera or a partner
+-- under Altera's Megafunction Partnership Program may be used only to
+-- program PLD devices (but not masked PLD devices) from Altera.  Any other
+-- use of such megafunction design, net list, support information, device
+-- programming or simulation file, or any other related documentation or
+-- information is prohibited for any other purpose, including, but not
+-- limited to modification, reverse engineering, de-compiling, or use with
+-- any other silicon devices, unless such use is explicitly licensed under
+-- a separate agreement with Altera or a megafunction partner.  Title to
+-- the intellectual property, including patents, copyrights, trademarks,
+-- trade secrets, or maskworks, embodied in any such megafunction design,
+-- net list, support information, device programming or simulation file, or
+-- any other related documentation or information provided by Altera or a
+-- megafunction partner, remains with Altera, the megafunction partner, or
+-- their respective licensors.  No other licenses, including any licenses
+-- needed under any third party's intellectual property, are provided herein.
+
+CHIP "shiftreg"
+BEGIN
+
+    DEVICE = "EP1K10TC100-1";
+
+    "clk"                          : INPUT_PIN  = 39     ;
+    "d1"                           : INPUT_PIN  = 38     ;
+    "d2"                           : INPUT_PIN  = 89     ;
+    "d3"                           : INPUT_PIN  = 91     ;
+    "d4"                           : INPUT_PIN  = 90     ;
+    "d5"                           : INPUT_PIN  = 20     ;
+    "d6"                           : INPUT_PIN  = 55     ;
+    "d7"                           : INPUT_PIN  = 58     ;
+    "d8"                           : INPUT_PIN  = 56     ;
+    "load"                         : INPUT_PIN  = 40     ;
+    "out1"                         : OUTPUT_PIN = 22     ;
+    "out2"                         : OUTPUT_PIN = 31     ;
+    "out3"                         : OUTPUT_PIN = 19     ;
+    "out4"                         : OUTPUT_PIN = 23     ;
+    "out5"                         : OUTPUT_PIN = 57     ;
+    "out6"                         : OUTPUT_PIN = 21     ;
+    "out7"                         : OUTPUT_PIN = 30     ;
+    "out8"                         : OUTPUT_PIN = 61     ;
+    "|lpm_shiftreg:reg1|dffs0"     : LOCATION   = LC1_C19;
+    "|lpm_shiftreg:reg1|dffs1"     : LOCATION   = LC3_C19;
+    "|lpm_shiftreg:reg1|dffs2"     : LOCATION   = LC4_C19;
+    "|lpm_shiftreg:reg1|dffs3"     : LOCATION   = LC5_C19;
+    "|lpm_shiftreg:reg1|dffs4"     : LOCATION   = LC6_C19;
+    "|lpm_shiftreg:reg1|dffs5"     : LOCATION   = LC7_C19;
+    "|lpm_shiftreg:reg1|dffs6"     : LOCATION   = LC8_C19;
+    "|lpm_shiftreg:reg1|dffs7"     : LOCATION   = LC2_C19;
+    "|lpm_shiftreg:reg2|dffs0"     : LOCATION   = LC8_C18;
+    "|lpm_shiftreg:reg2|dffs1"     : LOCATION   = LC5_C18;
+    "|lpm_shiftreg:reg2|dffs2"     : LOCATION   = LC1_C18;
+    "|lpm_shiftreg:reg2|dffs3"     : LOCATION   = LC6_C18;
+    "|lpm_shiftreg:reg2|dffs4"     : LOCATION   = LC2_C18;
+    "|lpm_shiftreg:reg2|dffs5"     : LOCATION   = LC3_C18;
+    "|lpm_shiftreg:reg2|dffs6"     : LOCATION   = LC4_C18;
+    "|lpm_shiftreg:reg2|dffs7"     : LOCATION   = LC7_C18;
+
+END;
+
+INTERNAL_INFO "shiftreg"
+BEGIN
+	DEVICE = EP1K10TC100-1;
+    OD5P39  : LORAX = "1:FB5->LC1_C19,->LC3_C19,->LC4_C19,->LC5_C19,->LC6_C19,->LC7_C19,->LC8_C19,->LC2_C19,->LC8_C18,->LC5_C18,->LC1_C18,->LC6_C18,->LC2_C18,->LC3_C18,->LC4_C18,->LC7_C18|";
+    OD2P38  : LORAX = "1:FB2|2:FH2R2,PA6R2C18->LC1_C19||";
+    OD1P89  : LORAX = "1:FB1|2:FH1R2,PA20R2C18->LC3_C19||";
+    OD0P91  : LORAX = "1:FB0|2:FH0R2,PA0R2C18->LC4_C19||";
+    OD4P90  : LORAX = "1:FB4|2:CH0R2,PA19R2C18->LC5_C19||";
+    OH1R2P20 : LORAX = "1:G36R2,PA2R2C18->LC6_C19|";
+    OH14R2P55 : LORAX = "1:G44R2,PA21R2C18->LC7_C19|";
+    OH8R2P58 : LORAX = "1:G95R2,PA3R2C18->LC8_C19|";
+    OH12R2P56 : LORAX = "1:G40R2,PA12R2C18->LC2_C19|";
+    OD3P40  : LORAX = "1:FB3|2:FH3R2,PA5R2C18->LC1_C19,->LC3_C19,->LC4_C19,->LC5_C19,->LC6_C19,->LC7_C19,->LC8_C19,->LC2_C19||";
+    LC2_C19 : LORAX = "1:MSW1R2C19,G8R2,PA13R2C17->LC8_C18|";
+    LC8_C18 : LORAX = "1:MSW4R2C16,G62R2->OH4R2P22|";
+    LC5_C18 : LORAX = "1:MSW5R2C16,V16C16->OV3C16P31|";
+    LC1_C18 : LORAX = "1:MSW0R2C17,HHR20R2->OH0R2P19|";
+    LC6_C18 : LORAX = "1:MSW6R2C16,HHR31R2->OH6R2P23|";
+    LC2_C18 : LORAX = "1:MSW2R2C16,G13R2->OH10R2P57|";
+    LC3_C18 : LORAX = "1:MSW3R2C16,HHR7R2->OH3R2P21|";
+    LC4_C18 : LORAX = "1:MSW3R2C17,V10C17->OV2C17P30|";
+    LC7_C18 : LORAX = "1:MSW7R2C16,V23C16,G75R1->OH15R1P61|";
+	LC1_C19 : LORAX2 = "X, X, OD2P38, OD3P40";
+	LC3_C19 : LORAX2 = "X, OD1P89, OD3P40, LC1_C19";
+	LC4_C19 : LORAX2 = "X, OD0P91, OD3P40, LC3_C19";
+	LC5_C19 : LORAX2 = "X, OD4P90, OD3P40, LC4_C19";
+	LC6_C19 : LORAX2 = "X, OH1R2P20, OD3P40, LC5_C19";
+	LC7_C19 : LORAX2 = "X, OH14R2P55, OD3P40, LC6_C19";
+	LC8_C19 : LORAX2 = "X, OH8R2P58, OD3P40, LC7_C19";
+	LC2_C19 : LORAX2 = "X, OH12R2P56, OD3P40, LC8_C19";
+	LC8_C18 : LORAX2 = "X, X, X, LC2_C19";
+	LC5_C18 : LORAX2 = "X, X, X, LC8_C18";
+	LC1_C18 : LORAX2 = "X, X, X, LC5_C18";
+	LC6_C18 : LORAX2 = "X, X, X, LC1_C18";
+	LC2_C18 : LORAX2 = "X, X, X, LC6_C18";
+	LC3_C18 : LORAX2 = "X, X, X, LC2_C18";
+	LC4_C18 : LORAX2 = "X, X, X, LC3_C18";
+	LC7_C18 : LORAX2 = "X, X, X, LC4_C18";
+END;

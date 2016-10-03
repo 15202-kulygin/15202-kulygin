@@ -1,0 +1,54 @@
+-- MAX+plus II Compiler Fit File      
+-- Version 10.2 07/10/2002            
+-- Compiled: 05/26/2016 03:11:06      
+
+-- Copyright (C) 1988-2002 Altera Corporation
+-- Any megafunction design, and related net list (encrypted or decrypted),
+-- support information, device programming or simulation file, and any other
+-- associated documentation or information provided by Altera or a partner
+-- under Altera's Megafunction Partnership Program may be used only to
+-- program PLD devices (but not masked PLD devices) from Altera.  Any other
+-- use of such megafunction design, net list, support information, device
+-- programming or simulation file, or any other related documentation or
+-- information is prohibited for any other purpose, including, but not
+-- limited to modification, reverse engineering, de-compiling, or use with
+-- any other silicon devices, unless such use is explicitly licensed under
+-- a separate agreement with Altera or a megafunction partner.  Title to
+-- the intellectual property, including patents, copyrights, trademarks,
+-- trade secrets, or maskworks, embodied in any such megafunction design,
+-- net list, support information, device programming or simulation file, or
+-- any other related documentation or information provided by Altera or a
+-- megafunction partner, remains with Altera, the megafunction partner, or
+-- their respective licensors.  No other licenses, including any licenses
+-- needed under any third party's intellectual property, are provided herein.
+
+CHIP "13counter"
+BEGIN
+
+    DEVICE = "EP1K10TC100-1";
+
+    "clk"                          : INPUT_PIN  = 39     ;
+    "q1"                           : OUTPUT_PIN = 10     ;
+    "q2"                           : OUTPUT_PIN = 6      ;
+    "q3"                           : OUTPUT_PIN = 8      ;
+    "q4"                           : OUTPUT_PIN = 7      ;
+    "tr1"                          : LOCATION   = LC8_A24;
+    "tr2"                          : LOCATION   = LC2_A24;
+    "tr3"                          : LOCATION   = LC5_A24;
+    "tr4"                          : LOCATION   = LC3_A24;
+
+END;
+
+INTERNAL_INFO "13counter"
+BEGIN
+	DEVICE = EP1K10TC100-1;
+    OD5P39  : LORAX = "1:FB5->LC8_A24,->LC2_A24,->LC5_A24,->LC3_A24|";
+    LC8_A24 : LORAX = "1:MSW7R0C23,HHR47R0->OH7R0P10|";
+    LC2_A24 : LORAX = "1:MSW1R0C23,G20R0->OH1R0P6|";
+    LC5_A24 : LORAX = "1:MSW4R0C23,HHR30R0->OH4R0P8|";
+    LC3_A24 : LORAX = "1:MSW2R0C23,HHR15R0->OH2R0P7|";
+	LC8_A24 : LORAX2 = "X, X, X, LC8_A24";
+	LC2_A24 : LORAX2 = "LC3_A24, LC8_A24, LC2_A24, LC5_A24";
+	LC5_A24 : LORAX2 = "LC3_A24, LC8_A24, LC5_A24, LC2_A24";
+	LC3_A24 : LORAX2 = "LC3_A24, LC8_A24, LC5_A24, LC2_A24";
+END;

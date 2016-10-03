@@ -1,0 +1,9 @@
+SUBDESIGN first
+(
+a, b : INPUT;
+q : OUTPUT;
+)
+
+BEGIN
+q = !(a$b);
+END;

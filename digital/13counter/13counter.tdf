@@ -1,0 +1,16 @@
+SUBDESIGN 13counter
+(
+clk : INPUT;
+q[4..1]: OUTPUT;
+)
+VARIABLE
+tr[4..1] : DFF;
+BEGIN
+tr[].clk = clk;
+IF tr[].q == H"D" THEN
+	tr[].d = H"0";
+ELSE
+	tr[].d = tr[].q + 1;
+END IF;
+q[] = tr[].q;
+END;

@@ -1,0 +1,15 @@
+SUBDESIGN second
+(
+a[3..1] : INPUT;
+q[7..0] : OUTPUT;
+)
+BEGIN
+q0 = !a3 & !a2 & !a1; 
+q1 = !a3 & !a2 & a1;
+q2 = !a3 & a2 & !a1;
+q3 = !a3 & a2 & a1;
+q4 = a3 & !a2 & !a1;
+q5 = a3 & !a2 & a1;
+q6 = a3 & a2 & !a1;
+q7 = a3 & a2 & a1;
+END;

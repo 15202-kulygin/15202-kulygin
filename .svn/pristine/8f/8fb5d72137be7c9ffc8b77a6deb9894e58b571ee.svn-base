@@ -1,0 +1,22 @@
+CONSTANT N = 3;
+SUBDESIGN summatorn
+(
+a[N..1], b[N..1]: INPUT;
+s[N+1..1] : OUTPUT;
+)
+VARIABLE 
+p[N..1] : NODE;
+BEGIN
+s1 = a1 $ b1;
+p1 = a1 & b1;
+FOR i IN 2 TO N GENERATE
+s[i] = a[i] $ b[i] $ p[i-1];
+p[i] = (a[i] & b[i]) # (p[i-1] & b[i]) # (a[i] & p[i-1]);
+END GENERATE;
+s[N+1] = p[N];
+% s0 = a0 $ b0;
+p0 = a0 & b0;
+s1 = a1 $ b1 $ p0;
+p1 = (a1 # b1 # !p0) & (a1 # !b1 # p0) & (!a1 # b1 # p0) & (a1 # b1 # p0);
+s2 = p1; %
+END;

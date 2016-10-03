@@ -1,0 +1,43 @@
+INCLUDE "lpm_counter.inc";
+INCLUDE "lpm_shiftreg.inc";
+SUBDESIGN uart
+(
+   clk , in    : INPUT;
+   out[8..1] : OUTPUT;
+)
+VARIABLE
+fsm : MACHINE 
+	WITH STATES (WAITING, START, BIT1, BIT2, BIT3, BIT4, BIT5, BIT6, BIT7, BIT8, STOP);
+lpm : lpm_counter 
+	WITH (LPM_WIDTH = 3, LPM_DIRECTION = "up");
+reg : lpm_shiftreg
+	WITH (LPM_WIDTH = 8);
+BEGIN
+fsm.clk = clk;
+lpm.clock = clk;
+reg.clock = clk;
+TABLE
+fsm, lpm.q[], in => fsm, lpm.data[], lpm.sload, reg.shiftin, reg.enable;
+WAITING, x, 0  => WAITING, b"000", 0, 1, 0;
+WAITING, x, 1  => START, b"000", 1, 1, 0;
+START, b"011", x => BIT1, b"000", 1, 1, 0;
+BIT1, b"111", 1 => BIT2, b"000", 1, 1, 1;
+BIT1, b"111", 0 => BIT2, b"000", 1, 0, 1;
+BIT2, b"111", 1 => BIT3, b"000", 1, 1, 1;
+BIT2, b"111", 0 => BIT3, b"000", 1, 0, 1;
+BIT3, b"111", 1 => BIT4, b"000", 1, 1, 1;
+BIT3, b"111", 0 => BIT4, b"000", 1, 0, 1;
+BIT4, b"111", 1 => BIT5, b"000", 1, 1, 1;
+BIT4, b"111", 0 => BIT5, b"000", 1, 0, 1;
+BIT5, b"111", 1 => BIT6, b"000", 1, 1, 1;
+BIT5, b"111", 0 => BIT6, b"000", 1, 0, 1;
+BIT6, b"111", 1 => BIT7, b"000", 1, 1, 1;
+BIT6, b"111", 0 => BIT7, b"000", 1, 0, 1;
+BIT7, b"111", 1 => BIT8, b"000", 1, 1, 1;
+BIT7, b"111", 0 => BIT8, b"000", 1, 0, 1;
+BIT8, b"111", 1 => STOP, b"000", 1, 1, 1;
+BIT8, b"111", 0 => STOP, b"000", 1, 0, 1;
+STOP, b"011", x => WAITING, b"000", 0, 1, 0;
+END TABLE;
+out[] = reg.q[];
+END;

@@ -1,0 +1,146 @@
+-- MAX+plus II Compiler Fit File      
+-- Version 10.2 07/10/2002            
+-- Compiled: 05/26/2016 04:00:04      
+
+-- Copyright (C) 1988-2002 Altera Corporation
+-- Any megafunction design, and related net list (encrypted or decrypted),
+-- support information, device programming or simulation file, and any other
+-- associated documentation or information provided by Altera or a partner
+-- under Altera's Megafunction Partnership Program may be used only to
+-- program PLD devices (but not masked PLD devices) from Altera.  Any other
+-- use of such megafunction design, net list, support information, device
+-- programming or simulation file, or any other related documentation or
+-- information is prohibited for any other purpose, including, but not
+-- limited to modification, reverse engineering, de-compiling, or use with
+-- any other silicon devices, unless such use is explicitly licensed under
+-- a separate agreement with Altera or a megafunction partner.  Title to
+-- the intellectual property, including patents, copyrights, trademarks,
+-- trade secrets, or maskworks, embodied in any such megafunction design,
+-- net list, support information, device programming or simulation file, or
+-- any other related documentation or information provided by Altera or a
+-- megafunction partner, remains with Altera, the megafunction partner, or
+-- their respective licensors.  No other licenses, including any licenses
+-- needed under any third party's intellectual property, are provided herein.
+
+CHIP "uart"
+BEGIN
+
+    DEVICE = "EP1K10TC100-1";
+
+    "clk"                          : INPUT_PIN  = 39     ;
+    "in"                           : INPUT_PIN  = 38     ;
+    "out1"                         : OUTPUT_PIN = 68     ;
+    "out2"                         : OUTPUT_PIN = 8      ;
+    "out3"                         : OUTPUT_PIN = 10     ;
+    "out4"                         : OUTPUT_PIN = 7      ;
+    "out5"                         : OUTPUT_PIN = 5      ;
+    "out6"                         : OUTPUT_PIN = 6      ;
+    "out7"                         : OUTPUT_PIN = 94     ;
+    "out8"                         : OUTPUT_PIN = 9      ;
+    "fsm~1"                        : LOCATION   = LC4_A16;
+    "fsm~2"                        : LOCATION   = LC8_A1 ;
+    "fsm~3"                        : LOCATION   = LC8_A7 ;
+    "fsm~4"                        : LOCATION   = LC2_A7 ;
+    "fsm~5"                        : LOCATION   = LC3_A7 ;
+    "fsm~6"                        : LOCATION   = LC1_A7 ;
+    "fsm~7"                        : LOCATION   = LC3_A1 ;
+    "fsm~8"                        : LOCATION   = LC7_A1 ;
+    "fsm~9"                        : LOCATION   = LC8_A16;
+    "fsm~10"                       : LOCATION   = LC2_A20;
+    "fsm~11"                       : LOCATION   = LC7_A16;
+    "|lpm_counter:lpm|f8count:p8c0|:6" : LOCATION   = LC8_A20;  -- |lpm_counter:lpm|f8count:p8c0|QC
+    "|lpm_counter:lpm|f8count:p8c0|:7" : LOCATION   = LC3_A20;  -- |lpm_counter:lpm|f8count:p8c0|QB
+    "|lpm_counter:lpm|f8count:p8c0|:8" : LOCATION   = LC7_A20;  -- |lpm_counter:lpm|f8count:p8c0|QA
+    "|lpm_shiftreg:reg|dffs0"      : LOCATION   = LC7_A7 ;
+    "|lpm_shiftreg:reg|dffs1"      : LOCATION   = LC5_A19;
+    "|lpm_shiftreg:reg|dffs2"      : LOCATION   = LC8_A19;
+    "|lpm_shiftreg:reg|dffs3"      : LOCATION   = LC3_A19;
+    "|lpm_shiftreg:reg|dffs4"      : LOCATION   = LC1_A19;
+    "|lpm_shiftreg:reg|dffs5"      : LOCATION   = LC2_A19;
+    "|lpm_shiftreg:reg|dffs6"      : LOCATION   = LC4_A19;
+    "|lpm_shiftreg:reg|dffs7"      : LOCATION   = LC7_A19;
+    ":139"                         : LOCATION   = LC1_A20;
+    "~151~1"                       : LOCATION   = LC6_A20;
+    "~164~1"                       : LOCATION   = LC5_A20;
+    ":357"                         : LOCATION   = LC2_A16;
+    ":358"                         : LOCATION   = LC4_A1 ;
+    "~358~1"                       : LOCATION   = LC1_A1 ;
+    "~358~2"                       : LOCATION   = LC4_A7 ;
+    "~358~3"                       : LOCATION   = LC2_A1 ;
+    "~358~4"                       : LOCATION   = LC5_A1 ;
+    ":364"                         : LOCATION   = LC4_A20;
+    "~368~1"                       : LOCATION   = LC1_A16;
+    "~368~2"                       : LOCATION   = LC6_A1 ;
+    "~368~3"                       : LOCATION   = LC5_A7 ;
+    "~368~4"                       : LOCATION   = LC6_A7 ;
+    "~388~1"                       : LOCATION   = LC3_A16;
+
+END;
+
+INTERNAL_INFO "uart"
+BEGIN
+	DEVICE = EP1K10TC100-1;
+    OD5P39  : LORAX = "1:FB5->LC4_A16,->LC8_A1,->LC8_A7,->LC2_A7,->LC3_A7,->LC1_A7,->LC3_A1,->LC7_A1,->LC8_A16,->LC2_A20,->LC7_A16,->LC8_A20,->LC3_A20,->LC7_A20,->LC7_A7,->LC5_A19,->LC8_A19,->LC3_A19,->LC1_A19,->LC2_A19,->LC4_A19,->LC7_A19|";
+    LC4_A16 : LORAX = "1:MSW3R0C15,G15R0,PA19R0C19->LC4_A20|";
+    LC8_A1  : LORAX = "1:MSW7R0C1,G58R0|2:PA2R0C15->LC3_A16|,2:PA2R0C6->LC5_A7||";
+    LC8_A7  : LORAX = "1:MSW7R0C7,G56R0,PA4R0C0->LC8_A1,->LC1_A1|";
+    LC1_A7  : LORAX = "1:MSW0R0C7,G38R0,PA0R0C0->LC2_A1|";
+    LC3_A1  : LORAX = "1:MSW2R0C1,G2R0,PA19R0C6->LC1_A7,->LC6_A7|";
+    LC8_A16 : LORAX = "1:MSW7R0C15,G63R0,PA10R0C0->LC7_A1,->LC5_A1,->LC6_A1|";
+    LC7_A16 : LORAX = "1:MSW6R0C15,G74R0,PA11R0C19->LC2_A20,->LC7_A20|";
+    OD2P38  : LORAX = "1:FB2|2:FH2R0|3:PA6R0C15->LC7_A16,->LC2_A16|,3:PA6R0C19->LC2_A20,->LC7_A20,->LC6_A20,->LC5_A20|||";
+    LC7_A7  : LORAX = "1:MSW6R0C7|2:G67R0,PA6R0C18->LC5_A19|,2:HHL32R0->OH14R0P68||";
+    LC5_A19 : LORAX = "1:MSW4R0C18,HHR41R0->OH4R0P8|";
+    LC8_A19 : LORAX = "1:MSW7R0C19,HHR35R0->OH7R0P10|";
+    LC3_A19 : LORAX = "1:MSW2R0C19,HHR4R0->OH2R0P7|";
+    LC1_A19 : LORAX = "1:MSW0R0C19,HHR23R0->OH0R0P5|";
+    LC2_A19 : LORAX = "1:MSW1R0C19,HHR11R0->OH1R0P6|";
+    LC4_A19 : LORAX = "1:MSW3R0C18,V10C18->OV1C18P94|";
+    LC7_A19 : LORAX = "1:MSW6R0C19,HHR32R0->OH6R0P9|";
+    LC1_A20 : LORAX = "1:MSW1R0C18,G27R0,PA19R0C15->LC8_A16,->LC2_A16,->LC1_A16|";
+    LC6_A20 : LORAX = "1:MSW5R0C19,G61R0|2:PA20R0C0->LC8_A1,->LC3_A1,->LC7_A1,->LC1_A1,->LC2_A1,->LC5_A1,->LC6_A1|,2:PA20R0C6->LC8_A7,->LC2_A7,->LC3_A7,->LC1_A7,->LC4_A7,->LC5_A7,->LC6_A7|,2:PA20R0C15->LC8_A16,->LC3_A16||";
+    LC5_A20 : LORAX = "1:|2:MSW5R0C18,G64R0,PA9R0C0->LC8_A1,->LC3_A1,->LC7_A1,->LC1_A1,->LC2_A1,->LC5_A1|,2:MSW4R0C19,G59R0|3:PA1R0C6->LC8_A7,->LC2_A7,->LC3_A7,->LC1_A7,->LC4_A7|,3:PA1R0C15->LC8_A16,->LC3_A16|||";
+    LC2_A16 : LORAX = "1:MSW1R0C15,G35R0,PA3R0C19->LC8_A20,->LC3_A20|";
+    LC4_A7  : LORAX = "1:MSW3R0C7,G5R0,PA16R0C0->LC4_A1|";
+    LC4_A1  : LORAX = "1:|2:MSW3R0C1,G9R0|3:PA12R0C15->LC2_A16|,3:PA12R0C6->LC7_A7||,2:MSW3R0C0,G21R0,PA12R0C18->LC5_A19,->LC8_A19,->LC3_A19,->LC1_A19,->LC2_A19,->LC4_A19,->LC7_A19||";
+    LC4_A20 : LORAX = "1:MSW0R0C18,G45R0,PA5R0C15->LC4_A16,->LC7_A16,->LC1_A16|";
+    LC1_A16 : LORAX = "1:MSW0R0C15,G42R0,PA17R0C0->LC6_A1|";
+    LC6_A1  : LORAX = "1:MSW5R0C1,G81R0,PA4R0C6->LC7_A7|";
+	LC4_A16 : LORAX2 = "X, LC3_A16, LC4_A20, LC4_A16";
+	LC8_A1  : LORAX2 = "LC8_A7, LC8_A1, LC5_A20, LC6_A20";
+	LC8_A7  : LORAX2 = "LC2_A7, LC8_A7, LC5_A20, LC6_A20";
+	LC2_A7  : LORAX2 = "LC3_A7, LC2_A7, LC5_A20, LC6_A20";
+	LC3_A7  : LORAX2 = "LC1_A7, LC3_A7, LC5_A20, LC6_A20";
+	LC1_A7  : LORAX2 = "LC3_A1, LC1_A7, LC5_A20, LC6_A20";
+	LC3_A1  : LORAX2 = "LC7_A1, LC3_A1, LC5_A20, LC6_A20";
+	LC7_A1  : LORAX2 = "LC8_A16, LC7_A1, LC5_A20, LC6_A20";
+	LC8_A16 : LORAX2 = "LC1_A20, LC8_A16, LC5_A20, LC6_A20";
+	LC2_A20 : LORAX2 = "LC7_A16, LC1_A20, LC2_A20, OD2P38";
+	LC7_A16 : LORAX2 = "X, LC7_A16, LC4_A20, OD2P38";
+	LC8_A20 : LORAX2 = "LC2_A16, LC8_A20, LC7_A20, LC3_A20";
+	LC3_A20 : LORAX2 = "X, LC3_A20, LC7_A20, LC2_A16";
+	LC7_A20 : LORAX2 = "X, LC7_A16, OD2P38, LC7_A20";
+	LC7_A7  : LORAX2 = "LC4_A1, LC6_A7, LC5_A7, LC6_A1";
+	LC5_A19 : LORAX2 = "LC4_A1, X, X, LC7_A7";
+	LC8_A19 : LORAX2 = "LC4_A1, X, X, LC5_A19";
+	LC3_A19 : LORAX2 = "LC4_A1, X, X, LC8_A19";
+	LC1_A19 : LORAX2 = "LC4_A1, X, X, LC3_A19";
+	LC2_A19 : LORAX2 = "LC4_A1, X, X, LC1_A19";
+	LC4_A19 : LORAX2 = "LC4_A1, X, X, LC2_A19";
+	LC7_A19 : LORAX2 = "LC4_A1, X, X, LC4_A19";
+	LC1_A20 : LORAX2 = "LC2_A20, LC8_A20, LC7_A20, LC3_A20";
+	LC6_A20 : LORAX2 = "OD2P38, LC8_A20, LC7_A20, LC3_A20";
+	LC5_A20 : LORAX2 = "OD2P38, LC8_A20, LC7_A20, LC3_A20";
+	LC2_A16 : LORAX2 = "LC7_A16, LC1_A20, OD2P38, LC4_A1";
+	LC1_A1  : LORAX2 = "LC8_A7, LC8_A1, LC5_A20, LC6_A20";
+	LC4_A7  : LORAX2 = "LC3_A7, LC2_A7, LC5_A20, LC6_A20";
+	LC2_A1  : LORAX2 = "LC3_A1, LC1_A7, LC5_A20, LC6_A20";
+	LC5_A1  : LORAX2 = "LC8_A16, LC7_A1, LC5_A20, LC6_A20";
+	LC4_A1  : LORAX2 = "LC5_A1, LC2_A1, LC1_A1, LC4_A7";
+	LC4_A20 : LORAX2 = "LC4_A16, LC8_A20, LC7_A20, LC3_A20";
+	LC1_A16 : LORAX2 = "X, LC7_A16, LC4_A20, LC1_A20";
+	LC6_A1  : LORAX2 = "LC1_A16, LC8_A16, LC7_A1, LC6_A20";
+	LC5_A7  : LORAX2 = "LC2_A7, LC8_A1, LC8_A7, LC6_A20";
+	LC6_A7  : LORAX2 = "LC3_A1, LC3_A7, LC1_A7, LC6_A20";
+	LC3_A16 : LORAX2 = "X, LC8_A1, LC5_A20, LC6_A20";
+END;

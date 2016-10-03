@@ -1,0 +1,41 @@
+INCLUDE "lpm_counter.inc";
+SUBDESIGN lantern
+(
+clk : INPUT;
+red: OUTPUT;
+green : OUTPUT;
+yellow : OUTPUT;
+)
+VARIABLE
+	fsm : MACHINE
+		WITH STATES (START, RED, RED_YELLOW, GREEN, GREEN_BLINK1, GREEN_BLINK2, GREEN_BLINK3, GREEN_BLINK4, YELLOW);
+	lpm : lpm_counter WITH (LPM_WIDTH = 3, LPM_DIRECTION = "down");
+BEGIN
+fsm.clk = clk;
+lpm.clock = clk;
+TABLE
+	fsm, lpm.q[] => fsm, lpm.data[], lpm.sload;
+	START, b"000" => RED, b"110", 1;
+	RED, b"000" => RED_YELLOW, b"001", 1;
+	RED_YELLOW, b"000" => GREEN, b"011", 1;
+	GREEN, b"000" => GREEN_BLINK1, b"000", 1;
+	GREEN_BLINK1, b"000" => GREEN_BLINK2, b"000", 1;
+	GREEN_BLINK2, b"000" => GREEN_BLINK3, b"000", 1;
+	GREEN_BLINK3, b"000" => GREEN_BLINK4, b"000", 1;
+	GREEN_BLINK4, b"000" => YELLOW, b"001", 1;
+	YELLOW, b"000" => RED, b"110", 1;
+	END TABLE;
+TABLE
+	fsm => red, yellow, green;
+	START => 0, 0, 0;
+	RED => 1, 0, 0;
+	RED_YELLOW => 1, 1, 0;
+	GREEN => 0, 0, 1; 
+	GREEN_BLINK1 => 0, 0, 0;
+	GREEN_BLINK2 => 0, 0, 1;
+	GREEN_BLINK3 => 0, 0, 0;
+	GREEN_BLINK4 => 0, 0, 1;
+	YELLOW => 0, 1, 0;
+	END TABLE;
+end; 
+

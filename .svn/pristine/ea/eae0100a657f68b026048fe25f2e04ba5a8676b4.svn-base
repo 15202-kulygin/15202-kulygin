@@ -1,0 +1,10 @@
+SUBDESIGN comparator
+(
+a[1..0], b[1..0] : INPUT;
+s[2..0] : OUTPUT; 
+)
+begin
+s[0] = a[0]$b[0];
+s[1] = a[1]$b[1];
+s[2] = a[2]$b[2];
+end;

@@ -1,0 +1,9 @@
+SUBDESIGN mem
+(
+a, b : INPUT;
+q1, q2 : OUTPUT;
+)
+BEGIN
+q1 = !(a#q2);
+q2 = !(b#q1);
+END;
