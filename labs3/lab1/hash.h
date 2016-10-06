@@ -23,12 +23,6 @@ typedef struct Table {
 #if !defined(START_CAPACITY)
 #define START_CAPACITY 4
 #endif
-#if !defined(M)
-#define M 50000
-#endif
-#if !defined(LOADFACTOR)
-#define LOADFACTOR (float)(0.5)
-#endif
 
 typedef class HashTable
 {
@@ -36,49 +30,78 @@ typedef class HashTable
     int size;
     int capacity;
     Table * table;
-    int gethash(Key key, int capacity) const;
+    int gethash(Key key) const;
   public:
     HashTable();
+    HashTable(const HashTable& origin);
     ~HashTable();
-    
-    //HashTable(const HashTable& b);
-
-
     
     // Вставка в контейнер. Возвращаемое значение - успешность вставки.
     bool insert(const Key& k, const Value& v);
 
     // Проверка наличия значения по заданному ключу.
     bool search(const Key& key) const;
+    
     void print();
-    /*// Возвращает значение по ключу. Небезопасный метод.
+    
+    void swap(HashTable& origin);
+    
+    HashTable& operator=(const HashTable& origin);
+    
+    // Очищает контейнер.
+    void clear();
+
+     // Удаляет элемент по заданному ключу.
+    bool erase(const Key& k);
+
+    int getsize() const;
+
+    bool empty() const;
+
+    friend bool operator==(const HashTable & a, const HashTable & b)
+    {
+      if (a.size == b.size)
+      {
+        for (int i = 0; i < a.capacity; ++i)
+        {
+          if (true == a.table[i].is_filled)
+          {
+            if (false == b.search(a.table[i].key))
+            {
+              return false;
+            }
+          }
+          return true;
+        }
+      }
+      return false;
+    }
+
+    friend bool operator!=(const HashTable & a, const HashTable & b)
+    {
+      if (a == b)
+      {
+        return false;
+      }
+      else
+      {
+        return true;
+      }
+    }
+    // Возвращает значение по ключу. Бросает исключение при неудаче.
+    Value& at(const Key& k);
+
+    // Возвращает значение по ключу. Небезопасный метод.
     // В случае отсутствия ключа в контейнереа следует вставить в контейнер
     // значение, созданное конструктором по умолчанию и вернуть ссылку на него. 
     Value& operator[](const Key& k);
 
-    // Возвращает значение по ключу. Бросает исключение при неудаче.
-    Value& at(const Key& k);
+    /*
     const Value& at(const Key& k) const;
-
-    size_t size() const;
-    bool empty() const;
-
-    // Обменивает значения двух хэш-таблиц.
-    // Подумайте, зачем нужен этот метод, при наличии стандартной функции
-    // std::swap.
-    void swap(HashTable& b);
-
-    HashTable& operator=(const HashTable& b);
-
-
-    // Очищает контейнер.
-    void clear();
-    // Удаляет элемент по заданному ключу.
-    bool erase(const Key& k);
-
-    friend bool operator==(const HashTable & a, const HashTable & b);
-    friend bool operator!=(const HashTable & a, const HashTable & b);*/
+    */
  } HashTable;
+
+
 
 void getkey(string str, Key& k);
 void getvalue(string str, Value& v);

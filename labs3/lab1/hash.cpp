@@ -1,17 +1,14 @@
 #include "hash.h"
 
-#define P 7
-
 using namespace std;
 
-int HashTable::gethash(Key key, int capacity) const
+int HashTable::gethash(Key key) const
 {
     char * str = (char *)key.c_str();
     unsigned int result = 0;
     for (int i = 0; i < key.length(); ++i) 
         result = (result * 31) ^ str[i];
-    return result%capacity;
-   
+    return result%capacity;  
 }
 HashTable::HashTable()
 {
@@ -21,8 +18,36 @@ HashTable::HashTable()
     for (int i = 0; i < capacity; ++i)
     {
         table[i].is_filled = false;
+        table[i].key = " ";
+        table[i].value.age = -1;
+        table[i].value.weight = -1;
     }
 }
+
+HashTable::HashTable(const HashTable& origin)
+{
+    size = origin.size;
+    capacity = origin.capacity;
+    table = new Table[capacity];
+    for (int i = 0; i < capacity; ++i)
+    {
+        if (true == origin.table[i].is_filled)
+        {
+            table[i].is_filled = true;
+            table[i].key = origin.table[i].key;
+            table[i].value.age = origin.table[i].value.age;
+            table[i].value.weight = origin.table[i].value.weight;
+        }
+        else
+        {
+            table[i].is_filled = false;
+            table[i].key = " ";
+            table[i].value.age = -1;
+            table[i].value.weight = -1;
+        }
+    }
+}
+
 HashTable::~HashTable()
 {
     delete [] table;
@@ -66,6 +91,9 @@ bool HashTable::insert(const Key& key, const Value& value)
             for (int i = 0; i < capacity; ++i)
             {
                 table[i].is_filled = false;
+                table[i].key = " ";
+                table[i].value.age = -1;
+                table[i].value.weight = -1;
             }
             int old_size = size;
             size = 0;
@@ -78,7 +106,12 @@ bool HashTable::insert(const Key& key, const Value& value)
             //cout << "REHASHED" << endl;
         }
         size += 1;
-        int hash = HashTable::gethash(key, capacity);
+        int hash = HashTable::gethash(key);
+        while (true == table[hash%capacity].is_filled)
+        {
+            hash++;
+        }
+        hash = hash%capacity;
         //cout << "hah " << hash <<  endl;
         table[hash].key = key;
         table[hash].value.age = value.age;
@@ -96,7 +129,7 @@ bool HashTable::search(const Key& key) const
     {
         return false;
     }
-    int hash = HashTable::gethash(key, capacity);
+    int hash = HashTable::gethash(key);
     int current_ind = hash;
     while (true)
     {
@@ -113,6 +146,7 @@ bool HashTable::search(const Key& key) const
             else
             {
                 current_ind++;
+                current_ind = current_ind%capacity;
             }
         }
 
@@ -129,38 +163,198 @@ void HashTable::print()
             cout << "Table number " << i << ", name " << table[i].key << ", age " << table[i].value.age << ", weight " << table[i].value.weight << endl;
         }
     }
+    cout << endl << endl;
 }
-
-//HashTable::HashTable(const HashTable& b);
 
 // Обменивает значения двух хэш-таблиц.
 // Подумайте, зачем нужен этот метод, при наличии стандартной функции
 // std::swap.
-/*void HashTable::swap(HashTable& b);
+void HashTable::swap(HashTable& origin)
+{
+    HashTable * temp = new HashTable(origin);
+    delete [] origin.table;
+    origin.size = size;
+    origin.capacity = capacity;
+    origin.table = new Table[origin.capacity];
+    for (int i = 0; i < origin.capacity; ++i)
+    {
+        if (true == table[i].is_filled)
+        {
+            origin.table[i].key = table[i].key;
+            origin.table[i].value.age = table[i].value.age;
+            origin.table[i].value.weight = table[i].value.weight;
+            origin.table[i].is_filled = true;
+        }
+        else
+        {
+            origin.table[i].key = " ";
+            origin.table[i].value.age = -1;
+            origin.table[i].value.weight = -1;
+            origin.table[i].is_filled = false;
+        }
+    }
+    delete [] table;
+    size = temp->size;
+    capacity = temp->capacity;
+    table = new Table[capacity];
+    for (int i = 0; i < capacity; ++i)
+    {
+        if (true == temp->table[i].is_filled)
+        {
+            table[i].key = temp->table[i].key;
+            table[i].value.age = temp->table[i].value.age;
+            table[i].value.weight = temp->table[i].value.weight;
+            table[i].is_filled = true;
+        }
+        else
+        {
+            table[i].key = " ";
+            table[i].value.age = -1;
+            table[i].value.weight = -1;
+            table[i].is_filled = false;
+        }
+    }
+    delete temp;
+}
 
-HashTable& HashTable::operator=(const HashTable& b);
+HashTable& HashTable::operator=(const HashTable& origin)
+{
+    delete [] table;
+    size = origin.size;
+    capacity = origin.capacity;
+    table = new Table[capacity];
+    for (int i = 0; i < capacity; ++i)
+    {
+        if (true == origin.table[i].is_filled)
+        {
+            table[i].key = origin.table[i].key;
+            table[i].value.age = origin.table[i].value.age;
+            table[i].value.weight = origin.table[i].value.weight;
+            table[i].is_filled = true;
+        }
+        else
+        {
+            table[i].key = " ";
+            table[i].value.age = -1;
+            table[i].value.weight = -1;
+            table[i].is_filled = false;
+        }
+    }
+    return *this;
+}
+
 // Очищает контейнер.
-void HashTable::clear();
+void HashTable::clear()
+{
+    for (int i = 0; i < capacity; ++i)
+    {
+        if (true == table[i].is_filled)
+        {
+            table[i].is_filled = false;
+            table[i].key = " ";
+            table[i].value.age = -1;
+            table[i].value.weight = -1;
+        }
+    }
+    size = 0;
+    capacity = START_CAPACITY;
+}
+
 // Удаляет элемент по заданному ключу.
-bool HashTable::erase(const Key& k);
+bool HashTable::erase(const Key& k)
+{
+    int i = HashTable::gethash(k);
+    while (true == table[i].is_filled)
+    {
+        if (k == table[i].key)
+        {
+            size--;
+            table[i].key = " ";
+            table[i].value.age = -1;
+            table[i].value.weight = -1;
+            table[i].is_filled = false;
+            return true;
+        }
+        ++i;
+        i = i%capacity;
+    }
+    return false;
+}
 
+int HashTable::getsize() const
+{
+    return size;
+}
 
-
-
-// Возвращает значение по ключу. Небезопасный метод.
-// В случае отсутствия ключа в контейнереа следует вставить в контейнер
-// значение, созданное конструктором по умолчанию и вернуть ссылку на него. 
-Value& HashTable::operator[](const Key& k);
+bool HashTable::empty() const
+{
+    for (int i = 0; i < capacity; ++i)
+    {
+        if (true == table[i].is_filled)
+        {
+            return false;
+        }
+    }
+    return true;
+}
 
 // Возвращает значение по ключу. Бросает исключение при неудаче.
-Value& HashTable::at(const Key& k);
+Value& HashTable::at(const Key& k)
+{
+    if (false == HashTable::search(k))
+    {
+        throw 0;
+    }
+    else
+    {
+        int hash = HashTable::gethash(k);
+        while (table[hash].key != k)
+        {
+            hash++;
+            hash = hash % capacity;
+        }
+        Value & result = table[hash].value;
+        return result;
+    }
+}
+
+// Возвращает значение по ключу. Небезопасный метод.
+// В случае отсутствия ключа в контейнере следует вставить в контейнер
+// значение, созданное конструктором по умолчанию и вернуть ссылку на него. 
+Value& HashTable::operator[](const Key& k)
+{
+    if (false == HashTable::search(k))
+    {
+        int i = 0;
+        while (true == table[i].is_filled)
+        {
+            ++i;
+            i = i % capacity;
+        }
+        table[i].value.age = 0;
+        table[i].value.weight = 0;
+        Value & result = table[i].value;
+        return result;
+    }
+    else
+    {
+        int hash = HashTable::gethash(k);
+        while (table[hash].key != k)
+        {
+            hash++;
+            hash = hash % capacity;
+        }
+        Value & result = table[hash].value;
+        return result;
+    }
+}
+
+
+/*
+
 const Value& HashTable::at(const Key& k) const;
 
-size_t HashTable::size() const;
-bool HashTable::empty() const;
-
-friend bool HashTable::operator==(const HashTable & a, const HashTable & b);
-friend bool HashTable::operator!=(const HashTable & a, const HashTable & b);*/
+*/
 
 void getkey(string str, Key& k)
 {
