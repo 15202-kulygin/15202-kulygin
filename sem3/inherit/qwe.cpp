@@ -45,8 +45,9 @@ class B : public A
 	
 int main ()
 {
-	A aaa;
-	B b(aaa);
-	b.MethodOfClassA();
+	//A aaa;
+	//B b(aaa);
+	//b.MethodOfClassA();
+	A * a = new A;
 	//cout << "X = " << 
 }
