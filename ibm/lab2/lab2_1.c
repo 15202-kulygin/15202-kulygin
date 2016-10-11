@@ -4,7 +4,7 @@
 #include <time.h>
 
 
-
+// gcc -O3 lab2.c -o lab2.bin –Wall
 // 125 000 000	--- 	15s
 // 300 000 000	---		30s
 
