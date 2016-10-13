@@ -1,0 +1,1 @@
+g++ -Lgtestbuild -I./include test.cpp try.cpp -lgtest

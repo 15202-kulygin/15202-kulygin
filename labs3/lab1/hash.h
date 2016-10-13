@@ -2,7 +2,6 @@
 #define HASH_H
 #include <iostream>
 #include <string>
-#include <cctype>
 #include <cstdlib>
 
 using namespace std;
@@ -30,12 +29,14 @@ typedef class HashTable
     int size;
     int capacity;
     Table * table;
-    int gethash(Key key) const;
+    
   public:
     HashTable();
     HashTable(const HashTable& origin);
     ~HashTable();
     
+    int gethash(Key key) const;
+
     // Вставка в контейнер. Возвращаемое значение - успешность вставки.
     bool insert(const Key& k, const Value& v);
 
@@ -55,6 +56,7 @@ typedef class HashTable
     bool erase(const Key& k);
 
     int getsize() const;
+    int getcapacity() const;
 
     bool empty() const;
 
@@ -99,7 +101,7 @@ typedef class HashTable
     /*
     const Value& at(const Key& k) const;
     */
- } HashTable;
+} HashTable;
 
 
 

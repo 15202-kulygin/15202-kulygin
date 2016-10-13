@@ -155,6 +155,10 @@ bool HashTable::search(const Key& key) const
 
 void HashTable::print()
 {
+    if (0 == size)
+    {
+        return;
+    }
     cout << "HashTable size : " << size <<  endl << "HashTable capacity : " << capacity << endl;
     for (int i = 0; i < capacity; ++i)
     {
@@ -219,26 +223,31 @@ void HashTable::swap(HashTable& origin)
 
 HashTable& HashTable::operator=(const HashTable& origin)
 {
-    delete [] table;
-    size = origin.size;
-    capacity = origin.capacity;
-    table = new Table[capacity];
-    for (int i = 0; i < capacity; ++i)
+    if (*this != origin)
     {
-        if (true == origin.table[i].is_filled)
+        size = origin.size;
+        capacity = origin.capacity;
+        delete [] table;
+        //table = new Table[capacity];
+        table = new Table[capacity];
+        for (int i = 0; i < capacity; ++i)
         {
-            table[i].key = origin.table[i].key;
-            table[i].value.age = origin.table[i].value.age;
-            table[i].value.weight = origin.table[i].value.weight;
-            table[i].is_filled = true;
+            if (true == origin.table[i].is_filled)
+            {
+                table[i].key = origin.table[i].key;
+                table[i].value.age = origin.table[i].value.age;
+                table[i].value.weight = origin.table[i].value.weight;
+                table[i].is_filled = true;
+            }
+            else
+            {
+                table[i].key = " ";
+                table[i].value.age = -1;
+                table[i].value.weight = -1;
+                table[i].is_filled = false;
+            }
         }
-        else
-        {
-            table[i].key = " ";
-            table[i].value.age = -1;
-            table[i].value.weight = -1;
-            table[i].is_filled = false;
-        }
+
     }
     return *this;
 }
@@ -286,6 +295,11 @@ int HashTable::getsize() const
     return size;
 }
 
+int HashTable::getcapacity() const
+{
+    return capacity;
+}
+
 bool HashTable::empty() const
 {
     for (int i = 0; i < capacity; ++i)
@@ -331,8 +345,8 @@ Value& HashTable::operator[](const Key& k)
             ++i;
             i = i % capacity;
         }
-        table[i].value.age = 0;
-        table[i].value.weight = 0;
+        table[i].value.age = -1;
+        table[i].value.weight = -1;
         Value & result = table[i].value;
         return result;
     }
@@ -392,7 +406,7 @@ void getvalue(string str, Value& v)
         ++i;
     }
     ++i;
-    while(' ' != newstr[i]) 
+    while('\0' != newstr[i]) 
     {
         weight[weight_ind] = newstr[i];
         ++weight_ind;
@@ -400,7 +414,6 @@ void getvalue(string str, Value& v)
     }
     int res_age = atoi(age);
     int res_weight = atoi(weight);
-    delete [] newstr;
     delete [] age;
     delete [] weight;
     

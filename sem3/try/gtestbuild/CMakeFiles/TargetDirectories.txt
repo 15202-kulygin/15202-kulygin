@@ -1,4 +1,4 @@
-C:/prog/gtestbuild/CMakeFiles/gtest.dir
-C:/prog/gtestbuild/CMakeFiles/gtest_main.dir
-C:/prog/gtestbuild/CMakeFiles/edit_cache.dir
-C:/prog/gtestbuild/CMakeFiles/rebuild_cache.dir
+C:/Users/Max/prog/gtestbuild/CMakeFiles/gtest.dir
+C:/Users/Max/prog/gtestbuild/CMakeFiles/gtest_main.dir
+C:/Users/Max/prog/gtestbuild/CMakeFiles/edit_cache.dir
+C:/Users/Max/prog/gtestbuild/CMakeFiles/rebuild_cache.dir
