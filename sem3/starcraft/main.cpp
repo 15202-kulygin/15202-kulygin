@@ -1,10 +1,11 @@
+#include <iostream>
+#include <string>
+#include <memory>
 #include "unit.h"
 #include "battlecruiser.h"
 #include "zergling.h"
-#include <iostream>
-#include <string>
+#include "factory.h"
 
-using namespace std;
 
 /*Unit * createUnit (const string& id)
 {
@@ -18,11 +19,22 @@ using namespace std;
 	}
 }*/
 
-int main ()
-{
-	string unit_id = "battlecruiser";
 
-	Unit * bc = new BattleCruiser;
-	bc->move(666, 77);
-	delete bc;
+
+
+
+int main (int argc, char ** argv)
+{
+	Factory* f = Factory::getInstance();
+	
+	if (2 != argc)
+	{
+		cerr << "Provide unit name" << std::endl;
+		return -1;
+	}
+	std::string unit_id = argv[1];
+
+	std::unique_ptr<Unit> u(f->create(unit_id));
+	u->move(666, 77);
+
 }

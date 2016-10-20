@@ -1,8 +1,18 @@
 #include "zergling.h"
-
+#include "factory.h"
 #include <iostream>
 
 using namespace std;
+
+namespace 
+{
+	Unit * createZerg(){
+		return new Zergling;
+	}
+	bool ok = Factory::getInstance()->regist3r(  // можно static bool, но без namespace
+		"zergling", createZerg);
+}
+
 
 
 Zergling::~Zergling()
@@ -15,5 +25,5 @@ void Zergling::move(int x, int y)
 }
 void Zergling::attack(int x, int y)
 {
-	cout << "ZergLing attacked!";
+	cout << "ZergLing attacked!" << endl;
 }
