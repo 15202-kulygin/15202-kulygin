@@ -1,12 +1,11 @@
 #if !defined(HASH_H)
 #define HASH_H
+
 #include <iostream>
 #include <string>
 #include <cstdlib>
 
-using namespace std;
-
-typedef string Key;
+typedef std::string Key;
 
 typedef struct Value {
 	unsigned int age;
@@ -19,13 +18,14 @@ typedef struct Table {
   bool is_filled;
 } Table;
 
-#if !defined(START_CAPACITY)
+/*#if !defined(START_CAPACITY)
 #define START_CAPACITY 4
-#endif
+#endif*/
 
 typedef class HashTable
 {
   private:
+    static const int START_CAPACITY = 4;
     int size;
     int capacity;
     Table * table;
@@ -98,14 +98,14 @@ typedef class HashTable
     // значение, созданное конструктором по умолчанию и вернуть ссылку на него. 
     Value& operator[](const Key& k);
 
-    /*
+    /*  ?????? ? ? ?? ?
     const Value& at(const Key& k) const;
     */
 } HashTable;
 
 
-
-void getkey(string str, Key& k);
-void getvalue(string str, Value& v);
+/// /??? ? ? ? ? ? ? ? ? ? ? ? ?  ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ?
+void getkey(std::string str, Key& k);
+void getvalue(std::string str, Value& v);
 
 #endif
