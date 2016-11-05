@@ -25,7 +25,7 @@
 
 int main (int argc, char ** argv)
 {
-	Factory* f = Factory::getInstance();
+	Factory <Unit, std::string, Unit * (*) ()> * f = Factory<Unit, std::string, Unit*(*)()>::getInstance();
 	
 	if (2 != argc)
 	{

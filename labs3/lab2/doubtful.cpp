@@ -6,12 +6,7 @@ class Doubtful : public Strategy {
 	public:
 		Doubtful ();
 		~Doubtful () override;
-		virtual void print_score() override;
-		virtual int get_score() override;
-		virtual std::string get_name() override;
 		virtual Action make_action(Action ** history, int tick) override;
-		virtual void add_score(int value) override;
-
 };
 
 Strategy * createDoubtful(){
@@ -32,18 +27,6 @@ Doubtful::~Doubtful()
 {
 	std::cout << "Doubtful destructor" << std::endl;
 }
-void Doubtful::print_score() 
-{
-	std::cout << "Doubtful score: " << score << std::endl;
-}
-int Doubtful::get_score() 
-{
-	return score;
-}
-std::string Doubtful::get_name()
-{
-	return name;
-}
 Action Doubtful::make_action(Action ** history, int tick)
 {
 	if (0 == tick % 2)
@@ -54,8 +37,4 @@ Action Doubtful::make_action(Action ** history, int tick)
 	{
 		return DEFECT;
 	}
-}
-void Doubtful::add_score(int value) 
-{
-	score += value;
 }

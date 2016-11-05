@@ -6,12 +6,7 @@ class Traitor : public Strategy {
 	public:
 		Traitor ();
 		~Traitor () override;
-		virtual void print_score() override;
-		virtual int get_score() override;
-		virtual std::string get_name() override;
 		virtual Action make_action(Action ** history, int tick) override;
-		virtual void add_score(int value) override;
-
 };
 
 Strategy * createTraitor(){
@@ -32,23 +27,7 @@ Traitor::~Traitor()
 {
 	std::cout << "Traitor destructor" << std::endl;
 }
-void Traitor::print_score() 
-{
-	std::cout << "Traitor score: " << score << std::endl;
-}
-int Traitor::get_score() 
-{
-	return score;
-}
-std::string Traitor::get_name()
-{
-	return name;
-}
 Action Traitor::make_action(Action ** history, int tick)
 {
 	return DEFECT;
-}
-void Traitor::add_score(int value) 
-{
-	score += value;
 }

@@ -1,0 +1,22 @@
+#include <iostream>
+
+class A {
+public
+A() {std::cout << "A ctor" << std::endl;} 
+~A() {std::cout << "A dtor" << std::endl;}
+{;
+class B {
+A a;
+public:
+B() {
+std::cout << "B ctor" << endl;
+}
+~B() {
+std::cout << "B dtor" << endl;
+}
+};
+
+int main ()
+{
+class B * ptr = new B;
+}

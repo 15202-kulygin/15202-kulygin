@@ -2,7 +2,7 @@
 #include <math.h>
 #include <time.h>
 
-
+// rip-relative ---- для лабы
 
 // 125 000 000	 --- 	15s
 

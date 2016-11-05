@@ -3,10 +3,10 @@
 
 #include <unordered_map>
 #include "unit.h"
-
+template <class Product, class ID, class Creator>
 class Factory { //заточена на unit * --- должна быть шаблонной, обощаться на методы
 	public:
-		typedef Unit * (*creator_t)();
+		typedef Product * (*creator_t)();
 
 		
 		Factory(const Factory&) = delete;
@@ -18,11 +18,12 @@ class Factory { //заточена на unit * --- должна быть шаб�
 			static Factory f;
 			return &f;
 		}
-		Unit * create(const std::string& id)
+		Product * create(const ID& id)
 		{
+			//??????? обработка ошибки - работа с отсутствующим id
 			return creatorz.at(id)();
 		}
-		bool regist3r(const std::string& id, const creator_t& creator)
+		bool regist3r(const ID& id, const creator_t& creator)
 		{
 			creatorz[id] = creator;
 			return true;
@@ -30,12 +31,12 @@ class Factory { //заточена на unit * --- должна быть шаб�
 	private:
 		Factory() {}
 		std::unordered_map<
-			std::string,
+			ID,
 			creator_t> creatorz;
 };
 
 
 // для лабы :
-// Андрей Александреску - "Современное проектирование на с++"
+// Андрей Александреску - "Современное проектирование на с++" (~229)
 
 #endif

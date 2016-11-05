@@ -1,0 +1,13 @@
+0000000000000000000000000000000000000000 e8c210f1a9c925c6935131d9061923196f7bd492 Max <maxsham@ngs.ru> 1475489002 +0600	commit (initial): :tada: Added .gitattributes
+e8c210f1a9c925c6935131d9061923196f7bd492 2453262d65e314eed4a460905e63b597950e2a6f Max <maxsham@ngs.ru> 1475489261 +0600	commit: hello world
+2453262d65e314eed4a460905e63b597950e2a6f 5f48daa07c18acc0085e472ee828a897102c019d Max <maxsham@ngs.ru> 1475755642 +0700	commit: trying to commit
+5f48daa07c18acc0085e472ee828a897102c019d 62b6e8fcc939e09755fd0c89d0202908860cbcf9 Max <maxsham@ngs.ru> 1475756672 +0700	pull https://github.com/15202-kulygin/15202-kulygin master: Merge made by the 'recursive' strategy.
+62b6e8fcc939e09755fd0c89d0202908860cbcf9 09fd7699d59a047be7715c38f0eba03885a97c02 Max <maxsham@ngs.ru> 1475756746 +0700	commit: trying to delete
+09fd7699d59a047be7715c38f0eba03885a97c02 5447b9d18ed545802f1953cbcb699d93d8cb54d8 Max <maxsham@ngs.ru> 1475773590 +0700	commit: lab1 -- hashtable v1.0 -- basic realisation
+5447b9d18ed545802f1953cbcb699d93d8cb54d8 baa62703b25c05d68378fbf7282440b5de208c18 Max <maxsham@ngs.ru> 1475786733 +0700	commit: lab1 -- hashtable v 2.0 -- wider realisation added
+baa62703b25c05d68378fbf7282440b5de208c18 ef4a41d790934c190609da4253a904db7ae799a4 Max <maxsham@ngs.ru> 1475810836 +0700	commit: starcraft release added
+ef4a41d790934c190609da4253a904db7ae799a4 3a53f9e8d5f9b5c4e0f4587c8dc7677bc9e0bd8b Max <maxsham@ngs.ru> 1475830644 +0700	commit: qwe
+3a53f9e8d5f9b5c4e0f4587c8dc7677bc9e0bd8b dbc5246d2948a257aff2b633fb6be859e1a1b711 Max <maxsham@ngs.ru> 1476200432 +0700	commit: ibm
+dbc5246d2948a257aff2b633fb6be859e1a1b711 0d82f058a8e5a6d9625fe6666cd323ff50a5c797 Max <maxsham@ngs.ru> 1476383873 +0700	commit: lab1 --- googletests added
+0d82f058a8e5a6d9625fe6666cd323ff50a5c797 7a8e922efeec4ecd82bff3884c1e1c4b737ae2b3 Max <maxsham@ngs.ru> 1476994958 +0700	commit: lab 2 v1.0
+7a8e922efeec4ecd82bff3884c1e1c4b737ae2b3 5a8de5cac999956d336ff6b5b709d8d8a68191e1 Max <maxsham@ngs.ru> 1476995046 +0700	commit: lab 2 v1.0

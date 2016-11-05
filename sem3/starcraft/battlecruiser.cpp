@@ -4,11 +4,14 @@
 
 using namespace std;
 
+auto createBc2 = []() -> Unit * {return new BattleCruiser;}; // лямбда-функции --- прочитать
+
 Unit * createBc(){
-	return new BattleCruiser;
+	//return new BattleCruiser;
+	return createBc2();
 }
 
-static bool ok = Factory::getInstance()->regist3r(
+static bool ok = Factory<Unit, std::string, Unit*(*)()>::getInstance()->regist3r(
 	"battlecruiser", createBc);
 
 

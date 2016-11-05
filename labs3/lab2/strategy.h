@@ -18,11 +18,24 @@ class Strategy {
 			name = " ";
 		}
 		virtual ~Strategy () {};
-		virtual void print_score() = 0;
-		virtual int get_score() = 0;
-		virtual std::string get_name() = 0;
+		void print_score() 
+		{
+			std::cout << name << " score: " << score << std::endl;
+		}
+		int get_score() 
+		{
+			return score;
+		}
+		std::string get_name() 
+		{
+			return name;
+		}
+		void add_score(int value)
+		{
+			score += value;
+		}
 		virtual Action make_action(Action ** history, int tick) = 0;
-		virtual void add_score(int value) = 0;
+		
 };
 
 #endif

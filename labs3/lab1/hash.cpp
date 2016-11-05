@@ -15,6 +15,8 @@ HashTable::HashTable()
     size = 0;
     capacity = START_CAPACITY;
     table = new Table[capacity];
+
+    // std fill
     for (int i = 0; i < capacity; ++i)
     {
         table[i].is_filled = false;
@@ -29,9 +31,11 @@ HashTable::HashTable(const HashTable& origin)
     size = origin.size;
     capacity = origin.capacity;
     table = new Table[capacity];
+
+    // std copy
     for (int i = 0; i < capacity; ++i)
     {
-        if (true == origin.table[i].is_filled)
+        if (origin.table[i].is_filled)
         {
             table[i].is_filled = true;
             table[i].key = origin.table[i].key;
@@ -51,15 +55,13 @@ HashTable::HashTable(const HashTable& origin)
 HashTable::~HashTable()
 {
     delete [] table;
-    size = 0;
-    capacity = 0;
 }
 
 // Вставка в контейнер. Возвращаемое значение - успешность вставки.
 bool HashTable::insert(const Key& key, const Value& value)
 {
     //cout << "INSERTING " << key << ' ' << value.age << ' ' << value.weight << endl;
-    if (true == HashTable::search(key))
+    if (true == search(key))
     {
         //cout << "FOUND" << endl;
         return false;
@@ -69,10 +71,12 @@ bool HashTable::insert(const Key& key, const Value& value)
         //cout << "NOT FOUND" << endl;
         if (size + 1 >= capacity / 2) // if rehashing is needed
         {
+/// make function
             //cout << "TRY " << size << ' ' << capacity << endl;
             Table * temp = new Table[size]; // creating temporary array of tables
             int current_ind = 0;
 
+// std copy
             for (int i = 0; i < capacity; ++i)
             {
                 if (true == table[i].is_filled)
@@ -86,7 +90,7 @@ bool HashTable::insert(const Key& key, const Value& value)
                 }
             }
             delete [] table; // deleting the old array of tables
-            capacity *= 2;
+            capacity *= 2;  // define
             table = new Table[capacity];
             for (int i = 0; i < capacity; ++i)
             {
@@ -100,13 +104,13 @@ bool HashTable::insert(const Key& key, const Value& value)
             //cout << "SIZE CHECKING " << size << endl;
             for (int i = 0; i < old_size; ++i)
             {
-                HashTable::insert(temp[i].key, temp[i].value);
+                insert(temp[i].key, temp[i].value);
             }
             delete [] temp;
             //cout << "REHASHED" << endl;
         }
         size += 1;
-        int hash = HashTable::gethash(key);
+        int hash = gethash(key);
         while (true == table[hash%capacity].is_filled)
         {
             hash++;
@@ -175,6 +179,9 @@ void HashTable::print()
 // std::swap.
 void HashTable::swap(HashTable& origin)
 {
+
+    // ? ? ? ? ? ?  ? ? ? ? ? ? ? ? ? ? ? ? ?  ? ? 
+
     HashTable * temp = new HashTable(origin);
     delete [] origin.table;
     origin.size = size;
@@ -223,13 +230,15 @@ void HashTable::swap(HashTable& origin)
 
 HashTable& HashTable::operator=(const HashTable& origin)
 {
-    if (*this != origin)
+    if (this != &origin)
     {
         size = origin.size;
         capacity = origin.capacity;
         delete [] table;
         //table = new Table[capacity];
         table = new Table[capacity];
+
+        // copy
         for (int i = 0; i < capacity; ++i)
         {
             if (true == origin.table[i].is_filled)
@@ -255,6 +264,7 @@ HashTable& HashTable::operator=(const HashTable& origin)
 // Очищает контейнер.
 void HashTable::clear()
 {
+    // std fill
     for (int i = 0; i < capacity; ++i)
     {
         if (true == table[i].is_filled)
