@@ -1,3 +1,16 @@
+	// после оптимизации:
+	1. больше размер оптимизированного кода
+	2. намного меньше обращений в память по косвенной адресации (всяких movl)
+	3. больше работает с сопроцессором
+	4. esp отвечает теперь и за кадр -> ebp можем использовать в своих целях
+	5. есть проверка n<0 --> сразу возвращает 0
+	6. сразу загружает -1 (вместо fld1 и fchs)
+	7. не считает каждый раз выражение 2i+1 - а просто узнал, на какое значение 
+	это выражение меняется, и прибавляет константу
+    
+
+    // esi - похоже не считает каждый раз значение 2i+1, а зависит только от i
+
 	.file	"lab3.c"
 	.section	.text.unlikely,"ax",@progbits
 .LCOLDB4:
@@ -9,68 +22,71 @@
 _Z9pi_numberd:
 .LFB52:
 	.cfi_startproc
-	pushl	%esi
+	pushl	%esi // сохраняем индекс источника цепочечных операций
 	.cfi_def_cfa_offset 8
 	.cfi_offset 6, -8
-	pushl	%ebx
+	pushl	%ebx //сохраняем указатель кадра стека вызывающей функции
 	.cfi_def_cfa_offset 12
 	.cfi_offset 3, -12
-	subl	$36, %esp
+	subl	$36, %esp // кадр стека нашей функции pi_number
 	.cfi_def_cfa_offset 48
-	fldl	48(%esp)
-	fstl	24(%esp)
-	fldz
-	fld	%st(0)
-	fxch	%st(2)
-	fucomip	%st(2), %st
+	fldl	48(%esp) //загружаем n в стек сопроцессора
+	fstl	24(%esp) //записываем n в кадр НАШЕЙ функции
+	fldz // result = 0.0 в сопроцессор
+	fld	%st(0) // у нас 2 нуля в стеке сопроцессора
+	fxch	%st(2)//st(0)<->st(2) то есть на вершине теперь n
+	fucomip	%st(2), %st // если n<0, выходим сразу и возвращаем 0
 	jb	.L8
-	movl	$1, %esi
-	xorl	%ebx, %ebx
+	movl	$1, %esi // для 2i+1
+	xorl	%ebx, %ebx // ebx = 0 - можем использовать произвольно
+	// по сути у нас ebx это i
 	jmp	.L4
 	.p2align 4,,10
 	.p2align 3
 .L11:
 	fxch	%st(1)
 .L4:
-	fstpl	16(%esp)
-	subl	$8, %esp
+	fstpl	16(%esp) //выталкиваем n в кадр
+	subl	$8, %esp 
 	.cfi_def_cfa_offset 56
-	addl	$1, %ebx
-	fstpl	(%esp)
-	pushl	$-1074790400
+	addl	$1, %ebx // ++i
+	fstpl	(%esp) // выталкиваем 0 в кадр
+	// теперь в стеке сопроцессора 0
+	// загружаем параметры pow
+	pushl	$-1074790400 // поместили -1 -- у нас отличный от О0 порядок загрузки параметров
 	.cfi_def_cfa_offset 60
-	pushl	$0
+	pushl	$0 // поместили 0
 	.cfi_def_cfa_offset 64
-	call	pow
-	fmuls	.LC2
+	call	pow //  pow(-1, i)
+	fmuls	.LC2 // 4*pow(-1, i) -- записывается в st(0)
 	movl	%esi, 28(%esp)
-	addl	$2, %esi
-	fildl	28(%esp)
-	movl	%ebx, 28(%esp)
-	fdivrp	%st, %st(1)
-	fldl	32(%esp)
-	faddp	%st, %st(1)
-	fildl	28(%esp)
+	addl	$2, %esi // вместо подсчета 2i+1 каждую итерацию -- тупо прибавляем 2 к выражению
+	fildl	28(%esp) // загрузили 2i+1(уже готовое выражение) в стек сопроцессора
+	movl	%ebx, 28(%esp) //теперь 28esp -- это i
+	fdivrp	%st, %st(1) // (st(0)=st(1)/st(0)) обратное деление с выталкиванием 4*pow(-1, i) / (2*i+1);
+	fldl	32(%esp) // загружаем последний полученный result в стек сопроцессора
+	faddp	%st, %st(1) // result += 4*pow(-1,i)/(2i+1)
+	fildl	28(%esp) // загружаем i
 	addl	$16, %esp
 	.cfi_def_cfa_offset 48
-	fldl	24(%esp)
+	fldl	24(%esp) // загружаем n в стек сопроцессора
 	fucomip	%st(1), %st
-	jnb	.L11
-	fstp	%st(0)
+	jnb	.L11 // i <= n -- продолжаем итерации, иначе:
+	fstp	%st(0) 
 .L2:
-	addl	$36, %esp
+	addl	$36, %esp // выравниваем стек
 	.cfi_remember_state
 	.cfi_def_cfa_offset 12
-	popl	%ebx
+	popl	%ebx // возвращаем значение указателя кадра вызывающей функции
 	.cfi_restore 3
 	.cfi_def_cfa_offset 8
-	popl	%esi
+	popl	%esi // возвращаем индекс источника цепочечных операций
 	.cfi_restore 6
 	.cfi_def_cfa_offset 4
 	ret
 .L8:
 	.cfi_restore_state
-	fstp	%st(1)
+	fstp	%st(1) // вытаскиваем конечный result на вершину стека сопроцессора
 	jmp	.L2
 	.cfi_endproc
 .LFE52:
