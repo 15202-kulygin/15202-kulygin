@@ -37,8 +37,8 @@ pi_number:
 	vmov.f64	d0, d11
 	bl	pow
 	vmul.f64	d0, d0, d10
-	vmov	s15, r5	@ int
-	vcvt.f64.s32	d6, s15
+	vmov	s15, r5		@ int
+	vcvt.f64.s32d6, s15
 	vdiv.f64	d7, d0, d6
 	vadd.f64	d8, d8, d7
 	adds	r4, r4, #1

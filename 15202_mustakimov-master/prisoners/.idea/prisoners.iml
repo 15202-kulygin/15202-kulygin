@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="CPP_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../gtest">
+      <sourceFolder url="file://$MODULE_DIR$/../gtest/src/gtest_main.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../gtest/src/gtest-all.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../gtest/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../gtest/cmake/internal_utils.cmake" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/Arguments.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ControllerFast.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/FactoryTest.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Controller.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ControllerTournament.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategies/Traitor.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategies/Loyal.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategies/Random.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategies/Revengeful.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategies/Revengeful.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategies/Democracy.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategies/Varying.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategies/Loyal.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategies/Traitor.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategies/Psycologist.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategies/Random.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategies/Democracy.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategies/Psycologist.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategies/Varying.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ControllerFast.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ControllerDetailed.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategy.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Arguments.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategy.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ScoreMatrix.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ScoreMatrix.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Controller.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ControllerDetailed.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ControllerTournament.h" isTestSource="false" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="Header Search Paths">
+        <CLASSES>
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include" />
+          <root url="file:///usr/include" />
+          <root url="file:///usr/local/include" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include" />
+          <root url="file:///usr/include" />
+          <root url="file:///usr/local/include" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>
