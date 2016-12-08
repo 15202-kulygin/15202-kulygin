@@ -4,8 +4,6 @@
 #include <QtGui/QMouseEvent>
 #include <QtGui/QPaintEvent>
 
-#include <iostream>
-
 FieldWidget::FieldWidget(QWidget * parent) : QWidget(parent)
 {
     field = new Field();
