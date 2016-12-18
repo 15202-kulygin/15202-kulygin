@@ -62,10 +62,10 @@ int main()
     libusb_open(dev, &dev_handle);
 	unsigned char manufacturer[200];
 	libusb_get_string_descriptor_ascii(dev_handle, desc.iManufacturer, manufacturer, 200);
-	printf("  Manufacturer %s ", manufacturer);
+	printf("  Manufacturer: %s ", manufacturer);
 	unsigned char serialnumber[200];
 	libusb_get_string_descriptor_ascii(dev_handle, desc.iSerialNumber, serialnumber, 200);
-	printf("    Serial Number  %s\n", serialnumber);
+	printf("    Serial Number:  %s\n", serialnumber);
 	libusb_close(dev_handle);
 
 	
