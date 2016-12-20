@@ -7,6 +7,10 @@
 
 //g++ -O1 lab8.cpp
 
+// L1 - 32kb
+// L2 - 256kb
+// L3 - 3mb
+
 
 #define K 1024
 #define N 256
