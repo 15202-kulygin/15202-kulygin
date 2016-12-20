@@ -28,8 +28,8 @@ unsigned long long timer(int *arr, int arrSize) {
 
 
 int main() {
-    const int cacheSize = 6144 * 1024; //KB 16777216
-    std::vector<unsigned long long>results;
+    const int cacheSize = 3 * 1024 * 1024; //KB 16777216
+    std::vector<unsigned long long> results;
 
     for(int fragmentCount = 1; fragmentCount <= 32; ++fragmentCount) 
     {
@@ -37,7 +37,7 @@ int main() {
         const int arrSize = cacheSize / sizeof(int) * fragmentCount;
         int *arr = new int[arrSize];
 
-        for(int i = 0; i < fragmentCount; ++i) 
+        for(int i = 0; i < fragmentCount; ++i) //FILLING
         {
             for(int j = 0; j < elemCount; ++j) 
             {
