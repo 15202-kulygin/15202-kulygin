@@ -7,7 +7,7 @@
 #include <vector>
 #include <cmath>
 
-const float EPS = 0.000001;
+//const float EPS = 0.000001;
 
 class Matrix {
 public:
@@ -93,7 +93,7 @@ public:
             for(unsigned j = 0; j < size_; ++j) {
                 tmp += fabs(get(j, i));
             }
-            if(max < tmp - EPS) {
+            if(max < tmp) {
                 max = tmp;
             }
         }
@@ -108,7 +108,7 @@ public:
             for(unsigned j = 0; j < size_; ++j) {
                 tmp += fabs(get(i, j));
             }
-            if(max < tmp - EPS) {
+            if(max < tmp) {
                 max = tmp;
             }
         }

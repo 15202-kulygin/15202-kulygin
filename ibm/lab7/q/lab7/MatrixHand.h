@@ -86,6 +86,10 @@ public:
         return result;
     }
 
+
+
+
+
     float firstConst() const {
         __m128 *d = (__m128*)matrix_;
         __m128 tmp;
@@ -97,7 +101,7 @@ public:
                 tmp = _mm_add_ps(tmp, d[j]);
             }
             _mm_store_ss(&sum, tmp);
-            if(max < sum - EPS) {
+            if(max < sum) {
                 max = sum;
             }
         }
@@ -116,7 +120,7 @@ public:
                 tmp = _mm_add_ps(tmp, d[j]);
             }
             _mm_store_ss(&sum, tmp);
-            if(max < sum - EPS) {
+            if(max < sum) {
                 max = sum;
             }
         }

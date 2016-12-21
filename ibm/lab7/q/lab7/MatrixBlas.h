@@ -75,6 +75,9 @@ public:
         return *(matrix_ + h * size_ + w);
     }
 
+
+
+
     MatrixBlas transpose() const {
         MatrixBlas result(size_);
         for(unsigned i = 0; i < size_; ++i) {
@@ -90,7 +93,7 @@ public:
         float max = 0;
         for(unsigned i = 0; i < size_; ++i) {
             float tmp = cblas_sasum(size_, matrix_ + i, size_);
-            if(max < tmp - EPS) {
+            if(max < tmp) {
                 max = tmp;
             }
         }
@@ -102,7 +105,7 @@ public:
         float max = 0;
         for(unsigned i = 0; i < size_; ++i) {
             float tmp = cblas_sasum(size_, matrix_ + i * size_, 1);
-            if(max < tmp - EPS) {
+            if(max < tmp) {
                 max = tmp;
             }
         }
