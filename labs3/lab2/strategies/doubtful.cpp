@@ -1,4 +1,4 @@
-#include "factory.h"
+#include "../factory.h"
 #include <iostream>
 
 
@@ -19,13 +19,13 @@ static bool ok = Factory::getInstance()->regist3r(
 
 Doubtful::Doubtful()
 {
-	std::cout << "Doubtful constructor" << std::endl;
+	//std::cout << "Doubtful constructor" << std::endl;
 	name = "Doubtful";
 	score = 0;
 }
 Doubtful::~Doubtful()
 {
-	std::cout << "Doubtful destructor" << std::endl;
+	//std::cout << "Doubtful destructor" << std::endl;
 }
 Action Doubtful::make_action(Action ** history, int tick)
 {

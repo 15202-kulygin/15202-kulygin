@@ -8,6 +8,8 @@
 #include "strategy.h"
 #include "game.h"
 
+//g++ -std=c++11 main.cpp arguments.cpp game.cpp ./strategies/traitor.cpp ./strategies/doubtful.cpp ./strategies/cooperator.cpp -o out.exe
+
 
 int main (int argc, char ** argv)
 {
@@ -33,8 +35,12 @@ int main (int argc, char ** argv)
 			FILE * input = fopen(file_name.c_str(), "r");
 			if (nullptr == input)
 			{
-				std::cerr << std::endl << std::endl << "Can't open matrix file";
+				std::cerr << std::endl << std::endl << "Can't open matrix file" << std::endl;
 				fclose(input);
+				delete s1;
+				delete s2;
+				delete s3;
+				delete g;
 				return -1;
 			}
 			int matrix[8][3];
@@ -61,13 +67,21 @@ int main (int argc, char ** argv)
 			std::string value = get_argument_value(argv[i]);
 			if (0 == value.length())
 			{
-				std::cerr << std::endl << std::endl << "Wrong steps format";
+				std::cerr << std::endl << std::endl << "Wrong steps format" << std::endl;
+				delete s1;
+				delete s2;
+				delete s3;
+				delete g;
 				return -1;
 			}
 			int t = atoi(value.c_str());
 			if (0 > t)
 			{
-				std::cerr << std::endl << std::endl << "Wrong steps format";
+				std::cerr << std::endl << std::endl << "Wrong steps format" << std::endl;
+				delete s1;
+				delete s2;
+				delete s3;
+				delete g;
 				return -1;
 			}
 			g->load_ticks(t);
@@ -77,8 +91,24 @@ int main (int argc, char ** argv)
 			std::string mode_name = get_argument_value(argv[i]);
 			if (("detailed" != mode_name) && ("fast" != mode_name) && ("tournament" != mode_name))
 			{
-				std::cerr << std::endl << std::endl << "Wrong mode format";
+				std::cerr << std::endl << std::endl << "Wrong mode format" << std::endl;
+				delete s1;
+				delete s2;
+				delete s3;
+				delete g;
 				return -1;
+			}
+			else if ("detailed" == mode_name)
+			{
+				g->load_mode(DETAILED);
+			}
+			else if ("fast" == mode_name)
+			{
+				g->load_mode(FAST);
+			}
+			else if ("tournament" != mode_name)
+			{
+				g->load_mode(TOURNAMENT);
 			}
 			
 		}

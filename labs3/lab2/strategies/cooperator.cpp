@@ -1,4 +1,4 @@
-#include "factory.h"
+#include "../factory.h"
 #include <iostream>
 
 
@@ -19,13 +19,13 @@ static bool ok = Factory::getInstance()->regist3r(
 
 Cooperator::Cooperator()
 {
-	std::cout << "Cooperator constructor" << std::endl;
+	//std::cout << "Cooperator constructor" << std::endl;
 	name = "Cooperator";
 	score = 0;
 }
 Cooperator::~Cooperator()
 {
-	std::cout << "Cooperator destructor" << std::endl;
+	//std::cout << "Cooperator destructor" << std::endl;
 }
 Action Cooperator::make_action(Action ** history, int tick)
 {

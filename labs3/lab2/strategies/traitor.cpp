@@ -1,4 +1,4 @@
-#include "factory.h"
+#include "../factory.h"
 #include <iostream>
 
 
@@ -19,13 +19,13 @@ static bool ok = Factory::getInstance()->regist3r(
 
 Traitor::Traitor()
 {
-	std::cout << "Traitor constructor" << std::endl;
+	//std::cout << "Traitor constructor" << std::endl;
 	name = "Traitor";
 	score = 0;
 }
 Traitor::~Traitor()
 {
-	std::cout << "Traitor destructor" << std::endl;
+	//std::cout << "Traitor destructor" << std::endl;
 }
 Action Traitor::make_action(Action ** history, int tick)
 {
