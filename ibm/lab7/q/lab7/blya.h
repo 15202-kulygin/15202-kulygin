@@ -1,3 +1,4 @@
+
 #ifndef _SIMD_MATRIXHAND_H_
 #define _SIMD_MATRIXHAND_H_
 
@@ -175,32 +176,27 @@ public:
 
         return result;
     }
+
+    float inner2(float* x, float* y) const{
+  __m128 *xx, *yy;
+  __m128 p, s;
+  xx = (__m128*)x;
+  yy = (__m128*)y;
+  s = _mm_setzero_ps();
+  for(int i=0; i<N/4; i++){
+    p = _mm_mul_ps(xx[i],yy[i]);
+    s = _mm_add_ps(s,p);
+  }
+  p = _mm_movehl_ps(p,s);
+  s = _mm_add_ps(s,p);
+  p = _mm_shuffle_ps(s,s,1);
+  s = _mm_add_ss(s,p);
+  float sum;
+  _mm_store_ss(&sum,s);
+  return sum;
+}
+
     MatrixHand operator* (const MatrixHand &other) const {
-        if(size_ != other.size_) {
-            throw std::runtime_error("MatrixHand have different size");
-        }
-        MatrixHand result(size_);
-        __m128 *m1 = (__m128*)matrix_;
-        __m128 *m2 = (__m128*)other.transpose().matrix_;
-
-        __m128 s;
-        for(unsigned i = 0; i < size_; ++i) {
-            for(unsigned j = 0; j < size_; ++j) {
-                s = _mm_setzero_ps();
-                s = _mm_mul_ps(m1[i],m2[j]);
-                __m128 p = _mm_movehl_ps(p,s);
-                s = _mm_add_ps(s,p);
-                p = _mm_shuffle_ps(s,s,1);
-                s = _mm_add_ss(s,p);
-                float sum;
-                _mm_store_ss(&sum, s);
-                result.set(i, j, sum);
-            }
-        }
-
-        return result;
-    }
-/*MatrixHand operator* (const MatrixHand &other) const {
         __m128 *m1 = (__m128*)matrix_;
         float * transp = other.transpose().matrix_;
         __m128 * m2 = (__m128*)transp;
@@ -228,7 +224,7 @@ public:
 
         return res;
         
-    }*/
+    }
 
     MatrixHand operator+ (const MatrixHand &other) const {
         /*if(size_ != other.size_) {
@@ -280,3 +276,4 @@ private:
 };
 
 #endif //_SIMD_MATRIXHAND_H_
+

@@ -7,7 +7,7 @@
 #include <vector>
 #include <cmath>
 
-//const float EPS = 0.000001;
+
 
 class Matrix {
 public:
