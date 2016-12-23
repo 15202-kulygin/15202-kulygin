@@ -17,9 +17,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
-
 void MainWindow::on_Step_clicked()
 {
     ui->widget->makeStep();
@@ -41,12 +38,12 @@ void MainWindow::on_NSteps_clicked()
  void MainWindow::overflowedTime()
  {
      ui->widget->makeStep();
-     timer->start(500);
+     timer->start(interval_size);
  }
 
 void MainWindow::on_Start_clicked()
 {
-    timer->start(500);
+    timer->start(interval_size);
 }
 
 void MainWindow::on_Stop_clicked()
@@ -57,4 +54,14 @@ void MainWindow::on_Stop_clicked()
 void MainWindow::on_Clear_clicked()
 {
     ui->widget->clearField();
+}
+
+void MainWindow::on_ChangeInterval_clicked()
+{
+    bool ok;
+    int N = QInputDialog::getInt(this, tr("Change interval"), tr("Enter the interval value, ms (Default = 500, Min = 0, Max = 5000) :"), 500, 0, 5000, 1, &ok);
+    if (ok)
+    {
+        interval_size = N;
+    }
 }

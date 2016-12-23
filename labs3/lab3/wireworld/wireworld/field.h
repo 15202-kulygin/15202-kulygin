@@ -25,8 +25,8 @@ private:
     static const int DEFAULT_HEIGHT = 20;
     static const int DEFAULT_WIDTH = 20;
     Cell * cells;
-    int height;
-    int width;
+    int height = DEFAULT_HEIGHT;
+    int width = DEFAULT_WIDTH;
 };
 
 

@@ -34,6 +34,7 @@ public:
     QPushButton *Start;
     QPushButton *Stop;
     QPushButton *Clear;
+    QPushButton *ChangeInterval;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -50,19 +51,22 @@ public:
         widget->setGeometry(QRect(10, 10, 421, 401));
         Step = new QPushButton(centralWidget);
         Step->setObjectName(QStringLiteral("Step"));
-        Step->setGeometry(QRect(450, 10, 75, 23));
+        Step->setGeometry(QRect(440, 10, 91, 23));
         NSteps = new QPushButton(centralWidget);
         NSteps->setObjectName(QStringLiteral("NSteps"));
-        NSteps->setGeometry(QRect(450, 40, 75, 23));
+        NSteps->setGeometry(QRect(440, 40, 91, 23));
         Start = new QPushButton(centralWidget);
         Start->setObjectName(QStringLiteral("Start"));
-        Start->setGeometry(QRect(450, 70, 75, 23));
+        Start->setGeometry(QRect(440, 70, 91, 23));
         Stop = new QPushButton(centralWidget);
         Stop->setObjectName(QStringLiteral("Stop"));
-        Stop->setGeometry(QRect(450, 100, 75, 23));
+        Stop->setGeometry(QRect(440, 100, 91, 23));
         Clear = new QPushButton(centralWidget);
         Clear->setObjectName(QStringLiteral("Clear"));
-        Clear->setGeometry(QRect(450, 130, 75, 23));
+        Clear->setGeometry(QRect(440, 130, 91, 23));
+        ChangeInterval = new QPushButton(centralWidget);
+        ChangeInterval->setObjectName(QStringLiteral("ChangeInterval"));
+        ChangeInterval->setGeometry(QRect(440, 160, 91, 23));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -88,6 +92,7 @@ public:
         Start->setText(QApplication::translate("MainWindow", "Start", 0));
         Stop->setText(QApplication::translate("MainWindow", "Stop", 0));
         Clear->setText(QApplication::translate("MainWindow", "Clear", 0));
+        ChangeInterval->setText(QApplication::translate("MainWindow", "Change interval", 0));
     } // retranslateUi
 
 };

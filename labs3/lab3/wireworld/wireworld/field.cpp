@@ -2,8 +2,6 @@
 
 Field::Field()
 {
-    height = DEFAULT_HEIGHT;
-    width = DEFAULT_WIDTH;
     cells = new Cell [height * width];
     for (int i = 0; i < height; ++i)
     {
@@ -17,8 +15,6 @@ Field::Field()
 Field::~Field()
 {
     delete [] cells;
-    height = 0;
-    width = 0;
 }
 
 void Field::changeCell(int x, int y)

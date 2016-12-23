@@ -34,7 +34,7 @@ class Strategy {
 		{
 			score += value;
 		}
-		virtual Action make_action(Action ** history, int tick) = 0;
+		virtual Action make_action(Action ** history, int history_size, int tick) = 0;
 		
 };
 

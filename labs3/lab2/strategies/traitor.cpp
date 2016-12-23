@@ -6,7 +6,7 @@ class Traitor : public Strategy {
 	public:
 		Traitor ();
 		~Traitor () override;
-		virtual Action make_action(Action ** history, int tick) override;
+		virtual Action make_action(Action ** history, int history_size, int tick) override;
 };
 
 Strategy * createTraitor(){
@@ -27,7 +27,7 @@ Traitor::~Traitor()
 {
 	//std::cout << "Traitor destructor" << std::endl;
 }
-Action Traitor::make_action(Action ** history, int tick)
+Action Traitor::make_action(Action ** history, int history_size, int tick)
 {
 	return DEFECT;
 }

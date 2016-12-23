@@ -17,6 +17,7 @@ public:
     explicit Widget(QWidget *parent = 0);
     ~Widget();
     void clearField();
+
 public slots:
     void makeStep();
 

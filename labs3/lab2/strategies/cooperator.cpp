@@ -6,7 +6,7 @@ class Cooperator : public Strategy {
 	public:
 		Cooperator ();
 		~Cooperator () override;
-		virtual Action make_action(Action ** history, int tick) override;
+		virtual Action make_action(Action ** history, int history_size, int tick) override;
 };
 
 Strategy * createCooperator(){
@@ -27,7 +27,7 @@ Cooperator::~Cooperator()
 {
 	//std::cout << "Cooperator destructor" << std::endl;
 }
-Action Cooperator::make_action(Action ** history, int tick)
+Action Cooperator::make_action(Action ** history, int history_size, int tick)
 {
 	return COOPERATE;
 }

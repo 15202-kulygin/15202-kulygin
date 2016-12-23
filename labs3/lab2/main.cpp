@@ -22,8 +22,8 @@ int main (int argc, char ** argv)
 	std::string strategy_id1 = argv[1];
 	std::string strategy_id2 = argv[2];
 	std::string strategy_id3 = argv[3];
-	Strategy * s1(f->create(strategy_id1));
-	Strategy * s2(f->create(strategy_id2));
+	Strategy * s1(f->create(strategy_id1)); //??????
+	Strategy * s2(f->create(strategy_id2)); // unique
 	Strategy * s3(f->create(strategy_id3));
 	Game * g = new Game(s1, s2, s3);
 	for (int i = 4; i < argc; ++i) // переделать под C

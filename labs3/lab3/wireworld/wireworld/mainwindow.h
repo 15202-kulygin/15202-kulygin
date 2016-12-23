@@ -29,7 +29,10 @@ private slots:
 
     void on_Clear_clicked();
 
+    void on_ChangeInterval_clicked();
+
 private:
+    int interval_size = 500;
     Ui::MainWindow *ui;
     QTimer * timer;
 };
