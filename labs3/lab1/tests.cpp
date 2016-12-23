@@ -32,7 +32,7 @@ TEST (HashTests, Erase)
 
 TEST (HashTests, GetHash)
 {
-	Key k = "eargaergvaefvawevawefwavwfevawefawefvavregvtgvarvgawevef";
+	Key k = "eargaergvaefvawevajjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkjhkjguyfcytcttt1777777777777777777wefwavwfevawefawefvavregvtgvarvgawevef";
 	HashTable ht;
 	int hash = ht.gethash(k);
 	ASSERT_FALSE(hash < 0);
@@ -68,6 +68,13 @@ TEST (HashTests, Insert)
 	EXPECT_FALSE(check);
 	check = ht.insert("abc", temp);
 	EXPECT_TRUE(check);
+
+	for (int i = 0; i < 50; ++i)
+	{
+		std::cout << "OK";
+		std::string s;
+		ht.insert(c, temp);
+	}
 }
 
 TEST (HashTests, IndexOp)

@@ -65,3 +65,15 @@ void MainWindow::on_ChangeInterval_clicked()
         interval_size = N;
     }
 }
+
+void MainWindow::on_ResizeField_clicked()
+{
+    bool ok1;
+    bool ok2;
+    int N = QInputDialog::getInt(this, tr("Resize field"), tr("Enter new height (Default = 20, Min = 0, Max = 35) :"), 20, 0, 35, 1, &ok1);
+    int M = QInputDialog::getInt(this, tr("Resize field"), tr("Enter new width (Default = 20, Min = 0, Max = 45) :"), 20, 0, 45, 1, &ok2);
+    if (ok1 && ok2)
+    {
+       ui->widget->resizeField(N, M);
+    }
+}

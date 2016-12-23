@@ -1,6 +1,7 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
+#include<memory>
 #include <QWidget>
 #include <QColor>
 #include "field.h"
@@ -17,6 +18,7 @@ public:
     explicit Widget(QWidget *parent = 0);
     ~Widget();
     void clearField();
+    void resizeField(int h, int w);
 
 public slots:
     void makeStep();
@@ -33,9 +35,9 @@ private:
 
     static const int CELLSIZE = 20;
     static const QColor GRIDCOLOR;
-    Field * field;
-    Field * buffer;
-    Ui::Widget *ui;
+    std::unique_ptr<Field> field;
+    std::unique_ptr<Field> buffer;
+    std::unique_ptr<Ui::Widget> ui;
 };
 
 #endif // WIDGET_H

@@ -1,9 +1,12 @@
 #include "game.h"
+#include "arguments.h"
 #include <iostream>
+#include <string>
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
 #include <cctype>
+
 
 Game::Game() 
 {
@@ -13,15 +16,8 @@ Game::Game(Strategy * s1, Strategy * s2, Strategy * s3)
 {
 	ticks = DEFAULT_TICKS_AMOUNT;
 	history_size = ticks;
-	history = new Action * [history_size];
-	for (int i = 0; i < history_size; ++i)
-	{
-		history[i] = new Action [3];
-		for (int j = 0; j < 3; ++j)
-		{
-			history[i][j] = UNDEFINED;
-		}
-	}
+	history.reserve(history_size*3);
+	std::fill(history.begin(), history.end(), UNDEFINED);
 	strategy1 = s1;
 	strategy2 = s2;
 	strategy3 = s3;
@@ -30,11 +26,7 @@ Game::Game(Strategy * s1, Strategy * s2, Strategy * s3)
 
 Game::~Game()
 {
-	for (int i = 0; i < ticks; ++i)
-	{
-		delete [] history[i];
-	}
-	delete [] history;
+	history.clear();
 	strategy1 = 0;
 	strategy2 = 0;
 	strategy3 = 0;
@@ -45,7 +37,6 @@ void Game::play_game()
 {
 	if (game_mode == DETAILED)
 	{
-		ticks = 0;
 		detailed_game();
 	}
 	else if (game_mode == FAST)
@@ -59,13 +50,11 @@ void Game::play_game()
 }
 void Game::print_history()
 {
-	for (int i = 0; i < ticks; ++i)
+	for (int i = 0; i < ticks*3; ++i)
 	{
-		for (int j = 0; j < 3; ++j)
-		{
-			std::cout << history[i][j] << ' ';
-		}
-		std::cout << std::endl;
+		std::cout << history[i] << ' ';
+		if ((2 == i%3) && (0 != i))
+			std::cout << std::endl;
 	}
 }
 int Game::get_ticks_amount()
@@ -78,53 +67,46 @@ void Game::load_rules(int matrix[8][3])
 	{
 		for (int j = 0; j < 3; ++j)
 		{
-			rules[i][j] = matrix[i][j];
+			rules[i*3 + j] = matrix[i][j];
 		}
 	}
+	//std::copy(rules.begin(), rules.end(), matrix);
 }
 void Game::load_ticks(int to_load)
 {
-	for (int i = 0; i < ticks; ++i)
-	{
-		delete [] history[i];
-	}
-	delete [] history;
+	history.clear();
 	ticks = to_load;
-	history = new Action * [ticks];
-	for (int i = 0; i < ticks; ++i)
-	{
-		history[i] = new Action [3];
-		for (int j = 0; j < 3; ++j)
-		{
-			history[i][j] = UNDEFINED;
-		}
-	}
+	history_size = ticks;
+	history.reserve(history_size*3);
+	std::fill(history.begin(), history.end(), UNDEFINED);
 }
 
 void Game::make_step(int n)
 {
-	//std::cout << history_size << " cur hist size" << std::endl;
 	for (int i = 0; i < n; ++i)
 	{
 		if (ticks + 1 > history_size)
 		{
 			realloc_history();				
 		}
-		Action action1 = strategy1->make_action(history, i);
-		Action action2 = strategy2->make_action(history, i);
-		Action action3 = strategy3->make_action(history, i);
-		history[ticks][0] = action1;
-		history[ticks][1] = action2;
-		history[ticks][2] = action3;
-		int index = 4 * (int)history[ticks][0] + 2 * (int)history[ticks][1] + 1 * (int)history[ticks][2];
-		strategy1->add_score(rules[index][0]);
-		strategy2->add_score(rules[index][1]);
-		strategy3->add_score(rules[index][2]);
+		Action action1 = strategy1->make_action(history, history_size, ticks);
+		Action action2 = strategy2->make_action(history, history_size, ticks);
+		
+
+		Action action3 = strategy3->make_action(history, history_size, ticks);
+		//std::cout << "OK2" << std::endl;
+		history[ticks*3 + 0] = action1;
+		history[ticks*3 + 1] = action2;
+		history[ticks*3 + 2] = action3;
+		int index = 4 * (int)history[ticks*3 + 0] + 2 * (int)history[ticks*3 + 1] + 1 * (int)history[ticks*3 + 2];
+		strategy1->add_score(rules[index*3 + 0]);
+		strategy2->add_score(rules[index*3 + 1]);
+		strategy3->add_score(rules[index*3 + 2]);
 		ticks++;
 		std::cout << std::endl << std::endl << "Tick " << ticks << " played." << std::endl << "Score: ";
-		std::cout << strategy1->get_name() << " " << rules[index][0] << ", ";
-		std::cout << strategy2->get_name() << " " << rules[index][1] << ", ";
-		std::cout << strategy3->get_name() << " " << rules[index][2];
+		std::cout << strategy1->get_name() << " " << rules[index*3 + 0] << ", ";
+		std::cout << strategy2->get_name() << " " << rules[index*3 + 1] << ", ";
+		std::cout << strategy3->get_name() << " " << rules[index*3 + 2];
 		std::cout << std::endl << "Current score: ";
 		std::cout << strategy1->get_name() << " " << strategy1->get_score() << ", ";
 		std::cout << strategy2->get_name() << " " << strategy2->get_score() << ", ";
@@ -139,28 +121,33 @@ void Game::realloc_history()
 {
 	int old_size = history_size;
 	history_size *= 2;
-	Action ** temp = new Action * [history_size];
+	std::vector<Action> temp(old_size*3);
 	for (int i = 0; i < old_size; ++i)
 	{
-		temp[i] = new Action [3];
 		for (int j = 0; j < 3; ++j)
 		{
-			temp[i][j] = history[i][j];
+			temp[i*3 + j] = history[i*3 + j];
 		}
-		delete [] history[i];
 	}
-	delete [] history;
+	history.reserve(history_size*3);
+	for (int i = 0; i < old_size; ++i)
+	{
+		for (int j = 0; j < 3; ++j)
+		{
+			history[i*3 + j] = temp[i*3 + j];
+		}
+	}
 	for (int i = old_size; i < history_size; ++i)
 	{
-		temp[i] = new Action [3];
 		for (int j = 0; j < 3; ++j)
 		{
-			temp[i][j] = UNDEFINED;
+			history[i*3 + j] = UNDEFINED;
 		}
 	}
-	history = temp;
+	temp.clear();
+	
+	
 }
-
 void Game::detailed_game()
 {
 	std::cout << "Game in detailed mode began." << std::endl;
@@ -196,7 +183,7 @@ void Game::detailed_game()
 			{
 				++ind;
 			}
-				char * number = (char *) calloc (100, sizeof(char));
+			char * number = (char *) calloc (100, sizeof(char));
 			int num_ind = 0;
 			while(isdigit(str[ind]))
 			{
@@ -206,6 +193,7 @@ void Game::detailed_game()
 			free(number);
 			make_step(n);
 		}
+		free(str);
 	}
 }
 
@@ -218,8 +206,48 @@ void Game::fast_game()
 
 void Game::tournament_game()
 {
+	int ticks_amount = ticks;
+	ticks = 0;
+	for (int i = 0; i < ticks_amount; ++i)
+	{
+		if (ticks + 1 > history_size)
+		{
+			realloc_history();				
+		}
+		Action action1 = strategy1->make_action(history, history_size, i);
+		Action action2 = strategy2->make_action(history, history_size, i);
+		Action action3 = strategy3->make_action(history, history_size, i);
+		history[ticks*3 + 0] = action1;
+		history[ticks*3 + 1] = action2;
+		history[ticks*3 + 2] = action3;
+		int index = 4 * (int)history[ticks*3 + 0] + 2 * (int)history[ticks*3 + 1] + 1 * (int)history[ticks*3 + 2];
+		strategy1->add_score(rules[index*3 + 0]);
+		strategy2->add_score(rules[index*3 + 1]);
+		strategy3->add_score(rules[index*3 + 2]);
+		ticks++;
+		std::cout << std::endl;
+	}
+	std::cout << std::endl << std::endl << "Game played." << std::endl << "Score: ";
+	std::cout << strategy1->get_name() << " " << strategy1->get_score() << ", ";
+	std::cout << strategy2->get_name() << " " << strategy2->get_score() << ", ";
+	std::cout << strategy3->get_name() << " " << strategy3->get_score() << std::endl;
+	std::cout << "History: " << std::endl;
+	print_history();
+	std::cout << std::endl << std::endl;
 
 }
+
+void Game::load_strategies(Strategy * s1, Strategy * s2, Strategy * s3)
+{
+	strategy1 = s1;
+	strategy2 = s2;
+	strategy3 = s3;
+}
+
+
+
+
+
 /*
 з1 з2 з3     з1 з2 з3
  С  С  С  =>  4  4  4  //заключённые 1, 2 и 3 получают по 4 очка  

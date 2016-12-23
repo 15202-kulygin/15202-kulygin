@@ -24,37 +24,47 @@ GTEST_API_ int main (int argc, char ** argv)
         Value value;
         getkey(str, key);
         getvalue(str, value);
-        //cout << key << ' ' << value.age << ' ' << value.weight << " JJJJJJJ" << endl;
+        
         ht.insert(key, value);
-        //cout << "ok " << endl;
+        
     }
 
     cout << endl << endl;
     ht.print();
     input.close();
-    input.open("asd.txt");
+    input.open("crusoe.txt");
     HashTable ht2;
     while (getline(input, str))
     {
-        //cout << "STRING " << str << endl;
+        
         Key key = str;
         Value value;
         getkey(str, key);
         getvalue(str, value);
-        //cout << key << ' ' << value.age << ' ' << value.weight << " JJJJJJJ" << endl;
+        
         ht2.insert(key, value);
-        //cout << "ok " << endl;
+        
     }
     input.close();
+    cout << "Waiting" << endl;
+    while (cin >> str)
+    {
+        if(ht2.search(str))
+        {
+            cout << ht2.at(str).age << "age" << endl;
+            cout << ht2.at(str).weight << "weight" << endl;
+            
+        }
+        else
+        {
+            cout << "Not found" << endl;
+        }
+    }
     cout << endl << endl;
     ht2.print();
-    ht2 = ht;
-    cout << "test" << endl;
-    ht.print();
-    ht2.print();
-    cout << "Running tests\n" << endl;
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+    //cout << "Running tests\n" << endl;
+    //testing::InitGoogleTest(&argc, argv);
+    //return RUN_ALL_TESTS();
  
 }
 

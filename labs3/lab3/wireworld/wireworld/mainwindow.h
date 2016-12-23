@@ -31,6 +31,8 @@ private slots:
 
     void on_ChangeInterval_clicked();
 
+    void on_ResizeField_clicked();
+
 private:
     int interval_size = 500;
     Ui::MainWindow *ui;

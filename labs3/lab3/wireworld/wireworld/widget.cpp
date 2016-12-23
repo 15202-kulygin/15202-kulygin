@@ -5,18 +5,19 @@
 
 const QColor Widget::GRIDCOLOR = Qt::black;
 
-Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget)
+Widget::Widget(QWidget *parent) : QWidget(parent),
+                                  ui(std::unique_ptr<Ui::Widget>(new Ui::Widget))
 {
-    field = new Field;
-    buffer = new Field;
-    ui->setupUi(this);
+    field = std::unique_ptr<Field>(new Field);
+    buffer = std::unique_ptr<Field>(new Field);
+    ui.get()->setupUi(this);
 }
 
 Widget::~Widget()
 {
-    delete field;
-    delete buffer;
-    delete ui;
+    //delete field;
+    //delete buffer;
+    //delete ui;
 }
 
 void Widget::paintEvent(QPaintEvent *)
@@ -30,8 +31,8 @@ void Widget::paintEvent(QPaintEvent *)
 void Widget::paintGrid(QPainter &p)
 {
     p.setPen(GRIDCOLOR);
-    int FieldWidth = field->getWidth();
-    int FieldHeight = field->getHeight();
+    int FieldWidth = field.get()->getWidth();
+    int FieldHeight = field.get()->getHeight();
     for(int i = 0; i <= FieldWidth; i++)
         p.drawLine(i * CELLSIZE, 0, i * CELLSIZE, FieldHeight * CELLSIZE);
     for(int i = 0; i <= FieldHeight; i++)
@@ -40,8 +41,8 @@ void Widget::paintGrid(QPainter &p)
 
 void Widget::paintField(QPainter &p)
 {
-    int FieldWidth = field->getWidth();
-    int FieldHeight = field->getHeight();
+    int FieldWidth = field.get()->getWidth();
+    int FieldHeight = field.get()->getHeight();
     for(int i = 0; i < FieldHeight; i++)
     {
         for(int j = 0; j < FieldWidth; j++)
@@ -50,7 +51,7 @@ void Widget::paintField(QPainter &p)
             qreal top  = (qreal)(CELLSIZE * i);
             QRectF rect(left, top, (qreal)CELLSIZE, (qreal)CELLSIZE);
             QColor CellColor;
-            Cell to_get = field->getCell(i, j);
+            Cell to_get = field.get()->getCell(i, j);
             if (EMPTY == to_get)
             {
                 CellColor = Qt::darkGray;
@@ -74,40 +75,40 @@ void Widget::paintField(QPainter &p)
 
 void Widget::mousePressEvent(QMouseEvent *event)
 {
-   if ((event->y() >= CELLSIZE * field->getHeight()) || (event->x() >= CELLSIZE * field->getWidth()))
+   if ((event->y() >= CELLSIZE * field.get()->getHeight()) || (event->x() >= CELLSIZE * field.get()->getWidth()))
        return;
    double cellHeight = event->y() / CELLSIZE;
    double cellWidth = event->x() / CELLSIZE;
-   field->changeCell((int)cellHeight, (int)cellWidth);
-   buffer->changeCell((int)cellHeight, (int)cellWidth);
+   field.get()->changeCell((int)cellHeight, (int)cellWidth);
+   buffer.get()->changeCell((int)cellHeight, (int)cellWidth);
    update();
 }
 
 void Widget::makeStep()
 {
-    int fieldHeight = field->getHeight();
-    int fieldWidth = field->getWidth();
+    int fieldHeight = field.get()->getHeight();
+    int fieldWidth = field.get()->getWidth();
     for (int i = 0; i < fieldHeight; ++i)
     {
         for (int j = 0; j < fieldWidth; ++j)
         {
-            if (EMPTY == buffer->getCell(i, j))
+            if (EMPTY == buffer.get()->getCell(i, j))
             {
-                field->changeCell(i, j, EMPTY);
+                field.get()->changeCell(i, j, EMPTY);
             }
-            else if (HEAD == buffer->getCell(i, j))
+            else if (HEAD == buffer.get()->getCell(i, j))
             {
-                field->changeCell(i, j, TAIL);
+                field.get()->changeCell(i, j, TAIL);
             }
-            if (TAIL == buffer->getCell(i, j))
+            if (TAIL == buffer.get()->getCell(i, j))
             {
-                field->changeCell(i, j, CONDUCTOR);
+                field.get()->changeCell(i, j, CONDUCTOR);
             }
-            if (CONDUCTOR == buffer->getCell(i, j))
+            if (CONDUCTOR == buffer.get()->getCell(i, j))
             {
-                if ((2 == buffer->countHeads(i, j)) || (1 == buffer->countHeads(i, j)))
+                if ((2 == buffer.get()->countHeads(i, j)) || (1 == buffer.get()->countHeads(i, j)))
                 {
-                    field->changeCell(i, j, HEAD);
+                    field.get()->changeCell(i, j, HEAD);
                 }
             }
         }
@@ -116,7 +117,7 @@ void Widget::makeStep()
     {
         for (int j = 0; j < fieldWidth; ++j)
         {
-            buffer->changeCell(i, j, field->getCell(i, j));
+            buffer.get()->changeCell(i, j, field.get()->getCell(i, j));
         }
     }
     update();
@@ -124,10 +125,15 @@ void Widget::makeStep()
 
 void Widget::clearField()
 {
-    delete field;
-    delete buffer;
-    field = new Field;
-    buffer = new Field;
+    field = std::unique_ptr<Field>(new Field(field.get()->getHeight(), field.get()->getWidth()));
+    buffer = std::unique_ptr<Field>(new Field(field.get()->getHeight(), field.get()->getWidth()));
+    update();
+}
+
+void Widget::resizeField(int h, int w)
+{
+    field = std::unique_ptr<Field>(new Field(h, w));
+    buffer = std::unique_ptr<Field>(new Field(h, w));
     update();
 }
 

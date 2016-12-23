@@ -6,7 +6,7 @@ class Doubtful : public Strategy {
 	public:
 		Doubtful ();
 		~Doubtful () override;
-		virtual Action make_action(Action ** history, int history_size, int tick) override;
+		virtual Action make_action(std::vector<Action> & history, int history_size, int tick) override;
 };
 
 Strategy * createDoubtful(){
@@ -27,7 +27,7 @@ Doubtful::~Doubtful()
 {
 	//std::cout << "Doubtful destructor" << std::endl;
 }
-Action Doubtful::make_action(Action ** history, int history_size, int tick)
+Action Doubtful::make_action(std::vector<Action> & history, int history_size, int tick)
 {
 	if (0 == tick % 2)
 	{

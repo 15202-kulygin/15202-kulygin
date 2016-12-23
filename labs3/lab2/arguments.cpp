@@ -11,7 +11,7 @@ std::string get_argument_value(char * argument)
 		++i;
 	}
 	int name_len = strlen(argument) - arg_type_len;
-	char * result_char = new char[name_len];
+	char * result_char = new char[name_len + 1];
 	for (int k = 0; k < name_len; ++k)
 	{
 		result_char[k] = argument[k + arg_type_len];

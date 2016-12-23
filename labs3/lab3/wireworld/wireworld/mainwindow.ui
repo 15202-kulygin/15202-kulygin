@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>541</width>
-    <height>467</height>
+    <width>1024</width>
+    <height>768</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>941</width>
+    <height>646</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1024</width>
+    <height>768</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -19,15 +31,15 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>421</width>
-      <height>401</height>
+      <width>901</width>
+      <height>711</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="Step">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>920</x>
       <y>10</y>
       <width>91</width>
       <height>23</height>
@@ -40,7 +52,7 @@
    <widget class="QPushButton" name="NSteps">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>920</x>
       <y>40</y>
       <width>91</width>
       <height>23</height>
@@ -53,7 +65,7 @@
    <widget class="QPushButton" name="Start">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>920</x>
       <y>70</y>
       <width>91</width>
       <height>23</height>
@@ -66,7 +78,7 @@
    <widget class="QPushButton" name="Stop">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>920</x>
       <y>100</y>
       <width>91</width>
       <height>23</height>
@@ -79,7 +91,7 @@
    <widget class="QPushButton" name="Clear">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>920</x>
       <y>130</y>
       <width>91</width>
       <height>23</height>
@@ -92,7 +104,7 @@
    <widget class="QPushButton" name="ChangeInterval">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>920</x>
       <y>160</y>
       <width>91</width>
       <height>23</height>
@@ -102,13 +114,26 @@
      <string>Change interval</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="ResizeField">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>190</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Resize field</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>541</width>
+     <width>1024</width>
      <height>21</height>
     </rect>
    </property>

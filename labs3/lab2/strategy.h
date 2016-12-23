@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
 typedef enum Action {
 	COOPERATE = 0, DEFECT = 1, UNDEFINED = 2
@@ -34,8 +35,11 @@ class Strategy {
 		{
 			score += value;
 		}
-		virtual Action make_action(Action ** history, int history_size, int tick) = 0;
+		virtual Action make_action(std::vector<Action> & history, int history_size, int tick) = 0;
 		
 };
+
+
+
 
 #endif

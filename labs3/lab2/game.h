@@ -13,8 +13,8 @@ class Game {
 		static const int DEFAULT_TICKS_AMOUNT = 5;
 		int ticks;
 		int history_size;
-		std::vector<std::vector<int>> rules { {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0} };
-		Action ** history;
+		std::vector<int> rules = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		std::vector<Action> history;
 		Strategy * strategy1;
 		Strategy * strategy2;
 		Strategy * strategy3;
@@ -34,6 +34,8 @@ class Game {
 		void detailed_game();
 		void fast_game();
 		void tournament_game();
+		void load_strategies(Strategy * s1, Strategy * s2, Strategy * s3);
+
 };
 
 
