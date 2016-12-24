@@ -1,0 +1,98 @@
+        -:    0:Source:hash.h
+        -:    0:Programs:4
+        -:    1:#if !defined(HASH_H)
+        -:    2:#define HASH_H
+        -:    3:
+        -:    4:#include <iostream>
+        -:    5:#include <string>
+        -:    6://#include <cstdlib>
+        -:    7:
+        -:    8:#include "input.h"
+        -:    9:
+        -:   10:/*#if !defined(START_CAPACITY)
+        -:   11:#define START_CAPACITY 4
+        -:   12:#endif*/
+        -:   13:
+        -:   14:typedef class HashTable
+        -:   15:{
+        -:   16:  private:
+        -:   17:    static const int START_CAPACITY = 4;
+        -:   18:    int size;
+        -:   19:    int capacity;
+        -:   20:    Table * table;
+        -:   21:    
+        -:   22:  public:
+        -:   23:    HashTable();
+        -:   24:    HashTable(const HashTable& origin);
+        -:   25:    ~HashTable();
+        -:   26:    
+        -:   27:    int gethash(Key key) const;
+        -:   28:
+        -:   29:    // Вставка в контейнер. Возвращаемое значение - успешность вставки.
+        -:   30:    bool insert(const Key& k, const Value& v);
+        -:   31:
+        -:   32:    // Проверка наличия значения по заданному ключу.
+        -:   33:    bool search(const Key& key) const;
+        -:   34:    
+        -:   35:    void print();
+        -:   36:    
+        -:   37:    void swap(HashTable& origin);
+        -:   38:    
+        -:   39:    HashTable& operator=(const HashTable& origin);
+        -:   40:    
+        -:   41:    // Очищает контейнер.
+        -:   42:    void clear();
+        -:   43:
+        -:   44:     // Удаляет элемент по заданному ключу.
+        -:   45:    bool erase(const Key& k);
+        -:   46:
+        -:   47:    int getsize() const;
+        -:   48:    int getcapacity() const;
+        -:   49:
+        -:   50:    bool empty() const;
+        -:   51:
+    #####:   52:    friend bool operator==(const HashTable & a, const HashTable & b)
+        -:   53:    {
+    #####:   54:      if (a.size == b.size)
+        -:   55:      {
+    #####:   56:        for (int i = 0; i < a.capacity; ++i)
+        -:   57:        {
+    #####:   58:          if (true == a.table[i].is_filled)
+        -:   59:          {
+    #####:   60:            if (false == b.search(a.table[i].key))
+        -:   61:            {
+    #####:   62:              return false;
+        -:   63:            }
+        -:   64:          }
+    #####:   65:          return true;
+        -:   66:        }
+        -:   67:      }
+    #####:   68:      return false;
+        -:   69:    }
+        -:   70:
+    #####:   71:    friend bool operator!=(const HashTable & a, const HashTable & b)
+        -:   72:    {
+    #####:   73:      if (a == b)
+        -:   74:      {
+    #####:   75:        return false;
+        -:   76:      }
+        -:   77:      else
+        -:   78:      {
+    #####:   79:        return true;
+        -:   80:      }
+        -:   81:    }
+        -:   82:    void rehash();
+        -:   83:    // Возвращает значение по ключу. Бросает исключение при неудаче.
+        -:   84:    Value& at(const Key& k);
+        -:   85:
+        -:   86:    // Возвращает значение по ключу. Небезопасный метод.
+        -:   87:    // В случае отсутствия ключа в контейнереа следует вставить в контейнер
+        -:   88:    // значение, созданное конструктором по умолчанию и вернуть ссылку на него. 
+        -:   89:    Value& operator[](const Key& k);
+        -:   90:
+        -:   91:    const Value& at(const Key& k) const;
+        -:   92:} HashTable;
+        -:   93:
+        -:   94:
+        -:   95:
+        -:   96:#endif

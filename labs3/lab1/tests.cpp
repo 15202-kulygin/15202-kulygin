@@ -89,3 +89,4 @@ TEST (HashTests, IndexOp)
 	EXPECT_NE(check.age, -1);
 	EXPECT_NE(check.weight, -1);
 }
+

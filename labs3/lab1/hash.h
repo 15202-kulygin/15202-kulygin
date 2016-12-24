@@ -3,20 +3,9 @@
 
 #include <iostream>
 #include <string>
-#include <cstdlib>
+#include <memory>
 
-typedef std::string Key;
-
-typedef struct Value {
-	unsigned int age;
-	unsigned int weight;
-} Value;
-
-typedef struct Table {
-  Key key;
-  Value value;
-  bool is_filled;
-} Table;
+#include "input.h"
 
 /*#if !defined(START_CAPACITY)
 #define START_CAPACITY 4
@@ -43,7 +32,7 @@ typedef class HashTable
     // Проверка наличия значения по заданному ключу.
     bool search(const Key& key) const;
     
-    void print();
+    void print() const;
     
     void swap(HashTable& origin);
     
@@ -57,6 +46,7 @@ typedef class HashTable
 
     int getsize() const;
     int getcapacity() const;
+    Table * get_data() const;
 
     bool empty() const;
 
@@ -90,6 +80,7 @@ typedef class HashTable
         return true;
       }
     }
+    void rehash();
     // Возвращает значение по ключу. Бросает исключение при неудаче.
     Value& at(const Key& k);
 
@@ -98,14 +89,9 @@ typedef class HashTable
     // значение, созданное конструктором по умолчанию и вернуть ссылку на него. 
     Value& operator[](const Key& k);
 
-    /*  ?????? ? ? ?? ?
     const Value& at(const Key& k) const;
-    */
 } HashTable;
 
 
-/// /??? ? ? ? ? ? ? ? ? ? ? ? ?  ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ?
-void getkey(std::string str, Key& k);
-void getvalue(std::string str, Value& v);
 
 #endif
