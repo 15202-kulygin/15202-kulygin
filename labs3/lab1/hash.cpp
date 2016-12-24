@@ -10,20 +10,21 @@ int HashTable::gethash(Key key) const
         result = (result * 31) ^ str[i];
     return result%capacity;  
 }
+Table * HashTable::get_data() const
+{
+    return table;
+}
 HashTable::HashTable()
 {
     size = 0;
     capacity = START_CAPACITY;
     table = new Table[capacity];
-
-    // std fill
-    for (int i = 0; i < capacity; ++i)
-    {
-        table[i].is_filled = false;
-        table[i].key = " ";
-        table[i].value.age = -1;
-        table[i].value.weight = -1;
-    }
+    Table to_fill;
+    to_fill.is_filled = false;
+    to_fill.key = " ";
+    to_fill.value.age = -1;
+    to_fill.value.weight = -1;
+    std::fill(table, table + capacity, to_fill); 
 }
 
 HashTable::HashTable(const HashTable& origin)
@@ -31,25 +32,7 @@ HashTable::HashTable(const HashTable& origin)
     size = origin.size;
     capacity = origin.capacity;
     table = new Table[capacity];
-
-    // std copy
-    for (int i = 0; i < capacity; ++i)
-    {
-        if (origin.table[i].is_filled)
-        {
-            table[i].is_filled = true;
-            table[i].key = origin.table[i].key;
-            table[i].value.age = origin.table[i].value.age;
-            table[i].value.weight = origin.table[i].value.weight;
-        }
-        else
-        {
-            table[i].is_filled = false;
-            table[i].key = " ";
-            table[i].value.age = -1;
-            table[i].value.weight = -1;
-        }
-    }
+    std::copy(origin.table, origin.table + capacity, table);
 }
 
 HashTable::~HashTable()
@@ -71,43 +54,7 @@ bool HashTable::insert(const Key& key, const Value& value)
         //cout << "NOT FOUND" << endl;
         if (size + 1 >= capacity / 2) // if rehashing is needed
         {
-/// make function
-            //cout << "TRY " << size << ' ' << capacity << endl;
-            Table * temp = new Table[size]; // creating temporary array of tables
-            int current_ind = 0;
-
-// std copy
-            for (int i = 0; i < capacity; ++i)
-            {
-                if (true == table[i].is_filled)
-                {
-                    //cout << "TRY1 " << i << endl;
-                    temp[current_ind].key = table[i].key;
-                    temp[current_ind].value.age = table[i].value.age;
-                    temp[current_ind].value.weight = table[i].value.weight;
-                    temp[current_ind].is_filled = true;
-                    current_ind++;
-                }
-            }
-            delete [] table; // deleting the old array of tables
-            capacity *= 2;  // define
-            table = new Table[capacity];
-            for (int i = 0; i < capacity; ++i)
-            {
-                table[i].is_filled = false;
-                table[i].key = " ";
-                table[i].value.age = -1;
-                table[i].value.weight = -1;
-            }
-            int old_size = size;
-            size = 0;
-            //cout << "SIZE CHECKING " << size << endl;
-            for (int i = 0; i < old_size; ++i)
-            {
-                insert(temp[i].key, temp[i].value);
-            }
-            delete [] temp;
-            //cout << "REHASHED" << endl;
+            rehash();
         }
         size += 1;
         int hash = gethash(key);
@@ -124,6 +71,54 @@ bool HashTable::insert(const Key& key, const Value& value)
         //cout << "INSERTED" << endl;
         return true;
     }
+}
+
+void HashTable::rehash()
+{
+    Table * temp = new Table[capacity]; // creating temporary array of tables
+    int current_ind = 0;
+
+// std copy
+    //std::cout << "CHECK " <<std::endl;
+    //print();
+    //std::copy(table, table + capacity, temp);
+    for (int i = 0; i < capacity; ++i)
+    {
+        if (true == table[i].is_filled)
+        {
+            //cout << "TRY1 " << i << endl;
+            temp[current_ind].key = table[i].key;
+            temp[current_ind].value.age = table[i].value.age;
+            temp[current_ind].value.weight = table[i].value.weight;
+            temp[current_ind].is_filled = true;
+            current_ind++;
+        }
+    }
+    delete [] table; // deleting the old array of tables
+    capacity *= 2;  // define
+    table = new Table[capacity];
+    /*Table to_fill;
+    to_fill.is_filled = false;
+    to_fill.key = " ";
+    to_fill.value.age = -1;
+    to_fill.value.weight = -1;
+    std::fill(table, table + capacity, to_fill);*/
+    for (int i = 0; i < capacity; ++i)
+    {
+        table[i].is_filled = false;
+        table[i].key = " ";
+        table[i].value.age = -1;
+        table[i].value.weight = -1;
+    }
+    int old_size = size;
+    size = 0;
+    
+    for (int i = 0; i < old_size; ++i)
+    {
+        insert(temp[i].key, temp[i].value);
+    }
+    delete [] temp;
+    
 }
 
 // Проверка наличия значения по заданному ключу.
@@ -157,10 +152,11 @@ bool HashTable::search(const Key& key) const
     }
 }
 
-void HashTable::print()
+void HashTable::print() const
 {
     if (0 == size)
     {
+        std::cout << "Empty hashtable" << std::endl;
         return;
     }
     cout << "HashTable size : " << size <<  endl << "HashTable capacity : " << capacity << endl;
@@ -179,53 +175,12 @@ void HashTable::print()
 // std::swap.
 void HashTable::swap(HashTable& origin)
 {
-
-    // ? ? ? ? ? ?  ? ? ? ? ? ? ? ? ? ? ? ? ?  ? ? 
-
-    HashTable * temp = new HashTable(origin);
-    delete [] origin.table;
-    origin.size = size;
-    origin.capacity = capacity;
-    origin.table = new Table[origin.capacity];
-    for (int i = 0; i < origin.capacity; ++i)
-    {
-        if (true == table[i].is_filled)
-        {
-            origin.table[i].key = table[i].key;
-            origin.table[i].value.age = table[i].value.age;
-            origin.table[i].value.weight = table[i].value.weight;
-            origin.table[i].is_filled = true;
-        }
-        else
-        {
-            origin.table[i].key = " ";
-            origin.table[i].value.age = -1;
-            origin.table[i].value.weight = -1;
-            origin.table[i].is_filled = false;
-        }
-    }
-    delete [] table;
-    size = temp->size;
-    capacity = temp->capacity;
-    table = new Table[capacity];
-    for (int i = 0; i < capacity; ++i)
-    {
-        if (true == temp->table[i].is_filled)
-        {
-            table[i].key = temp->table[i].key;
-            table[i].value.age = temp->table[i].value.age;
-            table[i].value.weight = temp->table[i].value.weight;
-            table[i].is_filled = true;
-        }
-        else
-        {
-            table[i].key = " ";
-            table[i].value.age = -1;
-            table[i].value.weight = -1;
-            table[i].is_filled = false;
-        }
-    }
-    delete temp;
+    HashTable & temp = origin;//???????????????????????
+    origin = *this;
+    *this = temp;
+    /*std::swap(table, origin.table);
+    std::swap(size, origin.size);
+    std::swap(capacity, origin.capacity);*/
 }
 
 HashTable& HashTable::operator=(const HashTable& origin)
@@ -374,61 +329,27 @@ Value& HashTable::operator[](const Key& k)
 }
 
 
-/*
 
-const Value& HashTable::at(const Key& k) const;
 
-*/
-
-void getkey(string str, Key& k)
+const Value& HashTable::at(const Key& k) const
 {
-    char * newstr = (char *)str.c_str();
-    int i = 0;
-    char * key = new char[100];
-    while(' ' != newstr[i]) // getting the key
+    if (false == HashTable::search(k))
     {
-        key[i] = newstr[i];
-        ++i;
+        throw 0;
     }
-    key[i] = '\0';
-    k = key;
-    delete [] key;
+    else
+    {
+        int hash = HashTable::gethash(k);
+        while (table[hash].key != k)
+        {
+            hash++;
+            hash = hash % capacity;
+        }
+        const Value & result = table[hash].value;
+        return result;
+    }
+}
 
-}
-void getvalue(string str, Value& v)
-{
-    //cout << v.age << v.weight << "check << endl;"
-    char * newstr = (char *)str.c_str();
-    char * age = new char[100];
-    char * weight = new char[100];
-    int i = 0;
-    int age_ind = 0;
-    int weight_ind = 0;
-    while(' ' != newstr[i]) 
-    {
-        ++i;
-    }
-    ++i;
-    while(' ' != newstr[i]) 
-    {
-        age[age_ind] = newstr[i];
-        ++age_ind;
-        ++i;
-    }
-    ++i;
-    while('\0' != newstr[i]) 
-    {
-        weight[weight_ind] = newstr[i];
-        ++weight_ind;
-        ++i;
-    }
-    int res_age = atoi(age);
-    int res_weight = atoi(weight);
-    delete [] age;
-    delete [] weight;
-    
-    v.age = res_age;
-   // cout << "ok" << endl;
-    v.weight = res_weight;
-}
+
+
 

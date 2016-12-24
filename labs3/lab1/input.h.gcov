@@ -1,0 +1,31 @@
+        -:    0:Source:input.h
+        -:    0:Programs:4
+        -:    1:#if !defined (INPUT_H)
+        -:    2:#define INPUT_H
+        -:    3:#include <iostream>
+        -:    4:#include <string>
+        -:    5:#include <cstdlib>
+        -:    6:
+        -:    7:using namespace std;
+        -:    8:
+        -:    9:typedef std::string Key;
+        -:   10:
+        -:   11:typedef struct Value {
+        -:   12:	unsigned int age;
+        -:   13:	unsigned int weight;
+        -:   14:} Value;
+        -:   15:
+  1310818:   16:typedef struct Table {
+        -:   17:  Key key;
+        -:   18:  Value value;
+        -:   19:  bool is_filled;
+        -:   20:} Table;
+        -:   21:
+        -:   22:bool inputcheck(int argc, char ** argv);
+        -:   23:bool filecheck(int argc, char ** argv, FILE* input_file);
+        -:   24:void getkey(std::string str, Key& k);
+        -:   25:void getvalue(std::string str, Value& v);
+        -:   26:
+        -:   27:
+        -:   28:
+        -:   29:#endif 

@@ -5,7 +5,9 @@
 #include "hash.h"
 #include "include/gtest/gtest.h"
 
-//g++ -Lgtestbuild -I./include tests.cpp main.cpp input.cpp hash.cpp -lgtest
+//g++ -Lgtestbuild -I./include --coverage tests.cpp main.cpp input.cpp hash.cpp -lgtest
+//gcov -abcfu tests.cpp main.cpp input.cpp hash.cpp 
+
 
 //assignment --- *ht = *ht2;
 
@@ -19,21 +21,22 @@ GTEST_API_ int main (int argc, char ** argv)
     HashTable ht;
     while (getline(input, str))
     {
-        //cout << "STRING " << str << endl;
         Key key = str;
         Value value;
         getkey(str, key);
         getvalue(str, value);
-        
         ht.insert(key, value);
-        
     }
 
     cout << endl << endl;
-    ht.print();
+    //ht->print();
+
     input.close();
-    input.open("crusoe.txt");
+    ht.print();
+    input.open("asd.txt");
     HashTable ht2;
+    //ht2.print();
+    //input.close();
     while (getline(input, str))
     {
         
@@ -46,22 +49,31 @@ GTEST_API_ int main (int argc, char ** argv)
         
     }
     input.close();
-    cout << "Waiting" << endl;
+    ht2.print();
+    ht2.swap(ht);
+    ht.print();
+    ht2.print();
+    //ht2.print();
+    /*cout << "Waiting" << endl;
     while (cin >> str)
     {
         if(ht2.search(str))
         {
-            cout << ht2.at(str).age << "age" << endl;
-            cout << ht2.at(str).weight << "weight" << endl;
-            
+            cout << ht2.at(str).age << " age" << endl;
+            cout << ht2.at(str).weight << " weight" << endl; 
         }
         else
         {
             cout << "Not found" << endl;
+            break;
         }
-    }
-    cout << endl << endl;
-    ht2.print();
+    }*/
+    /*cout << endl << endl;
+    const HashTable ht3 = ht;
+
+    cout << ht3.at("qas").age << " 3 age" << endl;
+    ht3.at("qas").age = 5;
+    cout << ht3.at("qas").age << " 4 age" << endl;*/
     //cout << "Running tests\n" << endl;
     //testing::InitGoogleTest(&argc, argv);
     //return RUN_ALL_TESTS();

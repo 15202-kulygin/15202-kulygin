@@ -1,0 +1,405 @@
+        -:    0:Source:hash.cpp
+        -:    0:Programs:4
+        -:    1:#include "hash.h"
+        -:    2:
+        -:    3:using namespace std;
+        -:    4:
+   410928:    5:int HashTable::gethash(Key key) const
+        -:    6:{
+   410928:    7:    char * str = (char *)key.c_str();
+   410928:    8:    unsigned int result = 0;
+ 24209409:    9:    for (int i = 0; i < key.length(); ++i) 
+ 23798481:   10:        result = (result * 31) ^ str[i];
+   410928:   11:    return result%capacity;  
+        -:   12:}
+        2:   13:HashTable::HashTable()
+        -:   14:{
+        2:   15:    size = 0;
+        2:   16:    capacity = START_CAPACITY;
+        2:   17:    table = new Table[capacity];
+        -:   18:
+        -:   19:    // std fill
+       10:   20:    for (int i = 0; i < capacity; ++i)
+        -:   21:    {
+        8:   22:        table[i].is_filled = false;
+        8:   23:        table[i].key = " ";
+        8:   24:        table[i].value.age = -1;
+        8:   25:        table[i].value.weight = -1;
+        -:   26:    }
+        2:   27:}
+        -:   28:
+    #####:   29:HashTable::HashTable(const HashTable& origin)
+        -:   30:{
+    #####:   31:    size = origin.size;
+    #####:   32:    capacity = origin.capacity;
+    #####:   33:    table = new Table[capacity];
+        -:   34:
+        -:   35:    // std copy
+    #####:   36:    for (int i = 0; i < capacity; ++i)
+        -:   37:    {
+    #####:   38:        if (origin.table[i].is_filled)
+        -:   39:        {
+    #####:   40:            table[i].is_filled = true;
+    #####:   41:            table[i].key = origin.table[i].key;
+    #####:   42:            table[i].value.age = origin.table[i].value.age;
+    #####:   43:            table[i].value.weight = origin.table[i].value.weight;
+        -:   44:        }
+        -:   45:        else
+        -:   46:        {
+    #####:   47:            table[i].is_filled = false;
+    #####:   48:            table[i].key = " ";
+    #####:   49:            table[i].value.age = -1;
+    #####:   50:            table[i].value.weight = -1;
+        -:   51:        }
+        -:   52:    }
+    #####:   53:}
+        -:   54:
+        4:   55:HashTable::~HashTable()
+        -:   56:{
+        2:   57:    delete [] table;
+        2:   58:}
+        -:   59:
+        -:   60:// Вставка в контейнер. Возвращаемое значение - успешность вставки.
+   205474:   61:bool HashTable::insert(const Key& key, const Value& value)
+        -:   62:{
+        -:   63:    //cout << "INSERTING " << key << ' ' << value.age << ' ' << value.weight << endl;
+   205474:   64:    if (true == search(key))
+        -:   65:    {
+        -:   66:        //cout << "FOUND" << endl;
+    #####:   67:        return false;
+        -:   68:    }
+        -:   69:    else
+        -:   70:    {
+        -:   71:        //cout << "NOT FOUND" << endl;
+   205474:   72:        if (size + 1 >= capacity / 2) // if rehashing is needed
+        -:   73:        {
+       19:   74:            rehash();
+        -:   75:        }
+   205474:   76:        size += 1;
+   205474:   77:        int hash = gethash(key);
+   364558:   78:        while (true == table[hash%capacity].is_filled)
+        -:   79:        {
+    79542:   80:            hash++;
+        -:   81:        }
+   205474:   82:        hash = hash%capacity;
+        -:   83:        //cout << "hah " << hash <<  endl;
+   205474:   84:        table[hash].key = key;
+   205474:   85:        table[hash].value.age = value.age;
+   205474:   86:        table[hash].value.weight = value.weight;
+   205474:   87:        table[hash].is_filled = true;
+        -:   88:        //cout << "INSERTED" << endl;
+   205474:   89:        return true;
+        -:   90:    }
+        -:   91:}
+        -:   92:
+       19:   93:void HashTable::rehash()
+        -:   94:{
+       19:   95:    Table * temp = new Table[size]; // creating temporary array of tables
+       19:   96:    int current_ind = 0;
+        -:   97:
+        -:   98:// std copy
+   262187:   99:    for (int i = 0; i < capacity; ++i)
+        -:  100:    {
+   262168:  101:        if (true == table[i].is_filled)
+        -:  102:        {
+        -:  103:            //cout << "TRY1 " << i << endl;
+   131065:  104:            temp[current_ind].key = table[i].key;
+   131065:  105:            temp[current_ind].value.age = table[i].value.age;
+   131065:  106:            temp[current_ind].value.weight = table[i].value.weight;
+   131065:  107:            temp[current_ind].is_filled = true;
+   131065:  108:            current_ind++;
+        -:  109:        }
+        -:  110:    }
+       19:  111:    delete [] table; // deleting the old array of tables
+       19:  112:    capacity *= 2;  // define
+       19:  113:    table = new Table[capacity];
+   524355:  114:    for (int i = 0; i < capacity; ++i)
+        -:  115:    {
+   524336:  116:        table[i].is_filled = false;
+   524336:  117:        table[i].key = " ";
+   524336:  118:        table[i].value.age = -1;
+   524336:  119:        table[i].value.weight = -1;
+        -:  120:    }
+       19:  121:    int old_size = size;
+       19:  122:    size = 0;
+        -:  123:    
+   131084:  124:    for (int i = 0; i < old_size; ++i)
+        -:  125:    {
+   131065:  126:        insert(temp[i].key, temp[i].value);
+        -:  127:    }
+       19:  128:    delete [] temp;
+        -:  129:    
+       19:  130:}
+        -:  131:
+        -:  132:// Проверка наличия значения по заданному ключу.
+   205475:  133:bool HashTable::search(const Key& key) const
+        -:  134:{
+   205475:  135:    if (0 == size)
+        -:  136:    {
+       21:  137:        return false;
+        -:  138:    }
+   205454:  139:    int hash = HashTable::gethash(key);
+   205454:  140:    int current_ind = hash;
+    79560:  141:    while (true)
+        -:  142:    {
+   285014:  143:        if (false == table[current_ind].is_filled)
+        -:  144:        {
+   205454:  145:            return false;
+        -:  146:        }
+        -:  147:        else
+        -:  148:        {
+    79560:  149:            if (table[current_ind].key == key)
+        -:  150:            {
+    #####:  151:                return true;
+        -:  152:            }
+        -:  153:            else
+        -:  154:            {
+    79560:  155:                current_ind++;
+    79560:  156:                current_ind = current_ind%capacity;
+        -:  157:            }
+        -:  158:        }
+        -:  159:
+        -:  160:    }
+        -:  161:}
+        -:  162:
+        1:  163:void HashTable::print()
+        -:  164:{
+        1:  165:    if (0 == size)
+        -:  166:    {
+    #####:  167:        return;
+        -:  168:    }
+        1:  169:    cout << "HashTable size : " << size <<  endl << "HashTable capacity : " << capacity << endl;
+       33:  170:    for (int i = 0; i < capacity; ++i)
+        -:  171:    {
+       32:  172:        if (true == table[i].is_filled)
+        -:  173:        {
+        8:  174:            cout << "Table number " << i << ", name " << table[i].key << ", age " << table[i].value.age << ", weight " << table[i].value.weight << endl;
+        -:  175:        }
+        -:  176:    }
+        1:  177:    cout << endl << endl;
+        -:  178:}
+        -:  179:
+        -:  180:// Обменивает значения двух хэш-таблиц.
+        -:  181:// Подумайте, зачем нужен этот метод, при наличии стандартной функции
+        -:  182:// std::swap.
+    #####:  183:void HashTable::swap(HashTable& origin)
+        -:  184:{
+        -:  185:
+        -:  186:    // ? ? ? ? ? ?  ? ? ? ? ? ? ? ? ? ? ? ? ?  ? ? 
+        -:  187:
+    #####:  188:    HashTable * temp = new HashTable(origin);
+    #####:  189:    delete [] origin.table;
+    #####:  190:    origin.size = size;
+    #####:  191:    origin.capacity = capacity;
+    #####:  192:    origin.table = new Table[origin.capacity];
+    #####:  193:    for (int i = 0; i < origin.capacity; ++i)
+        -:  194:    {
+    #####:  195:        if (true == table[i].is_filled)
+        -:  196:        {
+    #####:  197:            origin.table[i].key = table[i].key;
+    #####:  198:            origin.table[i].value.age = table[i].value.age;
+    #####:  199:            origin.table[i].value.weight = table[i].value.weight;
+    #####:  200:            origin.table[i].is_filled = true;
+        -:  201:        }
+        -:  202:        else
+        -:  203:        {
+    #####:  204:            origin.table[i].key = " ";
+    #####:  205:            origin.table[i].value.age = -1;
+    #####:  206:            origin.table[i].value.weight = -1;
+    #####:  207:            origin.table[i].is_filled = false;
+        -:  208:        }
+        -:  209:    }
+    #####:  210:    delete [] table;
+    #####:  211:    size = temp->size;
+    #####:  212:    capacity = temp->capacity;
+    #####:  213:    table = new Table[capacity];
+    #####:  214:    for (int i = 0; i < capacity; ++i)
+        -:  215:    {
+    #####:  216:        if (true == temp->table[i].is_filled)
+        -:  217:        {
+    #####:  218:            table[i].key = temp->table[i].key;
+    #####:  219:            table[i].value.age = temp->table[i].value.age;
+    #####:  220:            table[i].value.weight = temp->table[i].value.weight;
+    #####:  221:            table[i].is_filled = true;
+        -:  222:        }
+        -:  223:        else
+        -:  224:        {
+    #####:  225:            table[i].key = " ";
+    #####:  226:            table[i].value.age = -1;
+    #####:  227:            table[i].value.weight = -1;
+    #####:  228:            table[i].is_filled = false;
+        -:  229:        }
+        -:  230:    }
+    #####:  231:    delete temp;
+    #####:  232:}
+        -:  233:
+    #####:  234:HashTable& HashTable::operator=(const HashTable& origin)
+        -:  235:{
+    #####:  236:    if (this != &origin)
+        -:  237:    {
+    #####:  238:        size = origin.size;
+    #####:  239:        capacity = origin.capacity;
+    #####:  240:        delete [] table;
+        -:  241:        //table = new Table[capacity];
+    #####:  242:        table = new Table[capacity];
+        -:  243:
+        -:  244:        // copy
+    #####:  245:        for (int i = 0; i < capacity; ++i)
+        -:  246:        {
+    #####:  247:            if (true == origin.table[i].is_filled)
+        -:  248:            {
+    #####:  249:                table[i].key = origin.table[i].key;
+    #####:  250:                table[i].value.age = origin.table[i].value.age;
+    #####:  251:                table[i].value.weight = origin.table[i].value.weight;
+    #####:  252:                table[i].is_filled = true;
+        -:  253:            }
+        -:  254:            else
+        -:  255:            {
+    #####:  256:                table[i].key = " ";
+    #####:  257:                table[i].value.age = -1;
+    #####:  258:                table[i].value.weight = -1;
+    #####:  259:                table[i].is_filled = false;
+        -:  260:            }
+        -:  261:        }
+        -:  262:
+        -:  263:    }
+    #####:  264:    return *this;
+        -:  265:}
+        -:  266:
+        -:  267:// Очищает контейнер.
+    #####:  268:void HashTable::clear()
+        -:  269:{
+        -:  270:    // std fill
+    #####:  271:    for (int i = 0; i < capacity; ++i)
+        -:  272:    {
+    #####:  273:        if (true == table[i].is_filled)
+        -:  274:        {
+    #####:  275:            table[i].is_filled = false;
+    #####:  276:            table[i].key = " ";
+    #####:  277:            table[i].value.age = -1;
+    #####:  278:            table[i].value.weight = -1;
+        -:  279:        }
+        -:  280:    }
+    #####:  281:    size = 0;
+    #####:  282:    capacity = START_CAPACITY;
+    #####:  283:}
+        -:  284:
+        -:  285:// Удаляет элемент по заданному ключу.
+    #####:  286:bool HashTable::erase(const Key& k)
+        -:  287:{
+    #####:  288:    int i = HashTable::gethash(k);
+    #####:  289:    while (true == table[i].is_filled)
+        -:  290:    {
+    #####:  291:        if (k == table[i].key)
+        -:  292:        {
+    #####:  293:            size--;
+    #####:  294:            table[i].key = " ";
+    #####:  295:            table[i].value.age = -1;
+    #####:  296:            table[i].value.weight = -1;
+    #####:  297:            table[i].is_filled = false;
+    #####:  298:            return true;
+        -:  299:        }
+    #####:  300:        ++i;
+    #####:  301:        i = i%capacity;
+        -:  302:    }
+    #####:  303:    return false;
+        -:  304:}
+        -:  305:
+    #####:  306:int HashTable::getsize() const
+        -:  307:{
+    #####:  308:    return size;
+        -:  309:}
+        -:  310:
+    #####:  311:int HashTable::getcapacity() const
+        -:  312:{
+    #####:  313:    return capacity;
+        -:  314:}
+        -:  315:
+    #####:  316:bool HashTable::empty() const
+        -:  317:{
+    #####:  318:    for (int i = 0; i < capacity; ++i)
+        -:  319:    {
+    #####:  320:        if (true == table[i].is_filled)
+        -:  321:        {
+    #####:  322:            return false;
+        -:  323:        }
+        -:  324:    }
+    #####:  325:    return true;
+        -:  326:}
+        -:  327:
+        -:  328:// Возвращает значение по ключу. Бросает исключение при неудаче.
+    #####:  329:Value& HashTable::at(const Key& k)
+        -:  330:{
+    #####:  331:    if (false == HashTable::search(k))
+        -:  332:    {
+    #####:  333:        throw 0;
+        -:  334:    }
+        -:  335:    else
+        -:  336:    {
+    #####:  337:        int hash = HashTable::gethash(k);
+    #####:  338:        while (table[hash].key != k)
+        -:  339:        {
+    #####:  340:            hash++;
+    #####:  341:            hash = hash % capacity;
+        -:  342:        }
+    #####:  343:        Value & result = table[hash].value;
+    #####:  344:        return result;
+        -:  345:    }
+        -:  346:}
+        -:  347:
+        -:  348:// Возвращает значение по ключу. Небезопасный метод.
+        -:  349:// В случае отсутствия ключа в контейнере следует вставить в контейнер
+        -:  350:// значение, созданное конструктором по умолчанию и вернуть ссылку на него. 
+    #####:  351:Value& HashTable::operator[](const Key& k)
+        -:  352:{
+    #####:  353:    if (false == HashTable::search(k))
+        -:  354:    {
+    #####:  355:        int i = 0;
+    #####:  356:        while (true == table[i].is_filled)
+        -:  357:        {
+    #####:  358:            ++i;
+    #####:  359:            i = i % capacity;
+        -:  360:        }
+    #####:  361:        table[i].value.age = -1;
+    #####:  362:        table[i].value.weight = -1;
+    #####:  363:        Value & result = table[i].value;
+    #####:  364:        return result;
+        -:  365:    }
+        -:  366:    else
+        -:  367:    {
+    #####:  368:        int hash = HashTable::gethash(k);
+    #####:  369:        while (table[hash].key != k)
+        -:  370:        {
+    #####:  371:            hash++;
+    #####:  372:            hash = hash % capacity;
+        -:  373:        }
+    #####:  374:        Value & result = table[hash].value;
+    #####:  375:        return result;
+        -:  376:    }
+        -:  377:}
+        -:  378:
+        -:  379:
+        -:  380:
+        -:  381:
+    #####:  382:const Value& HashTable::at(const Key& k) const
+        -:  383:{
+    #####:  384:    if (false == HashTable::search(k))
+        -:  385:    {
+    #####:  386:        throw 0;
+        -:  387:    }
+        -:  388:    else
+        -:  389:    {
+    #####:  390:        int hash = HashTable::gethash(k);
+    #####:  391:        while (table[hash].key != k)
+        -:  392:        {
+    #####:  393:            hash++;
+    #####:  394:            hash = hash % capacity;
+        -:  395:        }
+    #####:  396:        const Value & result = table[hash].value;
+    #####:  397:        return result;
+        -:  398:    }
+        3:  399:}
+        -:  400:
+        -:  401:
+        -:  402:
+        -:  403:
