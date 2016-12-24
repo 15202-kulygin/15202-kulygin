@@ -69,12 +69,12 @@ TEST (HashTests, Insert)
 	check = ht.insert("abc", temp);
 	EXPECT_TRUE(check);
 
-	for (int i = 0; i < 50; ++i)
+	/*for (int i = 0; i < 50; ++i)
 	{
 		std::cout << "OK";
 		std::string s;
 		ht.insert(c, temp);
-	}
+	}*/
 }
 
 TEST (HashTests, IndexOp)
