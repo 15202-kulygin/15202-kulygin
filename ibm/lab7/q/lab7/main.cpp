@@ -2,6 +2,7 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 
 #include "Matrix.h"
 #include "MatrixBlas.h"
@@ -15,25 +16,47 @@
 int main() {
     srand(time(NULL));
 
-//    unsigned matrixSize = 2048;
+//  
+    unsigned matrixSize = 512;
     unsigned countRepeat = 10000;
-    unsigned matrixSize = 4;
-    std::vector<float> arr = {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    //std::vector<float> arr;
-    arr.reserve(matrixSize*matrixSize);
-    /*for(unsigned i = 0, size = matrixSize*matrixSize; i < size; ++i) {
-        //arr.push_back(rand());
-        //for (int j = 0; j < matrixSize; ++j)
-        //{arr[i*matrixSize + j] = rand();}
-    }*/
+    //unsigned matrixSize = 8;
+    //std::vector<float> arr = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1};
+    /*std::vector<float> arr = 
+    {0, 0, 1, 1, 1, 0, 0, 0,
+     1, 1, 1, 0, 0, 0, 0, 1,
+     1, 0, 1, 1, 0, 0, 1, 0,
+     0, 1, 1, 0, 1, 0, 1, 1,
+     1, 1, 1, 1, 1, 1, 0, 1,
+     0, 0, 1, 1, 1, 1, 0, 1,
+     0, 1, 1, 0, 1, 0, 0, 0,
+     1, 0, 0, 0, 1, 0, 1, 0};*/
+    //reverse
+    /*
+
+    */
+    std::vector<float> arr(matrixSize*matrixSize);
+    //arr.reserve(matrixSize*matrixSize);
+    for (size_t i = 0; i < matrixSize; i++) {
+    for (size_t j = 0; j < matrixSize; j++) {
+      arr[i*matrixSize+j]=rand()%10;
+    }
+  }
 
 
-    {
+    /*{
         Matrix matrix(matrixSize, arr);
         
         auto start = clock();
 
         Matrix matrix1 = matrix.reverse(countRepeat);
+        Matrix matrix2 = matrix * matrix1;
+        Matrix I(matrixSize, 1);
+        Matrix check = I - matrix2;
+        std::cout << "CHECK W/O SIMD" << std::endl;
+        //check.print();
+        
+        //matrix.print();
+        //matrix1.print();
         
         std::cout << (double) (clock() - start) / CLOCKS_PER_SEC << std::endl;
     }
@@ -44,22 +67,34 @@ int main() {
         auto start = clock();
 
         MatrixBlas matrix1 = matrix.reverse(countRepeat);
+        MatrixBlas matrix2 = matrix * matrix1;
+        MatrixBlas I(matrixSize, 1);
+        MatrixBlas check = I - matrix2;
+        std::cout << "CHECK WITH BLAS" << std::endl;
+        //check.print();
+
+        //matrix.print();
+        //matrix1.print();
         
 
 
         std::cout << (double) (clock() - start) / CLOCKS_PER_SEC << std::endl;
-    }
+    }*/
 
     {
         MatrixHand matrix(matrixSize, arr);
-        //matrix.print();
+        matrix.print();
         auto start = clock();
 
-        //MatrixHand matrix1 = matrix.reverse(countRepeat);
-        MatrixHand I(4, 1);
+        MatrixHand matrix1 = matrix.reverse(countRepeat);
+        MatrixHand I(matrixSize, 1);
         //I.print();
-        MatrixHand matrix1 = I * matrix;
-        matrix1.print();
+        //MatrixHand matrix1 = matrix * matrix;
+        MatrixHand matrix2 = matrix * matrix1;
+        MatrixHand check = I - matrix2;
+        std::cout << "CHECK HANDMADE" << std::endl;
+        check.print();
+
 
         std::cout << (double) (clock() - start) / CLOCKS_PER_SEC << std::endl;
     }

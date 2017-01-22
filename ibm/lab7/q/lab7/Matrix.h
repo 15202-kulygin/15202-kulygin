@@ -6,11 +6,13 @@
 #include <stdexcept>
 #include <vector>
 #include <cmath>
+#include <iomanip>
 
-
+#define EPSILON 0.000001
 
 class Matrix {
 public:
+    
     Matrix(unsigned size, float val = 1) : size_(size) {
         matrix_ = new float[size_*size_]();
 
@@ -60,7 +62,7 @@ public:
     void print() const {
         for(unsigned i = 0; i < size_; ++i) {
             for(unsigned j = 0; j < size_; ++j) {
-                std::cout << get(i, j) << " ";
+                std::cout << std::fixed << std::setprecision(1) << (get(i, j)) << " ";
             }
             std::cout << std::endl;
         }

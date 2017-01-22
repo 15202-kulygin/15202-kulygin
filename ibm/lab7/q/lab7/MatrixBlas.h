@@ -7,6 +7,7 @@
 #include <vector>
 #include <cmath>
 #include <cblas.h>
+#include <iomanip>
 
 
 class MatrixBlas {
@@ -60,7 +61,7 @@ public:
     void print() const {
         for(unsigned i = 0; i < size_; ++i) {
             for(unsigned j = 0; j < size_; ++j) {
-                std::cout << get(i, j) << " ";
+                std::cout << std::fixed << std::setprecision(1) << (get(i, j)) << " ";
             }
             std::cout << std::endl;
         }
