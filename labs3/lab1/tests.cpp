@@ -90,3 +90,40 @@ TEST (HashTests, IndexOp)
 	EXPECT_NE(check.weight, -1);
 }
 
+TEST (HashTests, ConstAt)
+{
+	HashTable ht;
+	const Value temp = {1, 1};
+	ht.insert("qwe", temp);
+	const HashTable ht2 = ht;
+	Value check = ht2.at("qwe");
+	check.age = 0;
+}
+
+TEST (HashTests, At)
+{
+	HashTable ht;
+	const Value temp = {1, 1};
+	ht.insert("qwe", temp);
+	try
+  	{
+    	Value ep = ht.at("qwe");
+  	}
+  	catch(int a)
+  	{
+    	cout << "Caught exception number:  " << a << endl;
+    	return;
+  	}
+  	cout << "No exception detected" << endl;
+	ht.erase("qwe");
+	try
+  	{
+    	Value ep = ht.at("qwe");
+  	}
+  	catch(int a)
+  	{
+    	cout << "Caught exception number:  " << a << endl;
+    	return;
+  	}
+  	cout << "No exception detected" << endl;
+}

@@ -1,0 +1,12 @@
+INPUT(
+./release\feild.o
+./release\feild_widget.o
+./release\get_feild.o
+./release\main.o
+./release\menu_widget.o
+./release\WriteFile.o
+./release\moc_feild_widget.o
+./release\moc_menu_widget.o
+./release\moc_Painter.o
+./release\moc_WriteFile.o
+);

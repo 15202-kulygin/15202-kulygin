@@ -435,14 +435,24 @@
         -:  433:// of a Test object.
         -:  434:class TestFactoryBase {
         -:  435: public:
-        6:  436:  virtual ~TestFactoryBase() {}
+function _ZN7testing8internal15TestFactoryBaseD2Ev called 8 returned 100% blocks executed 67%
+       16:  436:  virtual ~TestFactoryBase() {}
+        8:  436-block  0
+        8:  436-block  1
+branch  0 taken 0 (fallthrough)
+branch  1 taken 8
+    $$$$$:  436-block  2
+call    2 never executed
+unconditional  3 never executed
         -:  437:
         -:  438:  // Creates a test instance to run. The instance is both created and destroyed
         -:  439:  // within TestInfoImpl::Run()
         -:  440:  virtual Test* CreateTest() = 0;
         -:  441:
         -:  442: protected:
-        6:  443:  TestFactoryBase() {}
+function _ZN7testing8internal15TestFactoryBaseC2Ev called 8 returned 100% blocks executed 100%
+        8:  443:  TestFactoryBase() {}
+        8:  443-block  0
         -:  444:
         -:  445: private:
         -:  446:  GTEST_DISALLOW_COPY_AND_ASSIGN_(TestFactoryBase);
@@ -451,9 +461,257 @@
         -:  449:// This class provides implementation of TeastFactoryBase interface.
         -:  450:// It is used in TEST and TEST_F macros.
         -:  451:template <class TestClass>
-       18:  452:class TestFactoryImpl : public TestFactoryBase {
+function _ZN7testing8internal15TestFactoryImplI25HashTests_EqualityOp_TestED0Ev called 1 returned 100% blocks executed 100%
+function _ZN7testing8internal15TestFactoryImplI25HashTests_EqualityOp_TestED1Ev called 1 returned 100% blocks executed 75%
+function _ZN7testing8internal15TestFactoryImplI20HashTests_Erase_TestED0Ev called 1 returned 100% blocks executed 100%
+function _ZN7testing8internal15TestFactoryImplI20HashTests_Erase_TestED1Ev called 1 returned 100% blocks executed 75%
+function _ZN7testing8internal15TestFactoryImplI22HashTests_GetHash_TestED0Ev called 1 returned 100% blocks executed 100%
+function _ZN7testing8internal15TestFactoryImplI22HashTests_GetHash_TestED1Ev called 1 returned 100% blocks executed 75%
+function _ZN7testing8internal15TestFactoryImplI26HashTests_Constructor_TestED0Ev called 1 returned 100% blocks executed 100%
+function _ZN7testing8internal15TestFactoryImplI26HashTests_Constructor_TestED1Ev called 1 returned 100% blocks executed 75%
+function _ZN7testing8internal15TestFactoryImplI21HashTests_Insert_TestED0Ev called 1 returned 100% blocks executed 100%
+function _ZN7testing8internal15TestFactoryImplI21HashTests_Insert_TestED1Ev called 1 returned 100% blocks executed 75%
+function _ZN7testing8internal15TestFactoryImplI22HashTests_IndexOp_TestED0Ev called 1 returned 100% blocks executed 100%
+function _ZN7testing8internal15TestFactoryImplI22HashTests_IndexOp_TestED1Ev called 1 returned 100% blocks executed 75%
+function _ZN7testing8internal15TestFactoryImplI22HashTests_ConstAt_TestED0Ev called 1 returned 100% blocks executed 100%
+function _ZN7testing8internal15TestFactoryImplI22HashTests_ConstAt_TestED1Ev called 1 returned 100% blocks executed 75%
+function _ZN7testing8internal15TestFactoryImplI17HashTests_At_TestED0Ev called 1 returned 100% blocks executed 100%
+function _ZN7testing8internal15TestFactoryImplI17HashTests_At_TestED1Ev called 1 returned 100% blocks executed 75%
+function _ZN7testing8internal15TestFactoryImplI17HashTests_At_TestEC1Ev called 1 returned 100% blocks executed 100%
+function _ZN7testing8internal15TestFactoryImplI22HashTests_ConstAt_TestEC1Ev called 1 returned 100% blocks executed 100%
+function _ZN7testing8internal15TestFactoryImplI22HashTests_IndexOp_TestEC1Ev called 1 returned 100% blocks executed 100%
+function _ZN7testing8internal15TestFactoryImplI21HashTests_Insert_TestEC1Ev called 1 returned 100% blocks executed 100%
+function _ZN7testing8internal15TestFactoryImplI26HashTests_Constructor_TestEC1Ev called 1 returned 100% blocks executed 100%
+function _ZN7testing8internal15TestFactoryImplI22HashTests_GetHash_TestEC1Ev called 1 returned 100% blocks executed 100%
+function _ZN7testing8internal15TestFactoryImplI20HashTests_Erase_TestEC1Ev called 1 returned 100% blocks executed 100%
+function _ZN7testing8internal15TestFactoryImplI25HashTests_EqualityOp_TestEC1Ev called 1 returned 100% blocks executed 100%
+       48:  452:class TestFactoryImpl : public TestFactoryBase {
+        1:  452-block  0
+        1:  452-block  1
+call    0 returned 1
+call    1 returned 1
+        1:  452-block  2
+        1:  452-block  3
+call    2 returned 1
+branch  3 taken 0 (fallthrough)
+branch  4 taken 1
+    $$$$$:  452-block  4
+call    5 never executed
+unconditional  6 never executed
+        1:  452-block  5
+        1:  452-block  6
+call    7 returned 1
+call    8 returned 1
+        1:  452-block  7
+        1:  452-block  8
+call    9 returned 1
+branch 10 taken 0 (fallthrough)
+branch 11 taken 1
+    $$$$$:  452-block  9
+call   12 never executed
+unconditional 13 never executed
+        1:  452-block 10
+        1:  452-block 11
+call   14 returned 1
+call   15 returned 1
+        1:  452-block 12
+        1:  452-block 13
+call   16 returned 1
+branch 17 taken 0 (fallthrough)
+branch 18 taken 1
+    $$$$$:  452-block 14
+call   19 never executed
+unconditional 20 never executed
+        1:  452-block 15
+        1:  452-block 16
+call   21 returned 1
+call   22 returned 1
+        1:  452-block 17
+        1:  452-block 18
+call   23 returned 1
+branch 24 taken 0 (fallthrough)
+branch 25 taken 1
+    $$$$$:  452-block 19
+call   26 never executed
+unconditional 27 never executed
+        1:  452-block 20
+        1:  452-block 21
+call   28 returned 1
+call   29 returned 1
+        1:  452-block 22
+        1:  452-block 23
+call   30 returned 1
+branch 31 taken 0 (fallthrough)
+branch 32 taken 1
+    $$$$$:  452-block 24
+call   33 never executed
+unconditional 34 never executed
+        1:  452-block 25
+        1:  452-block 26
+call   35 returned 1
+call   36 returned 1
+        1:  452-block 27
+        1:  452-block 28
+call   37 returned 1
+branch 38 taken 0 (fallthrough)
+branch 39 taken 1
+    $$$$$:  452-block 29
+call   40 never executed
+unconditional 41 never executed
+        1:  452-block 30
+        1:  452-block 31
+call   42 returned 1
+call   43 returned 1
+        1:  452-block 32
+        1:  452-block 33
+call   44 returned 1
+branch 45 taken 0 (fallthrough)
+branch 46 taken 1
+    $$$$$:  452-block 34
+call   47 never executed
+unconditional 48 never executed
+        1:  452-block 35
+        1:  452-block 36
+call   49 returned 1
+call   50 returned 1
+        1:  452-block 37
+        1:  452-block 38
+call   51 returned 1
+branch 52 taken 0 (fallthrough)
+branch 53 taken 1
+    $$$$$:  452-block 39
+call   54 never executed
+unconditional 55 never executed
+        1:  452-block 40
+        1:  452-block 41
+call   56 returned 1
+        1:  452-block 42
+        1:  452-block 43
+call   57 returned 1
+        1:  452-block 44
+        1:  452-block 45
+call   58 returned 1
+        1:  452-block 46
+        1:  452-block 47
+call   59 returned 1
+        1:  452-block 48
+        1:  452-block 49
+call   60 returned 1
+        1:  452-block 50
+        1:  452-block 51
+call   61 returned 1
+        1:  452-block 52
+        1:  452-block 53
+call   62 returned 1
+        1:  452-block 54
+        1:  452-block 55
+call   63 returned 1
         -:  453: public:
-    #####:  454:  virtual Test* CreateTest() { return new TestClass; }
+function _ZN7testing8internal15TestFactoryImplI25HashTests_EqualityOp_TestE10CreateTestEv called 1 returned 100% blocks executed 83%
+function _ZN7testing8internal15TestFactoryImplI20HashTests_Erase_TestE10CreateTestEv called 1 returned 100% blocks executed 83%
+function _ZN7testing8internal15TestFactoryImplI22HashTests_GetHash_TestE10CreateTestEv called 1 returned 100% blocks executed 83%
+function _ZN7testing8internal15TestFactoryImplI26HashTests_Constructor_TestE10CreateTestEv called 1 returned 100% blocks executed 83%
+function _ZN7testing8internal15TestFactoryImplI21HashTests_Insert_TestE10CreateTestEv called 1 returned 100% blocks executed 83%
+function _ZN7testing8internal15TestFactoryImplI22HashTests_IndexOp_TestE10CreateTestEv called 1 returned 100% blocks executed 83%
+function _ZN7testing8internal15TestFactoryImplI22HashTests_ConstAt_TestE10CreateTestEv called 1 returned 100% blocks executed 83%
+function _ZN7testing8internal15TestFactoryImplI17HashTests_At_TestE10CreateTestEv called 1 returned 100% blocks executed 83%
+        8:  454:  virtual Test* CreateTest() { return new TestClass; }
+        1:  454-block  0
+        1:  454-block  1
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:  454-block  2
+unconditional  4 taken 1
+        1:  454-block  3
+unconditional  5 taken 1
+    %%%%%:  454-block  4
+call    6 never executed
+        1:  454-block  5
+        1:  454-block  6
+call    7 returned 1
+call    8 returned 1
+branch  9 taken 1 (fallthrough)
+branch 10 taken 0 (throw)
+        1:  454-block  7
+unconditional 11 taken 1
+        1:  454-block  8
+unconditional 12 taken 1
+    %%%%%:  454-block  9
+call   13 never executed
+        1:  454-block 10
+        1:  454-block 11
+call   14 returned 1
+call   15 returned 1
+branch 16 taken 1 (fallthrough)
+branch 17 taken 0 (throw)
+        1:  454-block 12
+unconditional 18 taken 1
+        1:  454-block 13
+unconditional 19 taken 1
+    %%%%%:  454-block 14
+call   20 never executed
+        1:  454-block 15
+        1:  454-block 16
+call   21 returned 1
+call   22 returned 1
+branch 23 taken 1 (fallthrough)
+branch 24 taken 0 (throw)
+        1:  454-block 17
+unconditional 25 taken 1
+        1:  454-block 18
+unconditional 26 taken 1
+    %%%%%:  454-block 19
+call   27 never executed
+        1:  454-block 20
+        1:  454-block 21
+call   28 returned 1
+call   29 returned 1
+branch 30 taken 1 (fallthrough)
+branch 31 taken 0 (throw)
+        1:  454-block 22
+unconditional 32 taken 1
+        1:  454-block 23
+unconditional 33 taken 1
+    %%%%%:  454-block 24
+call   34 never executed
+        1:  454-block 25
+        1:  454-block 26
+call   35 returned 1
+call   36 returned 1
+branch 37 taken 1 (fallthrough)
+branch 38 taken 0 (throw)
+        1:  454-block 27
+unconditional 39 taken 1
+        1:  454-block 28
+unconditional 40 taken 1
+    %%%%%:  454-block 29
+call   41 never executed
+        1:  454-block 30
+        1:  454-block 31
+call   42 returned 1
+call   43 returned 1
+branch 44 taken 1 (fallthrough)
+branch 45 taken 0 (throw)
+        1:  454-block 32
+unconditional 46 taken 1
+        1:  454-block 33
+unconditional 47 taken 1
+    %%%%%:  454-block 34
+call   48 never executed
+        1:  454-block 35
+        1:  454-block 36
+call   49 returned 1
+call   50 returned 1
+branch 51 taken 1 (fallthrough)
+branch 52 taken 0 (throw)
+        1:  454-block 37
+unconditional 53 taken 1
+        1:  454-block 38
+unconditional 54 taken 1
+    %%%%%:  454-block 39
+call   55 never executed
         -:  455:};
         -:  456:
         -:  457:#if GTEST_OS_WINDOWS
@@ -868,7 +1126,15 @@
         -:  866:
         -:  867:typedef char IsNotContainer;
         -:  868:template <class C>
+function _ZN7testing8internal15IsContainerTestIiEEcl called 0 returned 0% blocks executed 0%
+function _ZN7testing8internal15IsContainerTestIjEEcl called 0 returned 0% blocks executed 0%
     #####:  869:IsNotContainer IsContainerTest(long /* dummy */) { return '\0'; }
+    $$$$$:  869-block  0
+    $$$$$:  869-block  1
+unconditional  0 never executed
+    $$$$$:  869-block  2
+    $$$$$:  869-block  3
+unconditional  1 never executed
         -:  870:
         -:  871:// EnableIf<condition>::type is void when 'Cond' is true, and
         -:  872:// undefined when 'Cond' is false.  To use SFINAE to make a function

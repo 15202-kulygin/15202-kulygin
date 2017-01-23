@@ -4,402 +4,980 @@
         -:    2:
         -:    3:using namespace std;
         -:    4:
-   410928:    5:int HashTable::gethash(Key key) const
+function _ZNK9HashTable7gethashENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 79 returned 100% blocks executed 100%
+       79:    5:int HashTable::gethash(Key key) const
+       79:    5-block  0
         -:    6:{
-   410928:    7:    char * str = (char *)key.c_str();
-   410928:    8:    unsigned int result = 0;
- 24209409:    9:    for (int i = 0; i < key.length(); ++i) 
- 23798481:   10:        result = (result * 31) ^ str[i];
-   410928:   11:    return result%capacity;  
+       79:    7:    char * str = (char *)key.c_str();
+       79:    7-block  0
+call    0 returned 79
+       79:    8:    unsigned int result = 0;
+      520:    9:    for (int i = 0; i < key.length(); ++i) 
+unconditional  0 taken 79
+      520:    9-block  0
+call    1 returned 520
+branch  2 taken 441 (fallthrough)
+branch  3 taken 79
+      441:    9-block  1
+unconditional  4 taken 441
+      441:   10:        result = (result * 31) ^ str[i];
+       79:   11:    return result%capacity;  
+       79:   11-block  0
+unconditional  0 taken 79
         -:   12:}
-        2:   13:HashTable::HashTable()
+function _ZNK9HashTable8get_dataEv called 0 returned 0% blocks executed 0%
+    #####:   13:Table * HashTable::get_data() const
+    $$$$$:   13-block  0
         -:   14:{
-        2:   15:    size = 0;
-        2:   16:    capacity = START_CAPACITY;
-        2:   17:    table = new Table[capacity];
-        -:   18:
-        -:   19:    // std fill
-       10:   20:    for (int i = 0; i < capacity; ++i)
-        -:   21:    {
-        8:   22:        table[i].is_filled = false;
-        8:   23:        table[i].key = " ";
-        8:   24:        table[i].value.age = -1;
-        8:   25:        table[i].value.weight = -1;
-        -:   26:    }
-        2:   27:}
-        -:   28:
-    #####:   29:HashTable::HashTable(const HashTable& origin)
-        -:   30:{
-    #####:   31:    size = origin.size;
-    #####:   32:    capacity = origin.capacity;
-    #####:   33:    table = new Table[capacity];
-        -:   34:
-        -:   35:    // std copy
-    #####:   36:    for (int i = 0; i < capacity; ++i)
-        -:   37:    {
-    #####:   38:        if (origin.table[i].is_filled)
-        -:   39:        {
-    #####:   40:            table[i].is_filled = true;
-    #####:   41:            table[i].key = origin.table[i].key;
-    #####:   42:            table[i].value.age = origin.table[i].value.age;
-    #####:   43:            table[i].value.weight = origin.table[i].value.weight;
-        -:   44:        }
-        -:   45:        else
-        -:   46:        {
-    #####:   47:            table[i].is_filled = false;
-    #####:   48:            table[i].key = " ";
-    #####:   49:            table[i].value.age = -1;
-    #####:   50:            table[i].value.weight = -1;
-        -:   51:        }
-        -:   52:    }
-    #####:   53:}
-        -:   54:
-        4:   55:HashTable::~HashTable()
-        -:   56:{
-        2:   57:    delete [] table;
-        2:   58:}
-        -:   59:
-        -:   60:// Вставка в контейнер. Возвращаемое значение - успешность вставки.
-   205474:   61:bool HashTable::insert(const Key& key, const Value& value)
-        -:   62:{
-        -:   63:    //cout << "INSERTING " << key << ' ' << value.age << ' ' << value.weight << endl;
-   205474:   64:    if (true == search(key))
-        -:   65:    {
-        -:   66:        //cout << "FOUND" << endl;
-    #####:   67:        return false;
-        -:   68:    }
-        -:   69:    else
-        -:   70:    {
-        -:   71:        //cout << "NOT FOUND" << endl;
-   205474:   72:        if (size + 1 >= capacity / 2) // if rehashing is needed
-        -:   73:        {
-       19:   74:            rehash();
-        -:   75:        }
-   205474:   76:        size += 1;
-   205474:   77:        int hash = gethash(key);
-   364558:   78:        while (true == table[hash%capacity].is_filled)
-        -:   79:        {
-    79542:   80:            hash++;
-        -:   81:        }
-   205474:   82:        hash = hash%capacity;
-        -:   83:        //cout << "hah " << hash <<  endl;
-   205474:   84:        table[hash].key = key;
-   205474:   85:        table[hash].value.age = value.age;
-   205474:   86:        table[hash].value.weight = value.weight;
-   205474:   87:        table[hash].is_filled = true;
-        -:   88:        //cout << "INSERTED" << endl;
-   205474:   89:        return true;
-        -:   90:    }
-        -:   91:}
-        -:   92:
-       19:   93:void HashTable::rehash()
-        -:   94:{
-       19:   95:    Table * temp = new Table[size]; // creating temporary array of tables
-       19:   96:    int current_ind = 0;
-        -:   97:
-        -:   98:// std copy
-   262187:   99:    for (int i = 0; i < capacity; ++i)
-        -:  100:    {
-   262168:  101:        if (true == table[i].is_filled)
-        -:  102:        {
-        -:  103:            //cout << "TRY1 " << i << endl;
-   131065:  104:            temp[current_ind].key = table[i].key;
-   131065:  105:            temp[current_ind].value.age = table[i].value.age;
-   131065:  106:            temp[current_ind].value.weight = table[i].value.weight;
-   131065:  107:            temp[current_ind].is_filled = true;
-   131065:  108:            current_ind++;
-        -:  109:        }
-        -:  110:    }
-       19:  111:    delete [] table; // deleting the old array of tables
-       19:  112:    capacity *= 2;  // define
-       19:  113:    table = new Table[capacity];
-   524355:  114:    for (int i = 0; i < capacity; ++i)
-        -:  115:    {
-   524336:  116:        table[i].is_filled = false;
-   524336:  117:        table[i].key = " ";
-   524336:  118:        table[i].value.age = -1;
-   524336:  119:        table[i].value.weight = -1;
-        -:  120:    }
-       19:  121:    int old_size = size;
-       19:  122:    size = 0;
-        -:  123:    
-   131084:  124:    for (int i = 0; i < old_size; ++i)
-        -:  125:    {
-   131065:  126:        insert(temp[i].key, temp[i].value);
-        -:  127:    }
-       19:  128:    delete [] temp;
-        -:  129:    
-       19:  130:}
-        -:  131:
-        -:  132:// Проверка наличия значения по заданному ключу.
-   205475:  133:bool HashTable::search(const Key& key) const
-        -:  134:{
-   205475:  135:    if (0 == size)
-        -:  136:    {
-       21:  137:        return false;
-        -:  138:    }
-   205454:  139:    int hash = HashTable::gethash(key);
-   205454:  140:    int current_ind = hash;
-    79560:  141:    while (true)
-        -:  142:    {
-   285014:  143:        if (false == table[current_ind].is_filled)
-        -:  144:        {
-   205454:  145:            return false;
-        -:  146:        }
-        -:  147:        else
-        -:  148:        {
-    79560:  149:            if (table[current_ind].key == key)
-        -:  150:            {
-    #####:  151:                return true;
-        -:  152:            }
-        -:  153:            else
-        -:  154:            {
-    79560:  155:                current_ind++;
-    79560:  156:                current_ind = current_ind%capacity;
-        -:  157:            }
-        -:  158:        }
-        -:  159:
-        -:  160:    }
-        -:  161:}
-        -:  162:
-        1:  163:void HashTable::print()
-        -:  164:{
-        1:  165:    if (0 == size)
-        -:  166:    {
-    #####:  167:        return;
-        -:  168:    }
-        1:  169:    cout << "HashTable size : " << size <<  endl << "HashTable capacity : " << capacity << endl;
-       33:  170:    for (int i = 0; i < capacity; ++i)
-        -:  171:    {
-       32:  172:        if (true == table[i].is_filled)
-        -:  173:        {
-        8:  174:            cout << "Table number " << i << ", name " << table[i].key << ", age " << table[i].value.age << ", weight " << table[i].value.weight << endl;
-        -:  175:        }
-        -:  176:    }
-        1:  177:    cout << endl << endl;
-        -:  178:}
-        -:  179:
-        -:  180:// Обменивает значения двух хэш-таблиц.
-        -:  181:// Подумайте, зачем нужен этот метод, при наличии стандартной функции
-        -:  182:// std::swap.
-    #####:  183:void HashTable::swap(HashTable& origin)
-        -:  184:{
+    #####:   15:    return table;
+    $$$$$:   15-block  0
+unconditional  0 never executed
+        -:   16:}
+function _ZN9HashTableC2Ev called 11 returned 100% blocks executed 57%
+       11:   17:HashTable::HashTable()
+       11:   17-block  0
+        -:   18:{
+       11:   19:    size = 0;
+       11:   20:    capacity = START_CAPACITY;
+       55:   21:    table = new Table[capacity];
+       11:   21-block  0
+branch  0 taken 11 (fallthrough)
+branch  1 taken 0
+       11:   21-block  1
+unconditional  2 taken 11
+    $$$$$:   21-block  2
+unconditional  3 never executed
+       11:   21-block  3
+call    4 returned 11
+branch  5 taken 11 (fallthrough)
+branch  6 taken 0 (throw)
+       11:   21-block  4
+unconditional  7 taken 11
+       55:   21-block  5
+branch  8 taken 44 (fallthrough)
+branch  9 taken 11
+       44:   21-block  6
+call   10 returned 44
+branch 11 taken 44 (fallthrough)
+branch 12 taken 0 (throw)
+       44:   21-block  7
+unconditional 13 taken 44
+    %%%%%:   21-block  8
+unconditional 14 never executed
+    %%%%%:   21-block  9
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   21-block 10
+call   17 never executed
+unconditional 18 never executed
+    %%%%%:   21-block 11
+unconditional 19 never executed
+    %%%%%:   21-block 12
+call   20 never executed
+unconditional 21 never executed
+       22:   22:    Table to_fill;
+       11:   22-block  0
+call    0 returned 11
+branch  1 taken 11 (fallthrough)
+branch  2 taken 0 (throw)
+       11:   22-block  1
+call    3 returned 11
+branch  4 taken 11 (fallthrough)
+branch  5 taken 0 (throw)
+    %%%%%:   22-block  2
+call    6 never executed
+unconditional  7 never executed
+       11:   23:    to_fill.is_filled = false;
+       11:   24:    to_fill.key = " ";
+       11:   24-block  0
+call    0 returned 11
+branch  1 taken 11 (fallthrough)
+branch  2 taken 0 (throw)
+       11:   25:    to_fill.value.age = -1;
+       11:   26:    to_fill.value.weight = -1;
+       11:   27:    std::fill(table, table + capacity, to_fill); 
+       11:   27-block  0
+call    0 returned 11
+branch  1 taken 11 (fallthrough)
+branch  2 taken 0 (throw)
+       11:   28:}
+       11:   28-block  0
+unconditional  0 taken 11
+    %%%%%:   28-block  1
+branch  1 never executed
+branch  2 never executed
+        -:   29:
+function _ZN9HashTableC2ERKS_ called 2 returned 100% blocks executed 59%
+        2:   30:HashTable::HashTable(const HashTable& origin)
+        2:   30-block  0
+        -:   31:{
+        2:   32:    size = origin.size;
+        2:   33:    capacity = origin.capacity;
+       10:   34:    table = new Table[capacity];
+        2:   34-block  0
+branch  0 taken 2 (fallthrough)
+branch  1 taken 0
+        2:   34-block  1
+unconditional  2 taken 2
+    $$$$$:   34-block  2
+unconditional  3 never executed
+        2:   34-block  3
+call    4 returned 2
+unconditional  5 taken 2
+       10:   34-block  4
+branch  6 taken 8 (fallthrough)
+branch  7 taken 2
+        8:   34-block  5
+call    8 returned 8
+branch  9 taken 8 (fallthrough)
+branch 10 taken 0 (throw)
+        8:   34-block  6
+unconditional 11 taken 8
+    %%%%%:   34-block  7
+unconditional 12 never executed
+    %%%%%:   34-block  8
+branch 13 never executed
+branch 14 never executed
+    %%%%%:   34-block  9
+call   15 never executed
+unconditional 16 never executed
+    %%%%%:   34-block 10
+unconditional 17 never executed
+    %%%%%:   34-block 11
+call   18 never executed
+        2:   35:    std::copy(origin.table, origin.table + capacity, table);
+        2:   35-block  0
+call    0 returned 2
+        2:   36:}
+unconditional  0 taken 2
+    %%%%%:   36-block  0
+branch  1 never executed
+branch  2 never executed
+        -:   37:
+function _ZN9HashTableD2Ev called 13 returned 100% blocks executed 100%
+       13:   38:HashTable::~HashTable()
+       13:   38-block  0
+        -:   39:{
+      117:   40:    delete [] table;
+       13:   40-block  0
+branch  0 taken 13 (fallthrough)
+branch  1 taken 0
+       13:   40-block  1
+unconditional  2 taken 13
+      117:   40-block  2
+branch  3 taken 104 (fallthrough)
+branch  4 taken 13
+      104:   40-block  3
+call    5 returned 104
+branch  6 taken 104 (fallthrough)
+branch  7 taken 0 (throw)
+      104:   40-block  4
+unconditional  8 taken 104
+       13:   40-block  5
+call    9 returned 13
+unconditional 10 taken 13
+       13:   41:}
+       13:   41-block  0
+unconditional  0 taken 13
+        -:   42:
+        -:   43:// Вставка в контейнер. Возвращаемое значение - успешность вставки.
+function _ZN9HashTable6insertERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERK5Value called 42 returned 100% blocks executed 94%
+       42:   44:bool HashTable::insert(const Key& key, const Value& value)
+       42:   44-block  0
+        -:   45:{
+        -:   46:    //cout << "INSERTING " << key << ' ' << value.age << ' ' << value.weight << endl;
+       42:   47:    if (true == search(key))
+       42:   47-block  0
+call    0 returned 42
+branch  1 taken 1 (fallthrough)
+branch  2 taken 41
+        -:   48:    {
+        -:   49:        //cout << "FOUND" << endl;
+        1:   50:        return false;
+        1:   50-block  0
+unconditional  0 taken 1
+        -:   51:    }
+        -:   52:    else
+        -:   53:    {
+        -:   54:        //cout << "NOT FOUND" << endl;
+       41:   55:        if (size + 1 >= capacity / 2) // if rehashing is needed
+       41:   55-block  0
+branch  0 taken 8 (fallthrough)
+branch  1 taken 33
+        -:   56:        {
+        8:   57:            rehash();
+        8:   57-block  0
+call    0 returned 8
+unconditional  1 taken 8
+        -:   58:        }
+       41:   59:        size += 1;
+       41:   60:        int hash = gethash(key);
+       41:   60-block  0
+call    0 returned 41
+call    1 returned 41
+branch  2 taken 41 (fallthrough)
+branch  3 taken 0 (throw)
+       41:   60-block  1
+call    4 returned 41
+unconditional  5 taken 41
+    %%%%%:   60-block  2
+call    6 never executed
+       46:   61:        while (true == table[hash%capacity].is_filled)
+       46:   61-block  0
+branch  0 taken 5 (fallthrough)
+branch  1 taken 41
+        5:   61-block  1
+unconditional  2 taken 5
+        -:   62:        {
+        5:   63:            hash++;
+        -:   64:        }
+       41:   65:        hash = hash%capacity;
+        -:   66:        //cout << "hah " << hash <<  endl;
+       41:   67:        table[hash].key = key;
+       41:   67-block  0
+call    0 returned 41
+       41:   68:        table[hash].value.age = value.age;
+       41:   69:        table[hash].value.weight = value.weight;
+       41:   70:        table[hash].is_filled = true;
+        -:   71:        //cout << "INSERTED" << endl;
+       42:   72:        return true;
+unconditional  0 taken 41
+       42:   72-block  0
+unconditional  1 taken 42
+        -:   73:    }
+        -:   74:}
+        -:   75:
+function _ZN9HashTable6rehashEv called 8 returned 100% blocks executed 73%
+        8:   76:void HashTable::rehash()
+        8:   76-block  0
+        -:   77:{
+       60:   78:    Table * temp = new Table[capacity]; // creating temporary array of tables
+        8:   78-block  0
+branch  0 taken 8 (fallthrough)
+branch  1 taken 0
+        8:   78-block  1
+unconditional  2 taken 8
+    $$$$$:   78-block  2
+unconditional  3 never executed
+        8:   78-block  3
+call    4 returned 8
+unconditional  5 taken 8
+       60:   78-block  4
+branch  6 taken 52 (fallthrough)
+branch  7 taken 8
+       52:   78-block  5
+call    8 returned 52
+branch  9 taken 52 (fallthrough)
+branch 10 taken 0 (throw)
+       52:   78-block  6
+unconditional 11 taken 52
+    %%%%%:   78-block  7
+unconditional 12 never executed
+    %%%%%:   78-block  8
+branch 13 never executed
+branch 14 never executed
+    %%%%%:   78-block  9
+call   15 never executed
+unconditional 16 never executed
+    %%%%%:   78-block 10
+unconditional 17 never executed
+    %%%%%:   78-block 11
+call   18 never executed
+call   19 never executed
+    %%%%%:   78-block 12
+branch 20 never executed
+branch 21 never executed
+        8:   79:    int current_ind = 0;
+        -:   80:
+        -:   81:// std copy
+        -:   82:    //std::cout << "CHECK " <<std::endl;
+        -:   83:    //print();
+        -:   84:    //std::copy(table, table + capacity, temp);
+       60:   85:    for (int i = 0; i < capacity; ++i)
+        8:   85-block  0
+unconditional  0 taken 8
+       60:   85-block  1
+branch  1 taken 52 (fallthrough)
+branch  2 taken 8
+       52:   85-block  2
+unconditional  3 taken 52
+        -:   86:    {
+       52:   87:        if (true == table[i].is_filled)
+       52:   87-block  0
+branch  0 taken 18 (fallthrough)
+branch  1 taken 34
+        -:   88:        {
+        -:   89:            //cout << "TRY1 " << i << endl;
+       18:   90:            temp[current_ind].key = table[i].key;
+       18:   90-block  0
+call    0 returned 18
+       18:   91:            temp[current_ind].value.age = table[i].value.age;
+       18:   92:            temp[current_ind].value.weight = table[i].value.weight;
+       18:   93:            temp[current_ind].is_filled = true;
+       18:   94:            current_ind++;
+unconditional  0 taken 18
+        -:   95:        }
+        -:   96:    }
+       60:   97:    delete [] table; // deleting the old array of tables
+        8:   97-block  0
+branch  0 taken 8 (fallthrough)
+branch  1 taken 0
+        8:   97-block  1
+unconditional  2 taken 8
+       60:   97-block  2
+branch  3 taken 52 (fallthrough)
+branch  4 taken 8
+       52:   97-block  3
+call    5 returned 52
+unconditional  6 taken 52
+        8:   97-block  4
+call    7 returned 8
+unconditional  8 taken 8
+        8:   98:    capacity *= 2;  // define
+      112:   99:    table = new Table[capacity];
+        8:   99-block  0
+branch  0 taken 8 (fallthrough)
+branch  1 taken 0
+        8:   99-block  1
+unconditional  2 taken 8
+    $$$$$:   99-block  2
+unconditional  3 never executed
+        8:   99-block  3
+call    4 returned 8
+unconditional  5 taken 8
+      112:   99-block  4
+branch  6 taken 104 (fallthrough)
+branch  7 taken 8
+      104:   99-block  5
+call    8 returned 104
+branch  9 taken 104 (fallthrough)
+branch 10 taken 0 (throw)
+      104:   99-block  6
+unconditional 11 taken 104
+    %%%%%:   99-block  7
+unconditional 12 never executed
+    %%%%%:   99-block  8
+branch 13 never executed
+branch 14 never executed
+    %%%%%:   99-block  9
+call   15 never executed
+unconditional 16 never executed
+    %%%%%:   99-block 10
+unconditional 17 never executed
+    %%%%%:   99-block 11
+call   18 never executed
+        -:  100:    /*Table to_fill;
+        -:  101:    to_fill.is_filled = false;
+        -:  102:    to_fill.key = " ";
+        -:  103:    to_fill.value.age = -1;
+        -:  104:    to_fill.value.weight = -1;
+        -:  105:    std::fill(table, table + capacity, to_fill);*/
+      112:  106:    for (int i = 0; i < capacity; ++i)
+        8:  106-block  0
+unconditional  0 taken 8
+      112:  106-block  1
+branch  1 taken 104 (fallthrough)
+branch  2 taken 8
+unconditional  3 taken 104
+        -:  107:    {
+      104:  108:        table[i].is_filled = false;
+      104:  109:        table[i].key = " ";
+      104:  109-block  0
+call    0 returned 104
+      104:  110:        table[i].value.age = -1;
+      104:  111:        table[i].value.weight = -1;
+        -:  112:    }
+        8:  113:    int old_size = size;
+        8:  114:    size = 0;
+        -:  115:    
+       26:  116:    for (int i = 0; i < old_size; ++i)
+        8:  116-block  0
+unconditional  0 taken 8
+       26:  116-block  1
+branch  1 taken 18 (fallthrough)
+branch  2 taken 8
+unconditional  3 taken 18
+        -:  117:    {
+       18:  118:        insert(temp[i].key, temp[i].value);
+       18:  118-block  0
+call    0 returned 18
+        -:  119:    }
+       60:  120:    delete [] temp;
+        8:  120-block  0
+branch  0 taken 8 (fallthrough)
+branch  1 taken 0
+        8:  120-block  1
+unconditional  2 taken 8
+       60:  120-block  2
+branch  3 taken 52 (fallthrough)
+branch  4 taken 8
+       52:  120-block  3
+call    5 returned 52
+unconditional  6 taken 52
+        8:  120-block  4
+call    7 returned 8
+unconditional  8 taken 8
+        -:  121:    
+        8:  122:}
+        8:  122-block  0
+unconditional  0 taken 8
+    %%%%%:  122-block  1
+branch  1 never executed
+branch  2 never executed
+        -:  123:
+        -:  124:// Проверка наличия значения по заданному ключу.
+function _ZNK9HashTable6searchERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 52 returned 100% blocks executed 93%
+       52:  125:bool HashTable::search(const Key& key) const
+       52:  125-block  0
+        -:  126:{
+       52:  127:    if (0 == size)
+       52:  127-block  0
+branch  0 taken 21 (fallthrough)
+branch  1 taken 31
+        -:  128:    {
+       21:  129:        return false;
+       21:  129-block  0
+unconditional  0 taken 21
+        -:  130:    }
+       31:  131:    int hash = HashTable::gethash(key);
+       31:  131-block  0
+call    0 returned 31
+call    1 returned 31
+branch  2 taken 31 (fallthrough)
+branch  3 taken 0 (throw)
+       31:  131-block  1
+call    4 returned 31
+    %%%%%:  131-block  2
+call    5 never executed
+       31:  132:    int current_ind = hash;
+unconditional  0 taken 31
+       59:  133:    while (true)
+        7:  133-block  0
+unconditional  0 taken 7
+       52:  133-block  1
+unconditional  1 taken 52
+        -:  134:    {
+       38:  135:        if (false == table[current_ind].is_filled)
+       38:  135-block  0
+branch  0 taken 25 (fallthrough)
+branch  1 taken 13
+        -:  136:        {
+       25:  137:            return false;
+       25:  137-block  0
+unconditional  0 taken 25
+        -:  138:        }
+        -:  139:        else
+        -:  140:        {
+       13:  141:            if (table[current_ind].key == key)
+       13:  141-block  0
+call    0 returned 13
+branch  1 taken 6 (fallthrough)
+branch  2 taken 7
+        -:  142:            {
+        6:  143:                return true;
+        6:  143-block  0
+unconditional  0 taken 6
+        -:  144:            }
+        -:  145:            else
+        -:  146:            {
+        7:  147:                current_ind++;
+        7:  148:                current_ind = current_ind%capacity;
+        -:  149:            }
+        -:  150:        }
+        -:  151:
+        -:  152:    }
+        -:  153:}
+        -:  154:
+function _ZNK9HashTable5printEv called 2 returned 100% blocks executed 88%
+        2:  155:void HashTable::print() const
+        2:  155-block  0
+        -:  156:{
+        2:  157:    if (0 == size)
+        2:  157-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 2
+        -:  158:    {
+    #####:  159:        std::cout << "Empty hashtable" << std::endl;
+    $$$$$:  159-block  0
+call    0 never executed
+call    1 never executed
+    #####:  160:        return;
+unconditional  0 never executed
+        -:  161:    }
+        2:  162:    cout << "HashTable size : " << size <<  endl << "HashTable capacity : " << capacity << endl;
+        2:  162-block  0
+call    0 returned 2
+call    1 returned 2
+call    2 returned 2
+call    3 returned 2
+call    4 returned 2
+call    5 returned 2
+       50:  163:    for (int i = 0; i < capacity; ++i)
+unconditional  0 taken 2
+       50:  163-block  0
+branch  1 taken 48 (fallthrough)
+branch  2 taken 2
+       48:  163-block  1
+unconditional  3 taken 48
+        -:  164:    {
+       48:  165:        if (true == table[i].is_filled)
+       48:  165-block  0
+branch  0 taken 12 (fallthrough)
+branch  1 taken 36
+        -:  166:        {
+       12:  167:            cout << "Table number " << i << ", name " << table[i].key << ", age " << table[i].value.age << ", weight " << table[i].value.weight << endl;
+       12:  167-block  0
+call    0 returned 12
+call    1 returned 12
+call    2 returned 12
+call    3 returned 12
+call    4 returned 12
+call    5 returned 12
+call    6 returned 12
+call    7 returned 12
+call    8 returned 12
+unconditional  9 taken 12
+        -:  168:        }
+        -:  169:    }
+        2:  170:    cout << endl << endl;
+        2:  170-block  0
+call    0 returned 2
+call    1 returned 2
+unconditional  2 taken 2
+        -:  171:}
+        -:  172:
+        -:  173:// Обменивает значения двух хэш-таблиц.
+        -:  174:// Подумайте, зачем нужен этот метод, при наличии стандартной функции
+        -:  175:// std::swap.
+function _ZN9HashTable4swapERS_ called 0 returned 0% blocks executed 0%
+    #####:  176:void HashTable::swap(HashTable& origin)
+    $$$$$:  176-block  0
+        -:  177:{
+    #####:  178:    HashTable & temp = origin;//???????????????????????
+    #####:  179:    origin = *this;
+    $$$$$:  179-block  0
+call    0 never executed
+    #####:  180:    *this = temp;
+call    0 never executed
+        -:  181:    /*std::swap(table, origin.table);
+        -:  182:    std::swap(size, origin.size);
+        -:  183:    std::swap(capacity, origin.capacity);*/
+    #####:  184:}
         -:  185:
-        -:  186:    // ? ? ? ? ? ?  ? ? ? ? ? ? ? ? ? ? ? ? ?  ? ? 
-        -:  187:
-    #####:  188:    HashTable * temp = new HashTable(origin);
-    #####:  189:    delete [] origin.table;
-    #####:  190:    origin.size = size;
-    #####:  191:    origin.capacity = capacity;
-    #####:  192:    origin.table = new Table[origin.capacity];
-    #####:  193:    for (int i = 0; i < origin.capacity; ++i)
-        -:  194:    {
-    #####:  195:        if (true == table[i].is_filled)
-        -:  196:        {
-    #####:  197:            origin.table[i].key = table[i].key;
-    #####:  198:            origin.table[i].value.age = table[i].value.age;
-    #####:  199:            origin.table[i].value.weight = table[i].value.weight;
-    #####:  200:            origin.table[i].is_filled = true;
-        -:  201:        }
-        -:  202:        else
-        -:  203:        {
-    #####:  204:            origin.table[i].key = " ";
-    #####:  205:            origin.table[i].value.age = -1;
-    #####:  206:            origin.table[i].value.weight = -1;
-    #####:  207:            origin.table[i].is_filled = false;
-        -:  208:        }
-        -:  209:    }
-    #####:  210:    delete [] table;
-    #####:  211:    size = temp->size;
-    #####:  212:    capacity = temp->capacity;
-    #####:  213:    table = new Table[capacity];
-    #####:  214:    for (int i = 0; i < capacity; ++i)
-        -:  215:    {
-    #####:  216:        if (true == temp->table[i].is_filled)
-        -:  217:        {
-    #####:  218:            table[i].key = temp->table[i].key;
-    #####:  219:            table[i].value.age = temp->table[i].value.age;
-    #####:  220:            table[i].value.weight = temp->table[i].value.weight;
-    #####:  221:            table[i].is_filled = true;
-        -:  222:        }
-        -:  223:        else
-        -:  224:        {
-    #####:  225:            table[i].key = " ";
-    #####:  226:            table[i].value.age = -1;
-    #####:  227:            table[i].value.weight = -1;
-    #####:  228:            table[i].is_filled = false;
-        -:  229:        }
-        -:  230:    }
-    #####:  231:    delete temp;
-    #####:  232:}
-        -:  233:
-    #####:  234:HashTable& HashTable::operator=(const HashTable& origin)
-        -:  235:{
-    #####:  236:    if (this != &origin)
-        -:  237:    {
-    #####:  238:        size = origin.size;
-    #####:  239:        capacity = origin.capacity;
-    #####:  240:        delete [] table;
-        -:  241:        //table = new Table[capacity];
-    #####:  242:        table = new Table[capacity];
-        -:  243:
-        -:  244:        // copy
-    #####:  245:        for (int i = 0; i < capacity; ++i)
-        -:  246:        {
-    #####:  247:            if (true == origin.table[i].is_filled)
-        -:  248:            {
-    #####:  249:                table[i].key = origin.table[i].key;
-    #####:  250:                table[i].value.age = origin.table[i].value.age;
-    #####:  251:                table[i].value.weight = origin.table[i].value.weight;
-    #####:  252:                table[i].is_filled = true;
-        -:  253:            }
-        -:  254:            else
-        -:  255:            {
-    #####:  256:                table[i].key = " ";
-    #####:  257:                table[i].value.age = -1;
-    #####:  258:                table[i].value.weight = -1;
-    #####:  259:                table[i].is_filled = false;
-        -:  260:            }
-        -:  261:        }
+function _ZN9HashTableaSERKS_ called 0 returned 0% blocks executed 0%
+    #####:  186:HashTable& HashTable::operator=(const HashTable& origin)
+    $$$$$:  186-block  0
+        -:  187:{
+    #####:  188:    if (this != &origin)
+    $$$$$:  188-block  0
+branch  0 never executed
+branch  1 never executed
+        -:  189:    {
+    #####:  190:        size = origin.size;
+    #####:  191:        capacity = origin.capacity;
+    #####:  192:        delete [] table;
+    $$$$$:  192-block  0
+branch  0 never executed
+branch  1 never executed
+    $$$$$:  192-block  1
+unconditional  2 never executed
+    $$$$$:  192-block  2
+branch  3 never executed
+branch  4 never executed
+    $$$$$:  192-block  3
+call    5 never executed
+unconditional  6 never executed
+    $$$$$:  192-block  4
+call    7 never executed
+unconditional  8 never executed
+        -:  193:        //table = new Table[capacity];
+    #####:  194:        table = new Table[capacity];
+    $$$$$:  194-block  0
+branch  0 never executed
+branch  1 never executed
+    $$$$$:  194-block  1
+unconditional  2 never executed
+    $$$$$:  194-block  2
+unconditional  3 never executed
+    $$$$$:  194-block  3
+call    4 never executed
+unconditional  5 never executed
+    $$$$$:  194-block  4
+branch  6 never executed
+branch  7 never executed
+    $$$$$:  194-block  5
+call    8 never executed
+branch  9 never executed
+branch 10 never executed
+    $$$$$:  194-block  6
+unconditional 11 never executed
+    %%%%%:  194-block  7
+unconditional 12 never executed
+    %%%%%:  194-block  8
+branch 13 never executed
+branch 14 never executed
+    %%%%%:  194-block  9
+call   15 never executed
+unconditional 16 never executed
+    %%%%%:  194-block 10
+unconditional 17 never executed
+    %%%%%:  194-block 11
+call   18 never executed
+        -:  195:
+        -:  196:        // copy
+    #####:  197:        for (int i = 0; i < capacity; ++i)
+    $$$$$:  197-block  0
+unconditional  0 never executed
+    $$$$$:  197-block  1
+branch  1 never executed
+branch  2 never executed
+    $$$$$:  197-block  2
+unconditional  3 never executed
+    $$$$$:  197-block  3
+unconditional  4 never executed
+        -:  198:        {
+    #####:  199:            if (true == origin.table[i].is_filled)
+    $$$$$:  199-block  0
+branch  0 never executed
+branch  1 never executed
+        -:  200:            {
+    #####:  201:                table[i].key = origin.table[i].key;
+    $$$$$:  201-block  0
+call    0 never executed
+    #####:  202:                table[i].value.age = origin.table[i].value.age;
+    #####:  203:                table[i].value.weight = origin.table[i].value.weight;
+    #####:  204:                table[i].is_filled = true;
+unconditional  0 never executed
+        -:  205:            }
+        -:  206:            else
+        -:  207:            {
+    #####:  208:                table[i].key = " ";
+    $$$$$:  208-block  0
+call    0 never executed
+    #####:  209:                table[i].value.age = -1;
+    #####:  210:                table[i].value.weight = -1;
+    #####:  211:                table[i].is_filled = false;
+unconditional  0 never executed
+        -:  212:            }
+        -:  213:        }
+        -:  214:
+        -:  215:    }
+    #####:  216:    return *this;
+    $$$$$:  216-block  0
+unconditional  0 never executed
+    $$$$$:  216-block  1
+unconditional  1 never executed
+    %%%%%:  216-block  2
+branch  2 never executed
+branch  3 never executed
+        -:  217:}
+        -:  218:
+        -:  219:// Очищает контейнер.
+function _ZN9HashTable5clearEv called 0 returned 0% blocks executed 0%
+    #####:  220:void HashTable::clear()
+    $$$$$:  220-block  0
+        -:  221:{
+        -:  222:    // std fill
+    #####:  223:    for (int i = 0; i < capacity; ++i)
+    $$$$$:  223-block  0
+unconditional  0 never executed
+    $$$$$:  223-block  1
+branch  1 never executed
+branch  2 never executed
+    $$$$$:  223-block  2
+unconditional  3 never executed
+        -:  224:    {
+    #####:  225:        if (true == table[i].is_filled)
+    $$$$$:  225-block  0
+branch  0 never executed
+branch  1 never executed
+        -:  226:        {
+    #####:  227:            table[i].is_filled = false;
+    #####:  228:            table[i].key = " ";
+    $$$$$:  228-block  0
+call    0 never executed
+    #####:  229:            table[i].value.age = -1;
+    #####:  230:            table[i].value.weight = -1;
+unconditional  0 never executed
+        -:  231:        }
+        -:  232:    }
+    #####:  233:    size = 0;
+    #####:  234:    capacity = START_CAPACITY;
+    #####:  235:}
+        -:  236:
+        -:  237:// Удаляет элемент по заданному ключу.
+function _ZN9HashTable5eraseERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 3 returned 100% blocks executed 79%
+        3:  238:bool HashTable::erase(const Key& k)
+        3:  238-block  0
+        -:  239:{
+        3:  240:    int i = HashTable::gethash(k);
+        3:  240-block  0
+call    0 returned 3
+call    1 returned 3
+branch  2 taken 3 (fallthrough)
+branch  3 taken 0 (throw)
+        3:  240-block  1
+call    4 returned 3
+unconditional  5 taken 3
+    %%%%%:  240-block  2
+call    6 never executed
+        3:  241:    while (true == table[i].is_filled)
+        3:  241-block  0
+branch  0 taken 3 (fallthrough)
+branch  1 taken 0
+    $$$$$:  241-block  1
+unconditional  2 never executed
+        -:  242:    {
+        3:  243:        if (k == table[i].key)
+        3:  243-block  0
+call    0 returned 3
+branch  1 taken 3 (fallthrough)
+branch  2 taken 0
+        -:  244:        {
+        3:  245:            size--;
+        3:  246:            table[i].key = " ";
+        3:  246-block  0
+call    0 returned 3
+        3:  247:            table[i].value.age = -1;
+        3:  248:            table[i].value.weight = -1;
+        3:  249:            table[i].is_filled = false;
+        3:  250:            return true;
+unconditional  0 taken 3
+        -:  251:        }
+    #####:  252:        ++i;
+    #####:  253:        i = i%capacity;
+        -:  254:    }
+        3:  255:    return false;
+    $$$$$:  255-block  0
+unconditional  0 never executed
+        3:  255-block  1
+unconditional  1 taken 3
+        -:  256:}
+        -:  257:
+function _ZNK9HashTable7getsizeEv called 2 returned 100% blocks executed 100%
+        2:  258:int HashTable::getsize() const
+        2:  258-block  0
+        -:  259:{
+        2:  260:    return size;
+        2:  260-block  0
+unconditional  0 taken 2
+        -:  261:}
         -:  262:
-        -:  263:    }
-    #####:  264:    return *this;
-        -:  265:}
-        -:  266:
-        -:  267:// Очищает контейнер.
-    #####:  268:void HashTable::clear()
+function _ZNK9HashTable11getcapacityEv called 3 returned 100% blocks executed 100%
+        3:  263:int HashTable::getcapacity() const
+        3:  263-block  0
+        -:  264:{
+        3:  265:    return capacity;
+        3:  265-block  0
+unconditional  0 taken 3
+        -:  266:}
+        -:  267:
+function _ZNK9HashTable5emptyEv called 6 returned 100% blocks executed 100%
+        6:  268:bool HashTable::empty() const
+        6:  268-block  0
         -:  269:{
-        -:  270:    // std fill
-    #####:  271:    for (int i = 0; i < capacity; ++i)
-        -:  272:    {
-    #####:  273:        if (true == table[i].is_filled)
-        -:  274:        {
-    #####:  275:            table[i].is_filled = false;
-    #####:  276:            table[i].key = " ";
-    #####:  277:            table[i].value.age = -1;
-    #####:  278:            table[i].value.weight = -1;
-        -:  279:        }
-        -:  280:    }
-    #####:  281:    size = 0;
-    #####:  282:    capacity = START_CAPACITY;
-    #####:  283:}
-        -:  284:
-        -:  285:// Удаляет элемент по заданному ключу.
-    #####:  286:bool HashTable::erase(const Key& k)
-        -:  287:{
-    #####:  288:    int i = HashTable::gethash(k);
-    #####:  289:    while (true == table[i].is_filled)
-        -:  290:    {
-    #####:  291:        if (k == table[i].key)
-        -:  292:        {
-    #####:  293:            size--;
-    #####:  294:            table[i].key = " ";
-    #####:  295:            table[i].value.age = -1;
-    #####:  296:            table[i].value.weight = -1;
-    #####:  297:            table[i].is_filled = false;
-    #####:  298:            return true;
-        -:  299:        }
-    #####:  300:        ++i;
-    #####:  301:        i = i%capacity;
-        -:  302:    }
-    #####:  303:    return false;
-        -:  304:}
-        -:  305:
-    #####:  306:int HashTable::getsize() const
-        -:  307:{
-    #####:  308:    return size;
-        -:  309:}
-        -:  310:
-    #####:  311:int HashTable::getcapacity() const
-        -:  312:{
-    #####:  313:    return capacity;
-        -:  314:}
-        -:  315:
-    #####:  316:bool HashTable::empty() const
-        -:  317:{
-    #####:  318:    for (int i = 0; i < capacity; ++i)
+       21:  270:    for (int i = 0; i < capacity; ++i)
+        6:  270-block  0
+unconditional  0 taken 6
+       21:  270-block  1
+branch  1 taken 18 (fallthrough)
+branch  2 taken 3
+       15:  270-block  2
+unconditional  3 taken 15
+        -:  271:    {
+       18:  272:        if (true == table[i].is_filled)
+       18:  272-block  0
+branch  0 taken 3 (fallthrough)
+branch  1 taken 15
+        -:  273:        {
+        3:  274:            return false;
+        3:  274-block  0
+unconditional  0 taken 3
+        -:  275:        }
+        -:  276:    }
+        3:  277:    return true;
+        3:  277-block  0
+unconditional  0 taken 3
+        -:  278:}
+        -:  279:
+        -:  280:// Возвращает значение по ключу. Бросает исключение при неудаче.
+function _ZN9HashTable2atERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 2 returned 50% blocks executed 87%
+        2:  281:Value& HashTable::at(const Key& k)
+        2:  281-block  0
+        -:  282:{
+        2:  283:    if (false == HashTable::search(k))
+        2:  283-block  0
+call    0 returned 2
+branch  1 taken 1 (fallthrough)
+branch  2 taken 1
+        -:  284:    {
+        1:  285:        throw 0;
+        1:  285-block  0
+call    0 returned 1
+call    1 returned 0
+        -:  286:    }
+        -:  287:    else
+        -:  288:    {
+        1:  289:        int hash = HashTable::gethash(k);
+        1:  289-block  0
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:  289-block  1
+call    4 returned 1
+unconditional  5 taken 1
+    %%%%%:  289-block  2
+call    6 never executed
+        1:  290:        while (table[hash].key != k)
+        1:  290-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    $$$$$:  290-block  1
+unconditional  3 never executed
+        -:  291:        {
+    #####:  292:            hash++;
+    #####:  293:            hash = hash % capacity;
+        -:  294:        }
+        1:  295:        Value & result = table[hash].value;
+        1:  296:        return result;
+        1:  296-block  0
+unconditional  0 taken 1
+        1:  296-block  1
+unconditional  1 taken 1
+        -:  297:    }
+        -:  298:}
+        -:  299:
+        -:  300:// Возвращает значение по ключу. Небезопасный метод.
+        -:  301:// В случае отсутствия ключа в контейнере следует вставить в контейнер
+        -:  302:// значение, созданное конструктором по умолчанию и вернуть ссылку на него. 
+function _ZN9HashTableixERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 2 returned 100% blocks executed 82%
+        2:  303:Value& HashTable::operator[](const Key& k)
+        2:  303-block  0
+        -:  304:{
+        2:  305:    if (false == HashTable::search(k))
+        2:  305-block  0
+call    0 returned 2
+branch  1 taken 1 (fallthrough)
+branch  2 taken 1
+        -:  306:    {
+        1:  307:        int i = 0;
+        1:  307-block  0
+unconditional  0 taken 1
+        1:  308:        while (true == table[i].is_filled)
+        1:  308-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    $$$$$:  308-block  1
+unconditional  2 never executed
+        -:  309:        {
+    #####:  310:            ++i;
+    #####:  311:            i = i % capacity;
+        -:  312:        }
+        1:  313:        table[i].value.age = -1;
+        1:  314:        table[i].value.weight = -1;
+        1:  315:        Value & result = table[i].value;
+        1:  316:        return result;
+        1:  316-block  0
+unconditional  0 taken 1
+        -:  317:    }
+        -:  318:    else
         -:  319:    {
-    #####:  320:        if (true == table[i].is_filled)
-        -:  321:        {
-    #####:  322:            return false;
-        -:  323:        }
-        -:  324:    }
-    #####:  325:    return true;
-        -:  326:}
-        -:  327:
-        -:  328:// Возвращает значение по ключу. Бросает исключение при неудаче.
-    #####:  329:Value& HashTable::at(const Key& k)
-        -:  330:{
-    #####:  331:    if (false == HashTable::search(k))
-        -:  332:    {
-    #####:  333:        throw 0;
-        -:  334:    }
-        -:  335:    else
-        -:  336:    {
-    #####:  337:        int hash = HashTable::gethash(k);
-    #####:  338:        while (table[hash].key != k)
-        -:  339:        {
-    #####:  340:            hash++;
-    #####:  341:            hash = hash % capacity;
-        -:  342:        }
-    #####:  343:        Value & result = table[hash].value;
-    #####:  344:        return result;
-        -:  345:    }
-        -:  346:}
-        -:  347:
-        -:  348:// Возвращает значение по ключу. Небезопасный метод.
-        -:  349:// В случае отсутствия ключа в контейнере следует вставить в контейнер
-        -:  350:// значение, созданное конструктором по умолчанию и вернуть ссылку на него. 
-    #####:  351:Value& HashTable::operator[](const Key& k)
-        -:  352:{
-    #####:  353:    if (false == HashTable::search(k))
-        -:  354:    {
-    #####:  355:        int i = 0;
-    #####:  356:        while (true == table[i].is_filled)
-        -:  357:        {
-    #####:  358:            ++i;
-    #####:  359:            i = i % capacity;
-        -:  360:        }
-    #####:  361:        table[i].value.age = -1;
-    #####:  362:        table[i].value.weight = -1;
-    #####:  363:        Value & result = table[i].value;
-    #####:  364:        return result;
-        -:  365:    }
-        -:  366:    else
-        -:  367:    {
-    #####:  368:        int hash = HashTable::gethash(k);
-    #####:  369:        while (table[hash].key != k)
-        -:  370:        {
-    #####:  371:            hash++;
-    #####:  372:            hash = hash % capacity;
-        -:  373:        }
-    #####:  374:        Value & result = table[hash].value;
-    #####:  375:        return result;
-        -:  376:    }
-        -:  377:}
-        -:  378:
-        -:  379:
-        -:  380:
-        -:  381:
-    #####:  382:const Value& HashTable::at(const Key& k) const
-        -:  383:{
-    #####:  384:    if (false == HashTable::search(k))
-        -:  385:    {
-    #####:  386:        throw 0;
-        -:  387:    }
-        -:  388:    else
-        -:  389:    {
-    #####:  390:        int hash = HashTable::gethash(k);
-    #####:  391:        while (table[hash].key != k)
-        -:  392:        {
-    #####:  393:            hash++;
-    #####:  394:            hash = hash % capacity;
-        -:  395:        }
-    #####:  396:        const Value & result = table[hash].value;
-    #####:  397:        return result;
-        -:  398:    }
-        3:  399:}
-        -:  400:
-        -:  401:
-        -:  402:
-        -:  403:
+        1:  320:        int hash = HashTable::gethash(k);
+        1:  320-block  0
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:  320-block  1
+call    4 returned 1
+unconditional  5 taken 1
+    %%%%%:  320-block  2
+call    6 never executed
+        1:  321:        while (table[hash].key != k)
+        1:  321-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    $$$$$:  321-block  1
+unconditional  3 never executed
+        -:  322:        {
+    #####:  323:            hash++;
+    #####:  324:            hash = hash % capacity;
+        -:  325:        }
+        1:  326:        Value & result = table[hash].value;
+        2:  327:        return result;
+        1:  327-block  0
+unconditional  0 taken 1
+        2:  327-block  1
+unconditional  1 taken 2
+        -:  328:    }
+        -:  329:}
+        -:  330:
+        -:  331:
+        -:  332:
+        -:  333:
+function _ZNK9HashTable2atERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 1 returned 100% blocks executed 73%
+        1:  334:const Value& HashTable::at(const Key& k) const
+        1:  334-block  0
+        -:  335:{
+        1:  336:    if (false == HashTable::search(k))
+        1:  336-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+        -:  337:    {
+    #####:  338:        throw 0;
+    $$$$$:  338-block  0
+call    0 never executed
+call    1 never executed
+        -:  339:    }
+        -:  340:    else
+        -:  341:    {
+        1:  342:        int hash = HashTable::gethash(k);
+        1:  342-block  0
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:  342-block  1
+call    4 returned 1
+unconditional  5 taken 1
+    %%%%%:  342-block  2
+call    6 never executed
+        1:  343:        while (table[hash].key != k)
+        1:  343-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    $$$$$:  343-block  1
+unconditional  3 never executed
+        -:  344:        {
+    #####:  345:            hash++;
+    #####:  346:            hash = hash % capacity;
+        -:  347:        }
+        1:  348:        const Value & result = table[hash].value;
+        1:  349:        return result;
+        1:  349-block  0
+unconditional  0 taken 1
+        1:  349-block  1
+unconditional  1 taken 1
+        -:  350:    }
+function _GLOBAL__sub_I__ZNK9HashTable7gethashENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE called 1 returned 100% blocks executed 100%
+function _Z41__static_initialization_and_destruction_0ii called 1 returned 100% blocks executed 100%
+        4:  351:}
+        1:  351-block  0
+        1:  351-block  1
+call    0 returned 1
+        1:  351-block  2
+        1:  351-block  3
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0
+        1:  351-block  4
+branch  3 taken 1 (fallthrough)
+branch  4 taken 0
+        -:  352:
+        -:  353:
+        -:  354:
+        -:  355:

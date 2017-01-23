@@ -1,0 +1,12 @@
+INPUT(
+./debug\feild.o
+./debug\feild_widget.o
+./debug\get_feild.o
+./debug\main.o
+./debug\menu_widget.o
+./debug\WriteFile.o
+./debug\moc_feild_widget.o
+./debug\moc_menu_widget.o
+./debug\moc_Painter.o
+./debug\moc_WriteFile.o
+);

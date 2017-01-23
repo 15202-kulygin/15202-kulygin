@@ -33,6 +33,10 @@ private slots:
 
     void on_ResizeField_clicked();
 
+    void on_SaveToFile_clicked();
+
+    void on_LoadFromFile_clicked();
+
 private:
     int interval_size = 500;
     Ui::MainWindow *ui;

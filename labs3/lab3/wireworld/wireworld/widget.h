@@ -1,7 +1,8 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
-#include<memory>
+#include <memory>
+#include <string>
 #include <QWidget>
 #include <QColor>
 #include "field.h"
@@ -19,6 +20,8 @@ public:
     ~Widget();
     void clearField();
     void resizeField(int h, int w);
+    void saveToFile(std::string text);
+    void loadFromFile(std::string text);
 
 public slots:
     void makeStep();

@@ -15,7 +15,24 @@
         -:   13:	unsigned int weight;
         -:   14:} Value;
         -:   15:
-  1310818:   16:typedef struct Table {
+function _ZN5TableaSERKS_ called 52 returned 100% blocks executed 100%
+function _ZN5TableD1Ev called 219 returned 100% blocks executed 100%
+function _ZN5TableC1Ev called 219 returned 100% blocks executed 100%
+      761:   16:typedef struct Table {
+       52:   16-block  0
+       52:   16-block  1
+call    0 returned 52
+unconditional  1 taken 52
+      219:   16-block  2
+      219:   16-block  3
+call    2 returned 219
+branch  3 taken 219 (fallthrough)
+branch  4 taken 0 (throw)
+      219:   16-block  4
+unconditional  5 taken 219
+      219:   16-block  5
+      219:   16-block  6
+call    6 returned 219
         -:   17:  Key key;
         -:   18:  Value value;
         -:   19:  bool is_filled;

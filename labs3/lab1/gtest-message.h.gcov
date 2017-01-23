@@ -84,7 +84,15 @@
         -:   82:// latter (it causes an access violation if you do).  The Message
         -:   83:// class hides this difference by treating a NULL char pointer as
         -:   84:// "(null)".
-       30:   85:class GTEST_API_ Message {
+function _ZN7testing7MessageD1Ev called 49 returned 100% blocks executed 100%
+       49:   85:class GTEST_API_ Message {
+       49:   85-block  0
+       49:   85-block  1
+call    0 returned 49
+branch  1 taken 49 (fallthrough)
+branch  2 taken 0 (throw)
+       49:   85-block  2
+unconditional  3 taken 49
         -:   86: private:
         -:   87:  // The type of basic IO manipulators (endl, ends, and flush) for
         -:   88:  // narrow streams.
@@ -114,7 +122,15 @@
         -:  112:#else
         -:  113:  // Streams a non-pointer value to this object.
         -:  114:  template <typename T>
+function _ZN7testing7MessagelsIA5_cEERS0_RKT_ called 0 returned 0% blocks executed 0%
+function _ZN7testing7MessagelsINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEERS0_RKT_ called 0 returned 0% blocks executed 0%
+function _ZN7testing7MessagelsIA7_cEERS0_RKT_ called 15 returned 100% blocks executed 100%
+function _ZN7testing7MessagelsIA12_cEERS0_RKT_ called 0 returned 0% blocks executed 0%
        15:  115:  inline Message& operator <<(const T& val) {
+    $$$$$:  115-block  0
+    $$$$$:  115-block  1
+       15:  115-block  2
+    $$$$$:  115-block  3
         -:  116:    // Some libraries overload << for STL containers.  These
         -:  117:    // overloads are defined in the global namespace instead of ::std.
         -:  118:    //
@@ -131,7 +147,23 @@
         -:  129:    // visible via Koenig lookup are both exposed in this function.
         -:  130:    using ::operator <<;
        15:  131:    *ss_ << val;
+    $$$$$:  131-block  0
+call    0 never executed
+call    1 never executed
+    $$$$$:  131-block  1
+call    2 never executed
+call    3 never executed
+       15:  131-block  2
+call    4 returned 15
+call    5 returned 15
+    $$$$$:  131-block  3
+call    6 never executed
+call    7 never executed
        15:  132:    return *this;
+unconditional  0 never executed
+unconditional  1 never executed
+unconditional  2 taken 15
+unconditional  3 never executed
         -:  133:  }
         -:  134:
         -:  135:  // Streams a pointer value to this object.
@@ -148,13 +180,28 @@
         -:  146:  // ensure consistent result across compilers, we always treat NULL
         -:  147:  // as "(null)".
         -:  148:  template <typename T>
+function _ZN7testing7MessagelsIKcEERS0_RKPT_ called 15 returned 100% blocks executed 71%
        15:  149:  inline Message& operator <<(T* const& pointer) {  // NOLINT
+       15:  149-block  0
        15:  150:    if (pointer == NULL) {
+       15:  150-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 15
     #####:  151:      *ss_ << "(null)";
+    $$$$$:  151-block  0
+call    0 never executed
+call    1 never executed
+unconditional  2 never executed
         -:  152:    } else {
        15:  153:      *ss_ << pointer;
+       15:  153-block  0
+call    0 returned 15
+call    1 returned 15
+unconditional  2 taken 15
         -:  154:    }
        15:  155:    return *this;
+       15:  155-block  0
+unconditional  0 taken 15
         -:  156:  }
         -:  157:#endif  // GTEST_OS_SYMBIAN
         -:  158:

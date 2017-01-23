@@ -217,7 +217,11 @@
         -:  215:// Used to print a value that is not an STL-style container when the
         -:  216:// user doesn't define PrintTo() for it.
         -:  217:template <typename T>
+function _ZN16testing_internal26DefaultPrintNonContainerToIiEEvRKT_PSo called 0 returned 0% blocks executed 0%
+function _ZN16testing_internal26DefaultPrintNonContainerToIjEEvRKT_PSo called 0 returned 0% blocks executed 0%
     #####:  218:void DefaultPrintNonContainerTo(const T& value, ::std::ostream* os) {
+    $$$$$:  218-block  0
+    $$$$$:  218-block  1
         -:  219:  // With the following statement, during unqualified name lookup,
         -:  220:  // testing::internal2::operator<< appears as if it was declared in
         -:  221:  // the nearest enclosing namespace that contains both
@@ -245,6 +249,10 @@
         -:  243:  // anything in it is undefined behavior unless you are a compiler
         -:  244:  // vendor.).
     #####:  245:  *os << value;
+    $$$$$:  245-block  0
+call    0 never executed
+    $$$$$:  245-block  1
+call    1 never executed
     #####:  246:}
         -:  247:
         -:  248:}  // namespace testing_internal
@@ -334,10 +342,18 @@
         -:  332:// Used to print a non-container, non-pointer value when the user
         -:  333:// doesn't define PrintTo() for it.
         -:  334:template <typename T>
+function _ZN7testing8internal14DefaultPrintToIiEEvcNS0_13bool_constantILb0EEERKT_PSo called 0 returned 0% blocks executed 0%
+function _ZN7testing8internal14DefaultPrintToIjEEvcNS0_13bool_constantILb0EEERKT_PSo called 0 returned 0% blocks executed 0%
     #####:  335:void DefaultPrintTo(IsNotContainer /* dummy */,
+    $$$$$:  335-block  0
+    $$$$$:  335-block  1
         -:  336:                    false_type /* is not a pointer */,
         -:  337:                    const T& value, ::std::ostream* os) {
     #####:  338:  ::testing_internal::DefaultPrintNonContainerTo(value, os);
+    $$$$$:  338-block  0
+call    0 never executed
+    $$$$$:  338-block  1
+call    1 never executed
     #####:  339:}
         -:  340:
         -:  341:// Prints the given value using the << operator if it has one;
@@ -352,7 +368,11 @@
         -:  350:// or there is already a << operator but it doesn't do what the user
         -:  351:// wants).
         -:  352:template <typename T>
+function _ZN7testing8internal7PrintToIiEEvRKT_PSo called 0 returned 0% blocks executed 0%
+function _ZN7testing8internal7PrintToIjEEvRKT_PSo called 0 returned 0% blocks executed 0%
     #####:  353:void PrintTo(const T& value, ::std::ostream* os) {
+    $$$$$:  353-block  0
+    $$$$$:  353-block  1
         -:  354:  // DefaultPrintTo() is overloaded.  The type of its first two
         -:  355:  // arguments determine which version will be picked.  If T is an
         -:  356:  // STL-style container, the version for container will be called; if
@@ -376,7 +396,21 @@
         -:  374:  //   PrintTo(const T& x, ...);
         -:  375:  //   PrintTo(T* x, ...);
     #####:  376:  DefaultPrintTo(IsContainerTest<T>(0), is_pointer<T>(), value, os);
+    $$$$$:  376-block  0
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    $$$$$:  376-block  1
+call    4 never executed
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
     #####:  377:}
+    $$$$$:  377-block  0
+unconditional  0 never executed
+    $$$$$:  377-block  1
+unconditional  1 never executed
         -:  378:
         -:  379:// The following list of PrintTo() overloads tells
         -:  380:// UniversalPrinter<T>::Print() how to print standard types (built-in
@@ -590,7 +624,11 @@
         -:  588:  // Note: we deliberately don't call this PrintTo(), as that name
         -:  589:  // conflicts with ::testing::internal::PrintTo in the body of the
         -:  590:  // function.
+function _ZN7testing8internal16UniversalPrinterIiE5PrintERKiPSo called 0 returned 0% blocks executed 0%
+function _ZN7testing8internal16UniversalPrinterIjE5PrintERKjPSo called 0 returned 0% blocks executed 0%
     #####:  591:  static void Print(const T& value, ::std::ostream* os) {
+    $$$$$:  591-block  0
+    $$$$$:  591-block  1
         -:  592:    // By default, ::testing::internal::PrintTo() is used for printing
         -:  593:    // the value.
         -:  594:    //
@@ -600,6 +638,10 @@
         -:  598:    // in ::testing::internal, it will be picked by the compiler in the
         -:  599:    // following statement - exactly what we want.
     #####:  600:    PrintTo(value, os);
+    $$$$$:  600-block  0
+call    0 never executed
+    $$$$$:  600-block  1
+call    1 never executed
     #####:  601:  }
         -:  602:
         -:  603:#ifdef _MSC_VER
@@ -682,8 +724,16 @@
         -:  680:template <typename T>
         -:  681:class UniversalTersePrinter {
         -:  682: public:
+function _ZN7testing8internal21UniversalTersePrinterIiE5PrintERKiPSo called 0 returned 0% blocks executed 0%
+function _ZN7testing8internal21UniversalTersePrinterIjE5PrintERKjPSo called 0 returned 0% blocks executed 0%
     #####:  683:  static void Print(const T& value, ::std::ostream* os) {
+    $$$$$:  683-block  0
+    $$$$$:  683-block  1
     #####:  684:    UniversalPrint(value, os);
+    $$$$$:  684-block  0
+call    0 never executed
+    $$$$$:  684-block  1
+call    1 never executed
     #####:  685:  }
         -:  686:};
         -:  687:template <typename T>
@@ -751,11 +801,19 @@
         -:  749:// (const) char pointer, this prints both the pointer and the
         -:  750:// NUL-terminated string.
         -:  751:template <typename T>
+function _ZN7testing8internal14UniversalPrintIiEEvRKT_PSo called 0 returned 0% blocks executed 0%
+function _ZN7testing8internal14UniversalPrintIjEEvRKT_PSo called 0 returned 0% blocks executed 0%
     #####:  752:void UniversalPrint(const T& value, ::std::ostream* os) {
+    $$$$$:  752-block  0
+    $$$$$:  752-block  1
         -:  753:  // A workarond for the bug in VC++ 7.1 that prevents us from instantiating
         -:  754:  // UniversalPrinter with T directly.
         -:  755:  typedef T T1;
     #####:  756:  UniversalPrinter<T1>::Print(value, os);
+    $$$$$:  756-block  0
+call    0 never executed
+    $$$$$:  756-block  1
+call    1 never executed
     #####:  757:}
         -:  758:
         -:  759:#if GTEST_HAS_TR1_TUPLE
@@ -846,10 +904,66 @@
         -:  844:}  // namespace internal
         -:  845:
         -:  846:template <typename T>
+function _ZN7testing13PrintToStringIiEENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKT_ called 0 returned 0% blocks executed 0%
+function _ZN7testing13PrintToStringIjEENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKT_ called 0 returned 0% blocks executed 0%
     #####:  847:::std::string PrintToString(const T& value) {
+    $$$$$:  847-block  0
+    $$$$$:  847-block  1
     #####:  848:  ::std::stringstream ss;
+    $$$$$:  848-block  0
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+    $$$$$:  848-block  1
+call    4 never executed
+branch  5 never executed
+branch  6 never executed
+    $$$$$:  848-block  2
+unconditional  7 never executed
+    %%%%%:  848-block  3
+call    8 never executed
+unconditional  9 never executed
+    $$$$$:  848-block  4
+call   10 never executed
+call   11 never executed
+branch 12 never executed
+branch 13 never executed
+    $$$$$:  848-block  5
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    $$$$$:  848-block  6
+unconditional 17 never executed
+    %%%%%:  848-block  7
+call   18 never executed
+unconditional 19 never executed
     #####:  849:  internal::UniversalTersePrinter<T>::Print(value, &ss);
+    $$$$$:  849-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    $$$$$:  849-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
     #####:  850:  return ss.str();
+    $$$$$:  850-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    $$$$$:  850-block  1
+unconditional  3 never executed
+    $$$$$:  850-block  2
+unconditional  4 never executed
+    $$$$$:  850-block  3
+call    5 never executed
+branch  6 never executed
+branch  7 never executed
+    $$$$$:  850-block  4
+unconditional  8 never executed
+    $$$$$:  850-block  5
+unconditional  9 never executed
         -:  851:}
         -:  852:
         -:  853:}  // namespace testing

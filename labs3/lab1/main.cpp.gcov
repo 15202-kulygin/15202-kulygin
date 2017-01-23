@@ -15,122 +15,357 @@
         -:   13:
         -:   14:using namespace std;
         -:   15:
+function main called 1 returned 100% blocks executed 69%
         1:   16:GTEST_API_ int main (int argc, char ** argv)
+        1:   16-block  0
         -:   17:{	
         2:   18:	string str;
+        1:   18-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   18-block  1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:   18-block  2
+unconditional  6 taken 1
+        1:   18-block  3
+unconditional  7 taken 1
+    %%%%%:   18-block  4
+call    8 never executed
+unconditional  9 never executed
         2:   19:    ifstream input;
+        1:   19-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   19-block  1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+    %%%%%:   19-block  2
+call    6 never executed
+unconditional  7 never executed
         1:   20:    input.open("qwe.txt");
+        1:   20-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
         2:   21:    HashTable ht;
-       17:   22:    while (getline(input, str))
+        1:   21-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   21-block  1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+    %%%%%:   21-block  2
+call    6 never executed
+unconditional  7 never executed
+        9:   22:    while (getline(input, str))
+        9:   22-block  0
+call    0 returned 9
+branch  1 taken 9 (fallthrough)
+branch  2 taken 0 (throw)
+        9:   22-block  1
+call    3 returned 9
+branch  4 taken 9 (fallthrough)
+branch  5 taken 0 (throw)
+        9:   22-block  2
+branch  6 taken 8 (fallthrough)
+branch  7 taken 1
+        8:   22-block  3
+unconditional  8 taken 8
         -:   23:    {
        16:   24:        Key key = str;
+        8:   24-block  0
+call    0 returned 8
+branch  1 taken 8 (fallthrough)
+branch  2 taken 0 (throw)
+        8:   24-block  1
+call    3 returned 8
+branch  4 taken 8 (fallthrough)
+branch  5 taken 0 (throw)
+    %%%%%:   24-block  2
+call    6 never executed
+unconditional  7 never executed
+    %%%%%:   24-block  3
+unconditional  8 never executed
         -:   25:        Value value;
         8:   26:        getkey(str, key);
+        8:   26-block  0
+call    0 returned 8
+branch  1 taken 8 (fallthrough)
+branch  2 taken 0 (throw)
+        8:   26-block  1
+call    3 returned 8
+branch  4 taken 8 (fallthrough)
+branch  5 taken 0 (throw)
+        8:   26-block  2
+call    6 returned 8
+branch  7 taken 8 (fallthrough)
+branch  8 taken 0 (throw)
+    %%%%%:   26-block  3
+call    9 never executed
+unconditional 10 never executed
         8:   27:        getvalue(str, value);
+        8:   27-block  0
+call    0 returned 8
+branch  1 taken 8 (fallthrough)
+branch  2 taken 0 (throw)
+        8:   27-block  1
+call    3 returned 8
+branch  4 taken 8 (fallthrough)
+branch  5 taken 0 (throw)
+        8:   27-block  2
+call    6 returned 8
+branch  7 taken 8 (fallthrough)
+branch  8 taken 0 (throw)
+    %%%%%:   27-block  3
+call    9 never executed
+unconditional 10 never executed
         8:   28:        ht.insert(key, value);
+        8:   28-block  0
+call    0 returned 8
+branch  1 taken 8 (fallthrough)
+branch  2 taken 0 (throw)
         -:   29:    }
         -:   30:
         1:   31:    cout << endl << endl;
-        1:   32:    ht.print();
-        1:   33:    input.close();
-        1:   34:    input.open("crusoe.txt");
-        2:   35:    HashTable ht2;
-   148803:   36:    while (getline(input, str))
-        -:   37:    {
-        -:   38:        
-   148802:   39:        Key key = str;
-        -:   40:        Value value;
-    74401:   41:        getkey(str, key);
-    74401:   42:        getvalue(str, value);
-        -:   43:        
-    74401:   44:        ht2.insert(key, value);
-        -:   45:        
-        -:   46:    }
-        1:   47:    input.close();
-        -:   48:    //ht2.print();
-        1:   49:    cout << "Waiting" << endl;
-        1:   50:    while (cin >> str)
-        -:   51:    {
-        1:   52:        if(ht2.search(str))
-        -:   53:        {
-    #####:   54:            cout << ht2.at(str).age << " age" << endl;
-    #####:   55:            cout << ht2.at(str).weight << " weight" << endl; 
-        -:   56:        }
-        -:   57:        else
+        1:   31-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   31-block  1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        -:   32:    //ht->print();
+        -:   33:
+        1:   34:    input.close();
+        1:   34-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   35:    ht.print();
+        1:   35-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   36:    input.open("asd.txt");
+        1:   36-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        2:   37:    HashTable ht2;
+        1:   37-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   37-block  1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+    %%%%%:   37-block  2
+call    6 never executed
+unconditional  7 never executed
+        -:   38:    //ht2.print();
+        -:   39:    //input.close();
+        5:   40:    while (getline(input, str))
+        5:   40-block  0
+call    0 returned 5
+branch  1 taken 5 (fallthrough)
+branch  2 taken 0 (throw)
+        5:   40-block  1
+call    3 returned 5
+branch  4 taken 5 (fallthrough)
+branch  5 taken 0 (throw)
+        5:   40-block  2
+branch  6 taken 4 (fallthrough)
+branch  7 taken 1
+        4:   40-block  3
+unconditional  8 taken 4
+        -:   41:    {
+        -:   42:        
+        8:   43:        Key key = str;
+        4:   43-block  0
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0 (throw)
+        4:   43-block  1
+call    3 returned 4
+branch  4 taken 4 (fallthrough)
+branch  5 taken 0 (throw)
+    %%%%%:   43-block  2
+call    6 never executed
+unconditional  7 never executed
+    %%%%%:   43-block  3
+unconditional  8 never executed
+        -:   44:        Value value;
+        4:   45:        getkey(str, key);
+        4:   45-block  0
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0 (throw)
+        4:   45-block  1
+call    3 returned 4
+branch  4 taken 4 (fallthrough)
+branch  5 taken 0 (throw)
+        4:   45-block  2
+call    6 returned 4
+branch  7 taken 4 (fallthrough)
+branch  8 taken 0 (throw)
+    %%%%%:   45-block  3
+call    9 never executed
+unconditional 10 never executed
+        4:   46:        getvalue(str, value);
+        4:   46-block  0
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0 (throw)
+        4:   46-block  1
+call    3 returned 4
+branch  4 taken 4 (fallthrough)
+branch  5 taken 0 (throw)
+        4:   46-block  2
+call    6 returned 4
+branch  7 taken 4 (fallthrough)
+branch  8 taken 0 (throw)
+    %%%%%:   46-block  3
+call    9 never executed
+unconditional 10 never executed
+        -:   47:        
+        4:   48:        ht2.insert(key, value);
+        4:   48-block  0
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   49:        
+        -:   50:    }
+        1:   51:    input.close();
+        1:   51-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   52:    ht2.print();
+        1:   52-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   53:    //ht2.print();
+        -:   54:    /*cout << "Waiting" << endl;
+        -:   55:    while (cin >> str)
+        -:   56:    {
+        -:   57:        if(ht2.search(str))
         -:   58:        {
-        1:   59:            cout << "Not found" << endl;
-        1:   60:            break;
+        -:   59:            cout << ht2.at(str).age << " age" << endl;
+        -:   60:            cout << ht2.at(str).weight << " weight" << endl; 
         -:   61:        }
-        -:   62:    }
-        -:   63:    /*cout << endl << endl;
-        -:   64:    const HashTable ht3 = ht;
-        -:   65:
-        -:   66:    cout << ht3.at("qas").age << " 3 age" << endl;
-        -:   67:    ht3.at("qas").age = 5;
-        -:   68:    cout << ht3.at("qas").age << " 4 age" << endl;*/
-        -:   69:    //cout << "Running tests\n" << endl;
-        -:   70:    //testing::InitGoogleTest(&argc, argv);
-        -:   71:    //return RUN_ALL_TESTS();
-        -:   72: 
-        4:   73:}
-        -:   74:
-        -:   75:
-        -:   76:
-        -:   77:
-        -:   78:/* cout << "test swap" << endl;
-        -:   79:    ht->swap(*ht2);
-        -:   80:    ht->print();
-        -:   81:    ht2->print();
-        -:   82:    ht2 = ht2;
-        -:   83:    cout << endl << endl;
-        -:   84:    cout << "test operator =" << endl;
+        -:   62:        else
+        -:   63:        {
+        -:   64:            cout << "Not found" << endl;
+        -:   65:            break;
+        -:   66:        }
+        -:   67:    }*/
+        -:   68:    /*cout << endl << endl;
+        -:   69:    const HashTable ht3 = ht;
+        -:   70:
+        -:   71:    cout << ht3.at("qas").age << " 3 age" << endl;
+        -:   72:    ht3.at("qas").age = 5;
+        -:   73:    cout << ht3.at("qas").age << " 4 age" << endl;*/
+        1:   74:    cout << "Running tests\n" << endl;
+        1:   74-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   74-block  1
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:   75:    testing::InitGoogleTest(&argc, argv);
+        1:   75-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   76:    return RUN_ALL_TESTS();
+        1:   76-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        -:   77: 
+function _GLOBAL__sub_I_main called 1 returned 100% blocks executed 100%
+function _Z41__static_initialization_and_destruction_0ii called 1 returned 100% blocks executed 100%
+        4:   78:}
+        1:   78-block  0
+        1:   78-block  1
+call    0 returned 1
+        1:   78-block  2
+        1:   78-block  3
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0
+        1:   78-block  4
+branch  3 taken 1 (fallthrough)
+branch  4 taken 0
+        -:   79:
+        -:   80:
+        -:   81:
+        -:   82:
+        -:   83:/* cout << "test swap" << endl;
+        -:   84:    ht->swap(*ht2);
         -:   85:    ht->print();
         -:   86:    ht2->print();
-        -:   87:    cout << endl << endl;
-        -:   88:    cout << "test clear" << endl;
-        -:   89:    ht->clear();
+        -:   87:    ht2 = ht2;
+        -:   88:    cout << endl << endl;
+        -:   89:    cout << "test operator =" << endl;
         -:   90:    ht->print();
         -:   91:    ht2->print();
         -:   92:    cout << endl << endl;
-        -:   93:    cout << "test erase" << endl;
-        -:   94:    ht2->erase("uggu");
-        -:   95:    ht2->erase("qas");
-        -:   96:    ht2->erase("qwe");
-        -:   97:    ht2->erase("rtyu");
-        -:   98:    ht2->erase("gfhbjbh");
+        -:   93:    cout << "test clear" << endl;
+        -:   94:    ht->clear();
+        -:   95:    ht->print();
+        -:   96:    ht2->print();
+        -:   97:    cout << endl << endl;
+        -:   98:    cout << "test erase" << endl;
         -:   99:    ht2->erase("uggu");
-        -:  100:    ht2->erase("uggu");
-        -:  101:    ht2->print();
-        -:  102:    cout << endl << endl;
-        -:  103:    int size = ht2->getsize();
-        -:  104:    cout << "SIZE " << size << endl;
-        -:  105:    bool empt1 = ht->empty();
-        -:  106:    bool empt2 = ht2->empty();
-        -:  107:    cout << "EMPTY CHECK " << empt1 << ' ' << empt2 << endl;
-        -:  108:    cout << endl << endl << "== CHECK " << endl;
-        -:  109:    if (ht == ht2)
-        -:  110:        cout << "YES" << endl;
-        -:  111:    else
-        -:  112:        cout << "NO" << endl;
-        -:  113:    if (ht != ht2)
-        -:  114:        cout << "no" << endl;
-        -:  115:    else
-        -:  116:        cout << "yes" << endl;
-        -:  117:    //ht = ht2;
-        -:  118:    if (ht == ht2)
-        -:  119:        cout << "YES" << endl;
+        -:  100:    ht2->erase("qas");
+        -:  101:    ht2->erase("qwe");
+        -:  102:    ht2->erase("rtyu");
+        -:  103:    ht2->erase("gfhbjbh");
+        -:  104:    ht2->erase("uggu");
+        -:  105:    ht2->erase("uggu");
+        -:  106:    ht2->print();
+        -:  107:    cout << endl << endl;
+        -:  108:    int size = ht2->getsize();
+        -:  109:    cout << "SIZE " << size << endl;
+        -:  110:    bool empt1 = ht->empty();
+        -:  111:    bool empt2 = ht2->empty();
+        -:  112:    cout << "EMPTY CHECK " << empt1 << ' ' << empt2 << endl;
+        -:  113:    cout << endl << endl << "== CHECK " << endl;
+        -:  114:    if (ht == ht2)
+        -:  115:        cout << "YES" << endl;
+        -:  116:    else
+        -:  117:        cout << "NO" << endl;
+        -:  118:    if (ht != ht2)
+        -:  119:        cout << "no" << endl;
         -:  120:    else
-        -:  121:        cout << "NO" << endl;
-        -:  122:    if (ht != ht2)
-        -:  123:        cout << "no" << endl;
-        -:  124:    else
-        -:  125:        cout << "yes" << endl;
-        -:  126:    cout << endl << endl;
-        -:  127:    cout << "test at" << endl;
-        -:  128:   // Value test = ht2->at("gg");
-        -:  129:    cout << endl << endl;
-        -:  130:    cout << "test operator []" << endl;
-        -:  131:    ht->print();
-        -:  132:    ht2->print();
-        -:  133:    //test = (*ht)[(const Key &)("qwe")];
-        -:  134:    //cout << "testing [] " << test.age << ' ' << test.weight << endl; */
+        -:  121:        cout << "yes" << endl;
+        -:  122:    //ht = ht2;
+        -:  123:    if (ht == ht2)
+        -:  124:        cout << "YES" << endl;
+        -:  125:    else
+        -:  126:        cout << "NO" << endl;
+        -:  127:    if (ht != ht2)
+        -:  128:        cout << "no" << endl;
+        -:  129:    else
+        -:  130:        cout << "yes" << endl;
+        -:  131:    cout << endl << endl;
+        -:  132:    cout << "test at" << endl;
+        -:  133:   // Value test = ht2->at("gg");
+        -:  134:    cout << endl << endl;
+        -:  135:    cout << "test operator []" << endl;
+        -:  136:    ht->print();
+        -:  137:    ht2->print();
+        -:  138:    //test = (*ht)[(const Key &)("qwe")];
+        -:  139:    //cout << "testing [] " << test.age << ' ' << test.weight << endl; */

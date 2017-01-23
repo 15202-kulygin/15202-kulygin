@@ -78,10 +78,9 @@ void HashTable::rehash()
     Table * temp = new Table[capacity]; // creating temporary array of tables
     int current_ind = 0;
 
-// std copy
     //std::cout << "CHECK " <<std::endl;
     //print();
-    //std::copy(table, table + capacity, temp);
+    std::copy(table, table + capacity, temp);
     for (int i = 0; i < capacity; ++i)
     {
         if (true == table[i].is_filled)
@@ -178,9 +177,6 @@ void HashTable::swap(HashTable& origin)
     HashTable & temp = origin;//???????????????????????
     origin = *this;
     *this = temp;
-    /*std::swap(table, origin.table);
-    std::swap(size, origin.size);
-    std::swap(capacity, origin.capacity);*/
 }
 
 HashTable& HashTable::operator=(const HashTable& origin)
@@ -193,7 +189,7 @@ HashTable& HashTable::operator=(const HashTable& origin)
         //table = new Table[capacity];
         table = new Table[capacity];
 
-        // copy
+        
         for (int i = 0; i < capacity; ++i)
         {
             if (true == origin.table[i].is_filled)
@@ -219,7 +215,7 @@ HashTable& HashTable::operator=(const HashTable& origin)
 // Очищает контейнер.
 void HashTable::clear()
 {
-    // std fill
+    
     for (int i = 0; i < capacity; ++i)
     {
         if (true == table[i].is_filled)

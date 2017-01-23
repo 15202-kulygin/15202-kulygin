@@ -5,7 +5,7 @@
         -:    3:
         -:    4:#include <iostream>
         -:    5:#include <string>
-        -:    6://#include <cstdlib>
+        -:    6:#include <memory>
         -:    7:
         -:    8:#include "input.h"
         -:    9:
@@ -34,7 +34,7 @@
         -:   32:    // Проверка наличия значения по заданному ключу.
         -:   33:    bool search(const Key& key) const;
         -:   34:    
-        -:   35:    void print();
+        -:   35:    void print() const;
         -:   36:    
         -:   37:    void swap(HashTable& origin);
         -:   38:    
@@ -48,51 +48,85 @@
         -:   46:
         -:   47:    int getsize() const;
         -:   48:    int getcapacity() const;
-        -:   49:
-        -:   50:    bool empty() const;
-        -:   51:
-    #####:   52:    friend bool operator==(const HashTable & a, const HashTable & b)
-        -:   53:    {
-    #####:   54:      if (a.size == b.size)
-        -:   55:      {
-    #####:   56:        for (int i = 0; i < a.capacity; ++i)
-        -:   57:        {
-    #####:   58:          if (true == a.table[i].is_filled)
-        -:   59:          {
-    #####:   60:            if (false == b.search(a.table[i].key))
-        -:   61:            {
-    #####:   62:              return false;
-        -:   63:            }
-        -:   64:          }
-    #####:   65:          return true;
-        -:   66:        }
-        -:   67:      }
-    #####:   68:      return false;
-        -:   69:    }
-        -:   70:
-    #####:   71:    friend bool operator!=(const HashTable & a, const HashTable & b)
-        -:   72:    {
-    #####:   73:      if (a == b)
-        -:   74:      {
-    #####:   75:        return false;
-        -:   76:      }
-        -:   77:      else
-        -:   78:      {
-    #####:   79:        return true;
-        -:   80:      }
-        -:   81:    }
-        -:   82:    void rehash();
-        -:   83:    // Возвращает значение по ключу. Бросает исключение при неудаче.
-        -:   84:    Value& at(const Key& k);
-        -:   85:
-        -:   86:    // Возвращает значение по ключу. Небезопасный метод.
-        -:   87:    // В случае отсутствия ключа в контейнереа следует вставить в контейнер
-        -:   88:    // значение, созданное конструктором по умолчанию и вернуть ссылку на него. 
-        -:   89:    Value& operator[](const Key& k);
-        -:   90:
-        -:   91:    const Value& at(const Key& k) const;
-        -:   92:} HashTable;
-        -:   93:
+        -:   49:    Table * get_data() const;
+        -:   50:
+        -:   51:    bool empty() const;
+        -:   52:
+function _ZeqRK9HashTableS1_ called 4 returned 100% blocks executed 80%
+        4:   53:    friend bool operator==(const HashTable & a, const HashTable & b)
+        4:   53-block  0
+        -:   54:    {
+        4:   55:      if (a.size == b.size)
+        4:   55-block  0
+branch  0 taken 4 (fallthrough)
+branch  1 taken 0
+        -:   56:      {
+        4:   57:        for (int i = 0; i < a.capacity; ++i)
+        4:   57-block  0
+branch  0 taken 4 (fallthrough)
+branch  1 taken 0
+        -:   58:        {
+        4:   59:          if (true == a.table[i].is_filled)
+        4:   59-block  0
+branch  0 taken 2 (fallthrough)
+branch  1 taken 2
+        -:   60:          {
+        2:   61:            if (false == b.search(a.table[i].key))
+        2:   61-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
+branch  2 taken 0
+        -:   62:            {
+        2:   63:              return false;
+        2:   63-block  0
+unconditional  0 taken 2
+        -:   64:            }
+        -:   65:          }
+        2:   66:          return true;
+        2:   66-block  0
+unconditional  0 taken 2
+    $$$$$:   66-block  1
+unconditional  1 never executed
+        -:   67:        }
+        -:   68:      }
+    #####:   69:      return false;
+    $$$$$:   69-block  0
+unconditional  0 never executed
+        -:   70:    }
+        -:   71:
+function _ZneRK9HashTableS1_ called 1 returned 100% blocks executed 80%
+        1:   72:    friend bool operator!=(const HashTable & a, const HashTable & b)
+        1:   72-block  0
+        -:   73:    {
+        1:   74:      if (a == b)
+        1:   74-block  0
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+        -:   75:      {
+    #####:   76:        return false;
+    $$$$$:   76-block  0
+unconditional  0 never executed
+        -:   77:      }
+        -:   78:      else
+        -:   79:      {
+        1:   80:        return true;
+        1:   80-block  0
+unconditional  0 taken 1
+        -:   81:      }
+        -:   82:    }
+        -:   83:    void rehash();
+        -:   84:    // Возвращает значение по ключу. Бросает исключение при неудаче.
+        -:   85:    Value& at(const Key& k);
+        -:   86:
+        -:   87:    // Возвращает значение по ключу. Небезопасный метод.
+        -:   88:    // В случае отсутствия ключа в контейнереа следует вставить в контейнер
+        -:   89:    // значение, созданное конструктором по умолчанию и вернуть ссылку на него. 
+        -:   90:    Value& operator[](const Key& k);
+        -:   91:
+        -:   92:    const Value& at(const Key& k) const;
+        -:   93:} HashTable;
         -:   94:
         -:   95:
-        -:   96:#endif
+        -:   96:
+        -:   97:#endif

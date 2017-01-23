@@ -50,9 +50,6 @@ GTEST_API_ int main (int argc, char ** argv)
     }
     input.close();
     ht2.print();
-    ht2.swap(ht);
-    ht.print();
-    ht2.print();
     //ht2.print();
     /*cout << "Waiting" << endl;
     while (cin >> str)
@@ -74,9 +71,9 @@ GTEST_API_ int main (int argc, char ** argv)
     cout << ht3.at("qas").age << " 3 age" << endl;
     ht3.at("qas").age = 5;
     cout << ht3.at("qas").age << " 4 age" << endl;*/
-    //cout << "Running tests\n" << endl;
-    //testing::InitGoogleTest(&argc, argv);
-    //return RUN_ALL_TESTS();
+    cout << "Running tests\n" << endl;
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
  
 }
 

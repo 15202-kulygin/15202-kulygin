@@ -893,12 +893,42 @@
         -:  891: public:
         -:  892:  typedef T element_type;
         -:  893:
-    #####:  894:  explicit scoped_ptr(T* p = NULL) : ptr_(p) {}
-       30:  895:  ~scoped_ptr() { reset(); }
+function _ZN7testing8internal10scoped_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEC1EPS7_ called 26 returned 100% blocks executed 100%
+       26:  894:  explicit scoped_ptr(T* p = NULL) : ptr_(p) {}
+       26:  894-block  0
+function _ZN7testing8internal10scoped_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEED1Ev called 26 returned 100% blocks executed 100%
+function _ZN7testing8internal10scoped_ptrINSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEEED1Ev called 49 returned 100% blocks executed 100%
+       75:  895:  ~scoped_ptr() { reset(); }
+       26:  895-block  0
+       26:  895-block  1
+call    0 returned 26
+branch  1 taken 26 (fallthrough)
+branch  2 taken 0 (throw)
+       26:  895-block  2
+unconditional  3 taken 26
+       49:  895-block  3
+       49:  895-block  4
+call    4 returned 49
+branch  5 taken 49 (fallthrough)
+branch  6 taken 0 (throw)
+       49:  895-block  5
+unconditional  7 taken 49
         -:  896:
-      340:  897:  T& operator*() const { return *ptr_; }
+function _ZNK7testing8internal10scoped_ptrINSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEEEdeEv called 378 returned 100% blocks executed 100%
+      756:  897:  T& operator*() const { return *ptr_; }
+      378:  897-block  0
+      378:  897-block  1
+unconditional  0 taken 378
+function _ZNK7testing8internal10scoped_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEptEv called 0 returned 0% blocks executed 0%
     #####:  898:  T* operator->() const { return ptr_; }
+    $$$$$:  898-block  0
+    $$$$$:  898-block  1
+unconditional  0 never executed
+function _ZNK7testing8internal10scoped_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE3getEv called 0 returned 0% blocks executed 0%
     #####:  899:  T* get() const { return ptr_; }
+    $$$$$:  899-block  0
+    $$$$$:  899-block  1
+unconditional  0 never executed
         -:  900:
         -:  901:  T* release() {
         -:  902:    T* const ptr = ptr_;
@@ -906,14 +936,49 @@
         -:  904:    return ptr;
         -:  905:  }
         -:  906:
-       30:  907:  void reset(T* p = NULL) {
-       30:  908:    if (p != ptr_) {
-       30:  909:      if (IsTrue(sizeof(T) > 0)) {  // Makes sure T is a complete type.
-       30:  910:        delete ptr_;
+function _ZN7testing8internal10scoped_ptrINSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEEE5resetEPS7_ called 49 returned 100% blocks executed 100%
+function _ZN7testing8internal10scoped_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE5resetEPS7_ called 26 returned 100% blocks executed 25%
+       75:  907:  void reset(T* p = NULL) {
+       49:  907-block  0
+       26:  907-block  1
+       75:  908:    if (p != ptr_) {
+       49:  908-block  0
+branch  0 taken 49 (fallthrough)
+branch  1 taken 0
+       26:  908-block  1
+branch  2 taken 0 (fallthrough)
+branch  3 taken 26
+       49:  909:      if (IsTrue(sizeof(T) > 0)) {  // Makes sure T is a complete type.
+       49:  909-block  0
+call    0 returned 49
+branch  1 taken 49 (fallthrough)
+branch  2 taken 0
+    $$$$$:  909-block  1
+call    3 never executed
+branch  4 never executed
+branch  5 never executed
+       49:  910:        delete ptr_;
+       49:  910-block  0
+branch  0 taken 49 (fallthrough)
+branch  1 taken 0
+       49:  910-block  1
+call    2 returned 49
+unconditional  3 taken 49
+    $$$$$:  910-block  2
+branch  4 never executed
+branch  5 never executed
+    $$$$$:  910-block  3
+call    6 never executed
+call    7 never executed
+unconditional  8 never executed
         -:  911:      }
-       30:  912:      ptr_ = p;
+       49:  912:      ptr_ = p;
+       49:  912-block  0
+unconditional  0 taken 49
+    $$$$$:  912-block  1
+unconditional  1 never executed
         -:  913:    }
-       30:  914:  }
+       75:  914:  }
         -:  915:
         -:  916: private:
         -:  917:  T* ptr_;

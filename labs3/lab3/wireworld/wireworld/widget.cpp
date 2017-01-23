@@ -1,5 +1,6 @@
 #include <QPainter>
 #include <QtGui/QMouseEvent>
+#include <fstream>
 #include "widget.h"
 #include "ui_widget.h"
 
@@ -135,6 +136,80 @@ void Widget::resizeField(int h, int w)
     field = std::unique_ptr<Field>(new Field(h, w));
     buffer = std::unique_ptr<Field>(new Field(h, w));
     update();
+}
+
+void Widget::saveToFile(std::string text)
+{
+    std::ofstream file;
+    file.open(text);
+    int fieldHeight = field.get()->getHeight();
+    int fieldWidth = field.get()->getWidth();
+    file << "x = " << fieldHeight << ", y = " << fieldWidth << ", rule = WireWorld" << std::endl;
+    for (int i = 0; i < fieldHeight; ++i)
+    {
+        for (int j = 0; j < fieldWidth; ++j)
+        {
+            Cell to_get = field.get()->getCell(i, j);
+            if (EMPTY == to_get)
+            {
+                file << ".";
+            }
+            else if (TAIL == to_get)
+            {
+                file << "T";
+            }
+            if (CONDUCTOR == to_get)
+            {
+                file << "C";
+            }
+            if (HEAD == to_get)
+            {
+                file << "A";
+            }
+        }
+        file << "$" << std::endl;
+    }
+    file << "!";
+    file.close();
+}
+
+void Widget::loadFromFile(std::string text)
+{
+    std::ifstream file;
+    file.open(text);
+    char x;
+    std::string str;
+    int fieldHeight;
+    int fieldWidth;
+    file >> x >> x >> fieldHeight >> x >> x >> x >> fieldWidth >> x >> str >> str >> str;
+    this->resizeField(fieldHeight, fieldWidth);
+    for (int i = 0; i < fieldHeight; ++i)
+    {
+        for (int j = 0; j < fieldWidth; ++j)
+        {
+            file >> x;
+            if ('.' == x)
+            {
+                field.get()->changeCell(i, j, EMPTY);
+            }
+            else if ('A' == x)
+            {
+                field.get()->changeCell(i, j, HEAD);
+            }
+            else if ('T' == x)
+            {
+                field.get()->changeCell(i, j, TAIL);
+            }
+            else if ('C' == x)
+            {
+                field.get()->changeCell(i, j, CONDUCTOR);
+            }
+        }
+        file >> x;
+    }
+    file.close();
+    update();
+
 }
 
 

@@ -2,77 +2,168 @@
         -:    0:Programs:4
         -:    1:#include "input.h"
         -:    2:
+function _Z10inputcheckiPPc called 0 returned 0% blocks executed 0%
     #####:    3:bool inputcheck(int argc, char ** argv) /* check if filename was put in */
+    $$$$$:    3-block  0
         -:    4:{
     #####:    5:	if ((argc == 1) || (NULL == argv[1]))
+    $$$$$:    5-block  0
+branch  0 never executed
+branch  1 never executed
+    $$$$$:    5-block  1
+branch  2 never executed
+branch  3 never executed
         -:    6:	{
     #####:    7:		return false;
+    $$$$$:    7-block  0
+unconditional  0 never executed
         -:    8:	}
         -:    9:	else
         -:   10:	{
     #####:   11:		return true;
+    $$$$$:   11-block  0
+unconditional  0 never executed
         -:   12:	}
         -:   13:}
+function _Z9filecheckiPPcP6_iobuf called 0 returned 0% blocks executed 0%
     #####:   14:bool filecheck(int argc, char ** argv, FILE* input_file) /* check if it's possible to open input file */
+    $$$$$:   14-block  0
         -:   15:{
     #####:   16:	if (NULL == input_file)
+    $$$$$:   16-block  0
+branch  0 never executed
+branch  1 never executed
         -:   17:	{
     #####:   18:		return false;
+    $$$$$:   18-block  0
+unconditional  0 never executed
         -:   19:	}
         -:   20:	else
         -:   21:	{
     #####:   22:		return true;
+    $$$$$:   22-block  0
+unconditional  0 never executed
         -:   23:	}
         -:   24:}
         -:   25:
-    74409:   26:void getkey(string str, Key& k)
+function _Z6getkeyNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERS4_ called 12 returned 100% blocks executed 100%
+       12:   26:void getkey(string str, Key& k)
+       12:   26-block  0
         -:   27:{
-    74409:   28:    char * newstr = (char *)str.c_str();
-    74409:   29:    int i = 0;
-    74409:   30:    char * key = new char[100];
-  8716929:   31:    while(' ' != newstr[i]) // getting the key
+       12:   28:    char * newstr = (char *)str.c_str();
+       12:   28-block  0
+call    0 returned 12
+       12:   29:    int i = 0;
+       12:   30:    char * key = new char[100];
+call    0 returned 12
+unconditional  1 taken 12
+       62:   31:    while(' ' != newstr[i]) // getting the key
+       62:   31-block  0
+branch  0 taken 50 (fallthrough)
+branch  1 taken 12
+       50:   31-block  1
+unconditional  2 taken 50
         -:   32:    {
-  4321260:   33:        key[i] = newstr[i];
-  4321260:   34:        ++i;
+       50:   33:        key[i] = newstr[i];
+       50:   34:        ++i;
         -:   35:    }
-    74409:   36:    key[i] = '\0';
-    74409:   37:    k = key;
-    74409:   38:    delete [] key;
+       12:   36:    key[i] = '\0';
+       12:   37:    k = key;
+       12:   37-block  0
+call    0 returned 12
+       12:   38:    delete [] key;
+branch  0 taken 12 (fallthrough)
+branch  1 taken 0
+       12:   38-block  0
+call    2 returned 12
+unconditional  3 taken 12
         -:   39:
-    74409:   40:}
-    74409:   41:void getvalue(string str, Value& v)
+       12:   40:}
+function _Z8getvalueNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEER5Value called 12 returned 100% blocks executed 100%
+       12:   41:void getvalue(string str, Value& v)
+       12:   41-block  0
         -:   42:{
         -:   43:    //cout << v.age << v.weight << "check << endl;"
-    74409:   44:    char * newstr = (char *)str.c_str();
-    74409:   45:    char * age = new char[100];
-    74409:   46:    char * weight = new char[100];
-    74409:   47:    int i = 0;
-    74409:   48:    int age_ind = 0;
-    74409:   49:    int weight_ind = 0;
-  8716929:   50:    while(' ' != newstr[i]) 
+       12:   44:    char * newstr = (char *)str.c_str();
+       12:   44-block  0
+call    0 returned 12
+       12:   45:    char * age = new char[100];
+call    0 returned 12
+       12:   46:    char * weight = new char[100];
+call    0 returned 12
+       12:   47:    int i = 0;
+       12:   48:    int age_ind = 0;
+       12:   49:    int weight_ind = 0;
+unconditional  0 taken 12
+       62:   50:    while(' ' != newstr[i]) 
+       62:   50-block  0
+branch  0 taken 50 (fallthrough)
+branch  1 taken 12
+       50:   50-block  1
+unconditional  2 taken 50
         -:   51:    {
-  4321260:   52:        ++i;
+       50:   52:        ++i;
         -:   53:    }
-    74409:   54:    ++i;
-   372027:   55:    while(' ' != newstr[i]) 
+       12:   54:    ++i;
+       12:   54-block  0
+unconditional  0 taken 12
+       24:   55:    while(' ' != newstr[i]) 
+       24:   55-block  0
+branch  0 taken 12 (fallthrough)
+branch  1 taken 12
+       12:   55-block  1
+unconditional  2 taken 12
         -:   56:    {
-   148809:   57:        age[age_ind] = newstr[i];
-   148809:   58:        ++age_ind;
-   148809:   59:        ++i;
+       12:   57:        age[age_ind] = newstr[i];
+       12:   58:        ++age_ind;
+       12:   59:        ++i;
         -:   60:    }
-    74409:   61:    ++i;
-   372029:   62:    while('\0' != newstr[i]) 
+       12:   61:    ++i;
+       12:   61-block  0
+unconditional  0 taken 12
+       24:   62:    while('\0' != newstr[i]) 
+       24:   62-block  0
+branch  0 taken 12 (fallthrough)
+branch  1 taken 12
+       12:   62-block  1
+unconditional  2 taken 12
         -:   63:    {
-   148810:   64:        weight[weight_ind] = newstr[i];
-   148810:   65:        ++weight_ind;
-   148810:   66:        ++i;
+       12:   64:        weight[weight_ind] = newstr[i];
+       12:   65:        ++weight_ind;
+       12:   66:        ++i;
         -:   67:    }
-    74409:   68:    int res_age = atoi(age);
-    74409:   69:    int res_weight = atoi(weight);
-    74409:   70:    delete [] age;
-    74409:   71:    delete [] weight;
+       12:   68:    int res_age = atoi(age);
+       12:   68-block  0
+call    0 returned 12
+       12:   69:    int res_weight = atoi(weight);
+call    0 returned 12
+       12:   70:    delete [] age;
+branch  0 taken 12 (fallthrough)
+branch  1 taken 0
+       12:   70-block  0
+call    2 returned 12
+unconditional  3 taken 12
+       12:   71:    delete [] weight;
+       12:   71-block  0
+branch  0 taken 12 (fallthrough)
+branch  1 taken 0
+       12:   71-block  1
+call    2 returned 12
+unconditional  3 taken 12
         -:   72:    
-    74409:   73:    v.age = res_age;
+       12:   73:    v.age = res_age;
         -:   74:   // cout << "ok" << endl;
-    74409:   75:    v.weight = res_weight;
-    74412:   76:}
+       12:   75:    v.weight = res_weight;
+function _GLOBAL__sub_I__Z10inputcheckiPPc called 1 returned 100% blocks executed 100%
+function _Z41__static_initialization_and_destruction_0ii called 1 returned 100% blocks executed 100%
+        4:   76:}
+        1:   76-block  0
+        1:   76-block  1
+call    0 returned 1
+        1:   76-block  2
+        1:   76-block  3
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0
+        1:   76-block  4
+branch  3 taken 1 (fallthrough)
+branch  4 taken 0
