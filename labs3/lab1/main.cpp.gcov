@@ -15,78 +15,78 @@
         -:   13:
         -:   14:using namespace std;
         -:   15:
-function main called 1 returned 100% blocks executed 69%
-        1:   16:GTEST_API_ int main (int argc, char ** argv)
-        1:   16-block  0
+function main called 2 returned 100% blocks executed 69%
+        2:   16:GTEST_API_ int main (int argc, char ** argv)
+        2:   16-block  0
         -:   17:{	
-        2:   18:	string str;
-        1:   18-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        4:   18:	string str;
+        2:   18-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   18-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   18-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:   18-block  2
-unconditional  6 taken 1
-        1:   18-block  3
-unconditional  7 taken 1
+        2:   18-block  2
+unconditional  6 taken 2
+        2:   18-block  3
+unconditional  7 taken 2
     %%%%%:   18-block  4
 call    8 never executed
 unconditional  9 never executed
-        2:   19:    ifstream input;
-        1:   19-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        4:   19:    ifstream input;
+        2:   19-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   19-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   19-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
     %%%%%:   19-block  2
 call    6 never executed
 unconditional  7 never executed
-        1:   20:    input.open("qwe.txt");
-        1:   20-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   20:    input.open("qwe.txt");
+        2:   20-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        2:   21:    HashTable ht;
-        1:   21-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        4:   21:    HashTable ht;
+        2:   21-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   21-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   21-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
     %%%%%:   21-block  2
 call    6 never executed
 unconditional  7 never executed
-        9:   22:    while (getline(input, str))
-        9:   22-block  0
-call    0 returned 9
-branch  1 taken 9 (fallthrough)
+       18:   22:    while (getline(input, str))
+       18:   22-block  0
+call    0 returned 18
+branch  1 taken 18 (fallthrough)
 branch  2 taken 0 (throw)
-        9:   22-block  1
-call    3 returned 9
-branch  4 taken 9 (fallthrough)
+       18:   22-block  1
+call    3 returned 18
+branch  4 taken 18 (fallthrough)
 branch  5 taken 0 (throw)
-        9:   22-block  2
-branch  6 taken 8 (fallthrough)
-branch  7 taken 1
-        8:   22-block  3
-unconditional  8 taken 8
+       18:   22-block  2
+branch  6 taken 16 (fallthrough)
+branch  7 taken 2
+       16:   22-block  3
+unconditional  8 taken 16
         -:   23:    {
-       16:   24:        Key key = str;
-        8:   24-block  0
-call    0 returned 8
-branch  1 taken 8 (fallthrough)
+       32:   24:        Key key = str;
+       16:   24-block  0
+call    0 returned 16
+branch  1 taken 16 (fallthrough)
 branch  2 taken 0 (throw)
-        8:   24-block  1
-call    3 returned 8
-branch  4 taken 8 (fallthrough)
+       16:   24-block  1
+call    3 returned 16
+branch  4 taken 16 (fallthrough)
 branch  5 taken 0 (throw)
     %%%%%:   24-block  2
 call    6 never executed
@@ -94,109 +94,109 @@ unconditional  7 never executed
     %%%%%:   24-block  3
 unconditional  8 never executed
         -:   25:        Value value;
-        8:   26:        getkey(str, key);
-        8:   26-block  0
-call    0 returned 8
-branch  1 taken 8 (fallthrough)
+       16:   26:        getkey(str, key);
+       16:   26-block  0
+call    0 returned 16
+branch  1 taken 16 (fallthrough)
 branch  2 taken 0 (throw)
-        8:   26-block  1
-call    3 returned 8
-branch  4 taken 8 (fallthrough)
+       16:   26-block  1
+call    3 returned 16
+branch  4 taken 16 (fallthrough)
 branch  5 taken 0 (throw)
-        8:   26-block  2
-call    6 returned 8
-branch  7 taken 8 (fallthrough)
+       16:   26-block  2
+call    6 returned 16
+branch  7 taken 16 (fallthrough)
 branch  8 taken 0 (throw)
     %%%%%:   26-block  3
 call    9 never executed
 unconditional 10 never executed
-        8:   27:        getvalue(str, value);
-        8:   27-block  0
-call    0 returned 8
-branch  1 taken 8 (fallthrough)
+       16:   27:        getvalue(str, value);
+       16:   27-block  0
+call    0 returned 16
+branch  1 taken 16 (fallthrough)
 branch  2 taken 0 (throw)
-        8:   27-block  1
-call    3 returned 8
-branch  4 taken 8 (fallthrough)
+       16:   27-block  1
+call    3 returned 16
+branch  4 taken 16 (fallthrough)
 branch  5 taken 0 (throw)
-        8:   27-block  2
-call    6 returned 8
-branch  7 taken 8 (fallthrough)
+       16:   27-block  2
+call    6 returned 16
+branch  7 taken 16 (fallthrough)
 branch  8 taken 0 (throw)
     %%%%%:   27-block  3
 call    9 never executed
 unconditional 10 never executed
-        8:   28:        ht.insert(key, value);
-        8:   28-block  0
-call    0 returned 8
-branch  1 taken 8 (fallthrough)
+       16:   28:        ht.insert(key, value);
+       16:   28-block  0
+call    0 returned 16
+branch  1 taken 16 (fallthrough)
 branch  2 taken 0 (throw)
         -:   29:    }
         -:   30:
-        1:   31:    cout << endl << endl;
-        1:   31-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   31:    cout << endl << endl;
+        2:   31-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   31-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   31-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
         -:   32:    //ht->print();
         -:   33:
-        1:   34:    input.close();
-        1:   34-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   34:    input.close();
+        2:   34-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   35:    ht.print();
-        1:   35-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   35:    ht.print();
+        2:   35-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   36:    input.open("asd.txt");
-        1:   36-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   36:    input.open("asd.txt");
+        2:   36-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        2:   37:    HashTable ht2;
-        1:   37-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        4:   37:    HashTable ht2;
+        2:   37-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   37-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   37-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
     %%%%%:   37-block  2
 call    6 never executed
 unconditional  7 never executed
         -:   38:    //ht2.print();
         -:   39:    //input.close();
-        5:   40:    while (getline(input, str))
-        5:   40-block  0
-call    0 returned 5
-branch  1 taken 5 (fallthrough)
+       10:   40:    while (getline(input, str))
+       10:   40-block  0
+call    0 returned 10
+branch  1 taken 10 (fallthrough)
 branch  2 taken 0 (throw)
-        5:   40-block  1
-call    3 returned 5
-branch  4 taken 5 (fallthrough)
+       10:   40-block  1
+call    3 returned 10
+branch  4 taken 10 (fallthrough)
 branch  5 taken 0 (throw)
-        5:   40-block  2
-branch  6 taken 4 (fallthrough)
-branch  7 taken 1
-        4:   40-block  3
-unconditional  8 taken 4
+       10:   40-block  2
+branch  6 taken 8 (fallthrough)
+branch  7 taken 2
+        8:   40-block  3
+unconditional  8 taken 8
         -:   41:    {
         -:   42:        
-        8:   43:        Key key = str;
-        4:   43-block  0
-call    0 returned 4
-branch  1 taken 4 (fallthrough)
+       16:   43:        Key key = str;
+        8:   43-block  0
+call    0 returned 8
+branch  1 taken 8 (fallthrough)
 branch  2 taken 0 (throw)
-        4:   43-block  1
-call    3 returned 4
-branch  4 taken 4 (fallthrough)
+        8:   43-block  1
+call    3 returned 8
+branch  4 taken 8 (fallthrough)
 branch  5 taken 0 (throw)
     %%%%%:   43-block  2
 call    6 never executed
@@ -204,55 +204,55 @@ unconditional  7 never executed
     %%%%%:   43-block  3
 unconditional  8 never executed
         -:   44:        Value value;
-        4:   45:        getkey(str, key);
-        4:   45-block  0
-call    0 returned 4
-branch  1 taken 4 (fallthrough)
+        8:   45:        getkey(str, key);
+        8:   45-block  0
+call    0 returned 8
+branch  1 taken 8 (fallthrough)
 branch  2 taken 0 (throw)
-        4:   45-block  1
-call    3 returned 4
-branch  4 taken 4 (fallthrough)
+        8:   45-block  1
+call    3 returned 8
+branch  4 taken 8 (fallthrough)
 branch  5 taken 0 (throw)
-        4:   45-block  2
-call    6 returned 4
-branch  7 taken 4 (fallthrough)
+        8:   45-block  2
+call    6 returned 8
+branch  7 taken 8 (fallthrough)
 branch  8 taken 0 (throw)
     %%%%%:   45-block  3
 call    9 never executed
 unconditional 10 never executed
-        4:   46:        getvalue(str, value);
-        4:   46-block  0
-call    0 returned 4
-branch  1 taken 4 (fallthrough)
+        8:   46:        getvalue(str, value);
+        8:   46-block  0
+call    0 returned 8
+branch  1 taken 8 (fallthrough)
 branch  2 taken 0 (throw)
-        4:   46-block  1
-call    3 returned 4
-branch  4 taken 4 (fallthrough)
+        8:   46-block  1
+call    3 returned 8
+branch  4 taken 8 (fallthrough)
 branch  5 taken 0 (throw)
-        4:   46-block  2
-call    6 returned 4
-branch  7 taken 4 (fallthrough)
+        8:   46-block  2
+call    6 returned 8
+branch  7 taken 8 (fallthrough)
 branch  8 taken 0 (throw)
     %%%%%:   46-block  3
 call    9 never executed
 unconditional 10 never executed
         -:   47:        
-        4:   48:        ht2.insert(key, value);
-        4:   48-block  0
-call    0 returned 4
-branch  1 taken 4 (fallthrough)
+        8:   48:        ht2.insert(key, value);
+        8:   48-block  0
+call    0 returned 8
+branch  1 taken 8 (fallthrough)
 branch  2 taken 0 (throw)
         -:   49:        
         -:   50:    }
-        1:   51:    input.close();
-        1:   51-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   51:    input.close();
+        2:   51-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   52:    ht2.print();
-        1:   52-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   52:    ht2.print();
+        2:   52-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
         -:   53:    //ht2.print();
         -:   54:    /*cout << "Waiting" << endl;
@@ -275,38 +275,38 @@ branch  2 taken 0 (throw)
         -:   71:    cout << ht3.at("qas").age << " 3 age" << endl;
         -:   72:    ht3.at("qas").age = 5;
         -:   73:    cout << ht3.at("qas").age << " 4 age" << endl;*/
-        1:   74:    cout << "Running tests\n" << endl;
-        1:   74-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   74:    cout << "Running tests\n" << endl;
+        2:   74-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   74-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   74-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:   75:    testing::InitGoogleTest(&argc, argv);
-        1:   75-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   75:    testing::InitGoogleTest(&argc, argv);
+        2:   75-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   76:    return RUN_ALL_TESTS();
-        1:   76-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   76:    return RUN_ALL_TESTS();
+        2:   76-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
         -:   77: 
-function _GLOBAL__sub_I_main called 1 returned 100% blocks executed 100%
-function _Z41__static_initialization_and_destruction_0ii called 1 returned 100% blocks executed 100%
-        4:   78:}
-        1:   78-block  0
-        1:   78-block  1
-call    0 returned 1
-        1:   78-block  2
-        1:   78-block  3
-branch  1 taken 1 (fallthrough)
+function _GLOBAL__sub_I_main called 2 returned 100% blocks executed 100%
+function _Z41__static_initialization_and_destruction_0ii called 2 returned 100% blocks executed 100%
+        8:   78:}
+        2:   78-block  0
+        2:   78-block  1
+call    0 returned 2
+        2:   78-block  2
+        2:   78-block  3
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0
-        1:   78-block  4
-branch  3 taken 1 (fallthrough)
+        2:   78-block  4
+branch  3 taken 2 (fallthrough)
 branch  4 taken 0
         -:   79:
         -:   80:

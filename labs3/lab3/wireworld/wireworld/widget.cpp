@@ -177,6 +177,10 @@ void Widget::loadFromFile(std::string text)
 {
     std::ifstream file;
     file.open(text);
+    if (!file.is_open())
+    {
+        return;
+    }
     char x;
     std::string str;
     int fieldHeight;

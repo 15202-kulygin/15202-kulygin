@@ -4912,31 +4912,31 @@
         -: 4910:  template<typename _CharT>
         -: 4911:    inline
         -: 4912:    typename __gnu_cxx::__enable_if<__is_char<_CharT>::__value, bool>::__type
-function _ZSteqIcEN9__gnu_cxx11__enable_ifIXsrSt9__is_charIT_E7__valueEbE6__typeERKNSt7__cxx1112basic_stringIS3_St11char_traitsIS3_ESaIS3_EEESE_ called 19 returned 100% blocks executed 100%
-       19: 4913:    operator==(const basic_string<_CharT>& __lhs,
-       19: 4913-block  0
+function _ZSteqIcEN9__gnu_cxx11__enable_ifIXsrSt9__is_charIT_E7__valueEbE6__typeERKNSt7__cxx1112basic_stringIS3_St11char_traitsIS3_ESaIS3_EEESE_ called 38 returned 100% blocks executed 100%
+       38: 4913:    operator==(const basic_string<_CharT>& __lhs,
+       38: 4913-block  0
         -: 4914:	       const basic_string<_CharT>& __rhs)
-       19: 4915:    { return (__lhs.size() == __rhs.size()
-       19: 4915-block  0
-call    0 returned 19
-call    1 returned 19
-       15: 4916:	      && !std::char_traits<_CharT>::compare(__lhs.data(), __rhs.data(),
-       15: 4916-block  0
-call    0 returned 15
-call    1 returned 15
-call    2 returned 15
-call    3 returned 15
-       34: 4917:						    __lhs.size())); }
-branch  0 taken 15 (fallthrough)
-branch  1 taken 4
-branch  2 taken 12 (fallthrough)
-branch  3 taken 3
-       12: 4917-block  0
-unconditional  4 taken 12
-        7: 4917-block  1
-unconditional  5 taken 7
-       19: 4917-block  2
-unconditional  6 taken 19
+       38: 4915:    { return (__lhs.size() == __rhs.size()
+       38: 4915-block  0
+call    0 returned 38
+call    1 returned 38
+       30: 4916:	      && !std::char_traits<_CharT>::compare(__lhs.data(), __rhs.data(),
+       30: 4916-block  0
+call    0 returned 30
+call    1 returned 30
+call    2 returned 30
+call    3 returned 30
+       68: 4917:						    __lhs.size())); }
+branch  0 taken 30 (fallthrough)
+branch  1 taken 8
+branch  2 taken 24 (fallthrough)
+branch  3 taken 6
+       24: 4917-block  0
+unconditional  4 taken 24
+       14: 4917-block  1
+unconditional  5 taken 14
+       38: 4917-block  2
+unconditional  6 taken 38
         -: 4918:
         -: 4919:  /**
         -: 4920:   *  @brief  Test equivalence of C string and string.
@@ -4971,14 +4971,14 @@ unconditional  6 taken 19
         -: 4949:   */
         -: 4950:  template<typename _CharT, typename _Traits, typename _Alloc>
         -: 4951:    inline bool
-function _ZStneIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EESA_ called 3 returned 100% blocks executed 100%
-        3: 4952:    operator!=(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
-        3: 4952-block  0
+function _ZStneIcSt11char_traitsIcESaIcEEbRKNSt7__cxx1112basic_stringIT_T0_T1_EESA_ called 6 returned 100% blocks executed 100%
+        6: 4952:    operator!=(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+        6: 4952-block  0
         -: 4953:	       const basic_string<_CharT, _Traits, _Alloc>& __rhs)
-        3: 4954:    { return !(__lhs == __rhs); }
-        3: 4954-block  0
-call    0 returned 3
-unconditional  1 taken 3
+        6: 4954:    { return !(__lhs == __rhs); }
+        6: 4954-block  0
+call    0 returned 6
+unconditional  1 taken 6
         -: 4955:
         -: 4956:  /**
         -: 4957:   *  @brief  Test difference of C string and string.

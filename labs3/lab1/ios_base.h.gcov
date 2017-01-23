@@ -128,12 +128,12 @@
         -:  126:  { return _Ios_Openmode(static_cast<int>(__a) & static_cast<int>(__b)); }
         -:  127:
         -:  128:  inline _GLIBCXX_CONSTEXPR _Ios_Openmode
-function _ZStorSt13_Ios_OpenmodeS_ called 49 returned 100% blocks executed 100%
-       49:  129:  operator|(_Ios_Openmode __a, _Ios_Openmode __b)
-       49:  129-block  0
-       49:  130:  { return _Ios_Openmode(static_cast<int>(__a) | static_cast<int>(__b)); }
-       49:  130-block  0
-unconditional  0 taken 49
+function _ZStorSt13_Ios_OpenmodeS_ called 98 returned 100% blocks executed 100%
+       98:  129:  operator|(_Ios_Openmode __a, _Ios_Openmode __b)
+       98:  129-block  0
+       98:  130:  { return _Ios_Openmode(static_cast<int>(__a) | static_cast<int>(__b)); }
+       98:  130-block  0
+unconditional  0 taken 98
         -:  131:
         -:  132:  inline _GLIBCXX_CONSTEXPR _Ios_Openmode
         -:  133:  operator^(_Ios_Openmode __a, _Ios_Openmode __b)

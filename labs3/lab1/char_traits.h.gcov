@@ -257,20 +257,20 @@
         -:  255:      }
         -:  256:
         -:  257:      static int
-function _ZNSt11char_traitsIcE7compareEPKcS2_j called 15 returned 100% blocks executed 75%
-       15:  258:      compare(const char_type* __s1, const char_type* __s2, size_t __n)
-       15:  258-block  0
+function _ZNSt11char_traitsIcE7compareEPKcS2_j called 30 returned 100% blocks executed 75%
+       30:  258:      compare(const char_type* __s1, const char_type* __s2, size_t __n)
+       30:  258-block  0
         -:  259:      {
-       15:  260:	if (__n == 0)
-       15:  260-block  0
+       30:  260:	if (__n == 0)
+       30:  260-block  0
 branch  0 taken 0 (fallthrough)
-branch  1 taken 15
+branch  1 taken 30
     #####:  261:	  return 0;
     $$$$$:  261-block  0
 unconditional  0 never executed
-       15:  262:	return __builtin_memcmp(__s1, __s2, __n);
-       15:  262-block  0
-unconditional  0 taken 15
+       30:  262:	return __builtin_memcmp(__s1, __s2, __n);
+       30:  262-block  0
+unconditional  0 taken 30
         -:  263:      }
         -:  264:
         -:  265:      static size_t

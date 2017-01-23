@@ -5,74 +5,74 @@
         -:    3:
         -:    4://g++ -Lgtestbuild -I./include tests.cpp main.cpp input.cpp hash.cpp -lgtest
         -:    5: 
-function _ZN25HashTests_EqualityOp_TestD0Ev called 1 returned 100% blocks executed 100%
-function _ZN25HashTests_EqualityOp_TestD1Ev called 1 returned 100% blocks executed 80%
-function _ZN25HashTests_EqualityOp_Test8TestBodyEv called 1 returned 100% blocks executed 33%
-function _ZN25HashTests_EqualityOp_TestC1Ev called 1 returned 100% blocks executed 100%
-        7:    6:TEST (HashTests, EqualityOp)
-call    0 returned 1
-call    1 returned 1
-call    2 returned 1
-call    3 returned 1
-        1:    6-block  0
-        1:    6-block  1
-call    4 returned 1
-call    5 returned 1
-        1:    6-block  2
-        1:    6-block  3
-call    6 returned 1
-branch  7 taken 1 (fallthrough)
+function _ZN25HashTests_EqualityOp_TestD0Ev called 2 returned 100% blocks executed 100%
+function _ZN25HashTests_EqualityOp_TestD1Ev called 2 returned 100% blocks executed 80%
+function _ZN25HashTests_EqualityOp_Test8TestBodyEv called 2 returned 100% blocks executed 33%
+function _ZN25HashTests_EqualityOp_TestC1Ev called 2 returned 100% blocks executed 100%
+       14:    6:TEST (HashTests, EqualityOp)
+call    0 returned 2
+call    1 returned 2
+call    2 returned 2
+call    3 returned 2
+        2:    6-block  0
+        2:    6-block  1
+call    4 returned 2
+call    5 returned 2
+        2:    6-block  2
+        2:    6-block  3
+call    6 returned 2
+branch  7 taken 2 (fallthrough)
 branch  8 taken 0 (throw)
-        1:    6-block  4
+        2:    6-block  4
 branch  9 taken 0 (fallthrough)
-branch 10 taken 1
+branch 10 taken 2
     $$$$$:    6-block  5
 call   11 never executed
 unconditional 12 never executed
-        1:    6-block  6
-unconditional 13 taken 1
-        1:    6-block  7
-        1:    6-block  8
-        1:    6-block  9
-call   14 returned 1
+        2:    6-block  6
+unconditional 13 taken 2
+        2:    6-block  7
+        2:    6-block  8
+        2:    6-block  9
+call   14 returned 2
         -:    7:{
-        2:    8:	HashTable ht1;
-        1:    8-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        4:    8:	HashTable ht1;
+        2:    8-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:    8-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:    8-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
     %%%%%:    8-block  2
 call    6 never executed
 unconditional  7 never executed
-        2:    9:	HashTable ht2;
-        1:    9-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        4:    9:	HashTable ht2;
+        2:    9-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:    9-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:    9-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
     %%%%%:    9-block  2
 call    6 never executed
 unconditional  7 never executed
-        1:   10:	EXPECT_TRUE(ht1 == ht2);
-        1:   10-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   10:	EXPECT_TRUE(ht1 == ht2);
+        2:   10-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   10-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   10-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:   10-block  2
-call    6 returned 1
+        2:   10-block  2
+call    6 returned 2
 branch  7 taken 0 (fallthrough)
-branch  8 taken 1
+branch  8 taken 2
     $$$$$:   10-block  3
 call    9 never executed
 branch 10 never executed
@@ -107,9 +107,9 @@ branch 31 never executed
 branch 32 never executed
     $$$$$:   10-block 11
 unconditional 33 never executed
-        1:   10-block 12
-call   34 returned 1
-branch 35 taken 1 (fallthrough)
+        2:   10-block 12
+call   34 returned 2
+branch 35 taken 2 (fallthrough)
 branch 36 taken 0 (throw)
     %%%%%:   10-block 13
 call   37 never executed
@@ -125,62 +125,62 @@ call   43 never executed
 unconditional 44 never executed
     %%%%%:   10-block 17
 unconditional 45 never executed
-        1:   11:	Value temp1 = {1, 1};
-        1:   12:	ht1.insert("qwe", temp1);
-        1:   12-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   11:	Value temp1 = {1, 1};
+        2:   12:	ht1.insert("qwe", temp1);
+        2:   12-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   12-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   12-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   12-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   12-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   12-block  3
-call   10 returned 1
+        2:   12-block  3
+call   10 returned 2
     %%%%%:   12-block  4
 call   11 never executed
 unconditional 12 never executed
     %%%%%:   12-block  5
 call   13 never executed
 unconditional 14 never executed
-        1:   13:	ht2.insert("qwe", temp1);
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   13:	ht2.insert("qwe", temp1);
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   13-block  0
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   13-block  0
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   13-block  1
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   13-block  1
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   13-block  2
-call   10 returned 1
+        2:   13-block  2
+call   10 returned 2
     %%%%%:   13-block  3
 call   11 never executed
 unconditional 12 never executed
     %%%%%:   13-block  4
 call   13 never executed
 unconditional 14 never executed
-        1:   14:	EXPECT_TRUE(ht1 == ht2);
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   14:	EXPECT_TRUE(ht1 == ht2);
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   14-block  0
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   14-block  0
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:   14-block  1
-call    6 returned 1
+        2:   14-block  1
+call    6 returned 2
 branch  7 taken 0 (fallthrough)
-branch  8 taken 1
+branch  8 taken 2
     $$$$$:   14-block  2
 call    9 never executed
 branch 10 never executed
@@ -215,9 +215,9 @@ branch 31 never executed
 branch 32 never executed
     $$$$$:   14-block 10
 unconditional 33 never executed
-        1:   14-block 11
-call   34 returned 1
-branch 35 taken 1 (fallthrough)
+        2:   14-block 11
+call   34 returned 2
+branch 35 taken 2 (fallthrough)
 branch 36 taken 0 (throw)
     %%%%%:   14-block 12
 call   37 never executed
@@ -233,61 +233,61 @@ call   43 never executed
 unconditional 44 never executed
     %%%%%:   14-block 16
 unconditional 45 never executed
-        1:   15:	ht1.insert("asd", temp1);
-        1:   15-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   15:	ht1.insert("asd", temp1);
+        2:   15-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   15-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   15-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   15-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   15-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   15-block  3
-call   10 returned 1
+        2:   15-block  3
+call   10 returned 2
     %%%%%:   15-block  4
 call   11 never executed
 unconditional 12 never executed
     %%%%%:   15-block  5
 call   13 never executed
 unconditional 14 never executed
-        1:   16:	ht2.insert("zxc", temp1);
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   16:	ht2.insert("zxc", temp1);
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   16-block  0
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   16-block  0
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   16-block  1
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   16-block  1
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   16-block  2
-call   10 returned 1
+        2:   16-block  2
+call   10 returned 2
     %%%%%:   16-block  3
 call   11 never executed
 unconditional 12 never executed
     %%%%%:   16-block  4
 call   13 never executed
 unconditional 14 never executed
-        1:   17:	EXPECT_TRUE(ht1 != ht2);
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   17:	EXPECT_TRUE(ht1 != ht2);
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   17-block  0
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   17-block  0
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:   17-block  1
-call    6 returned 1
+        2:   17-block  1
+call    6 returned 2
 branch  7 taken 0 (fallthrough)
-branch  8 taken 1
+branch  8 taken 2
     $$$$$:   17-block  2
 call    9 never executed
 branch 10 never executed
@@ -322,9 +322,9 @@ branch 31 never executed
 branch 32 never executed
     $$$$$:   17-block 10
 unconditional 33 never executed
-        1:   17-block 11
-call   34 returned 1
-branch 35 taken 1 (fallthrough)
+        2:   17-block 11
+call   34 returned 2
+branch 35 taken 2 (fallthrough)
 branch 36 taken 0 (throw)
     %%%%%:   17-block 12
 call   37 never executed
@@ -340,19 +340,19 @@ call   43 never executed
 unconditional 44 never executed
     %%%%%:   17-block 16
 unconditional 45 never executed
-        1:   18:	EXPECT_FALSE(ht1 == ht2);
-        1:   18-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   18:	EXPECT_FALSE(ht1 == ht2);
+        2:   18-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   18-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   18-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:   18-block  2
-call    6 returned 1
+        2:   18-block  2
+call    6 returned 2
 branch  7 taken 0 (fallthrough)
-branch  8 taken 1
+branch  8 taken 2
     $$$$$:   18-block  3
 call    9 never executed
 branch 10 never executed
@@ -387,9 +387,9 @@ branch 31 never executed
 branch 32 never executed
     $$$$$:   18-block 11
 unconditional 33 never executed
-        1:   18-block 12
-call   34 returned 1
-branch 35 taken 1 (fallthrough)
+        2:   18-block 12
+call   34 returned 2
+branch 35 taken 2 (fallthrough)
 branch 36 taken 0 (throw)
     %%%%%:   18-block 13
 call   37 never executed
@@ -405,92 +405,92 @@ call   43 never executed
 unconditional 44 never executed
     %%%%%:   18-block 17
 unconditional 45 never executed
-        1:   19:}
-        1:   19-block  0
-unconditional  0 taken 1
+        2:   19:}
+        2:   19-block  0
+unconditional  0 taken 2
         -:   20:
-function _ZN20HashTests_Erase_TestD0Ev called 1 returned 100% blocks executed 100%
-function _ZN20HashTests_Erase_TestD1Ev called 1 returned 100% blocks executed 80%
-function _ZN20HashTests_Erase_Test8TestBodyEv called 1 returned 100% blocks executed 34%
-function _ZN20HashTests_Erase_TestC1Ev called 1 returned 100% blocks executed 100%
-        7:   21:TEST (HashTests, Erase)
-call    0 returned 1
-call    1 returned 1
-call    2 returned 1
-call    3 returned 1
-        1:   21-block  0
-        1:   21-block  1
-call    4 returned 1
-call    5 returned 1
-        1:   21-block  2
-        1:   21-block  3
-call    6 returned 1
-branch  7 taken 1 (fallthrough)
+function _ZN20HashTests_Erase_TestD0Ev called 2 returned 100% blocks executed 100%
+function _ZN20HashTests_Erase_TestD1Ev called 2 returned 100% blocks executed 80%
+function _ZN20HashTests_Erase_Test8TestBodyEv called 2 returned 100% blocks executed 34%
+function _ZN20HashTests_Erase_TestC1Ev called 2 returned 100% blocks executed 100%
+       14:   21:TEST (HashTests, Erase)
+call    0 returned 2
+call    1 returned 2
+call    2 returned 2
+call    3 returned 2
+        2:   21-block  0
+        2:   21-block  1
+call    4 returned 2
+call    5 returned 2
+        2:   21-block  2
+        2:   21-block  3
+call    6 returned 2
+branch  7 taken 2 (fallthrough)
 branch  8 taken 0 (throw)
-        1:   21-block  4
+        2:   21-block  4
 branch  9 taken 0 (fallthrough)
-branch 10 taken 1
+branch 10 taken 2
     $$$$$:   21-block  5
 call   11 never executed
 unconditional 12 never executed
-        1:   21-block  6
-unconditional 13 taken 1
-        1:   21-block  7
-        1:   21-block  8
-        1:   21-block  9
-call   14 returned 1
+        2:   21-block  6
+unconditional 13 taken 2
+        2:   21-block  7
+        2:   21-block  8
+        2:   21-block  9
+call   14 returned 2
         -:   22:{
-        2:   23:	HashTable ht;
-        1:   23-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        4:   23:	HashTable ht;
+        2:   23-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   23-block  1
-unconditional  3 taken 1
-        1:   23-block  2
-unconditional  4 taken 1
+        2:   23-block  1
+unconditional  3 taken 2
+        2:   23-block  2
+unconditional  4 taken 2
     $$$$$:   23-block  3
 unconditional  5 never executed
-        1:   23-block  4
-unconditional  6 taken 1
+        2:   23-block  4
+unconditional  6 taken 2
     %%%%%:   23-block  5
 call    7 never executed
 unconditional  8 never executed
-        1:   24:	Value temp = {1, 1};
-        1:   25:	ht.insert("qwe", temp);
-        1:   25-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   24:	Value temp = {1, 1};
+        2:   25:	ht.insert("qwe", temp);
+        2:   25-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   25-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   25-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   25-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   25-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   25-block  3
-call   10 returned 1
+        2:   25-block  3
+call   10 returned 2
     %%%%%:   25-block  4
 call   11 never executed
 unconditional 12 never executed
     %%%%%:   25-block  5
 call   13 never executed
 unconditional 14 never executed
-        1:   26:	ASSERT_FALSE(ht.empty());
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   26:	ASSERT_FALSE(ht.empty());
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   26-block  0
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   26-block  0
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:   26-block  1
-call    6 returned 1
+        2:   26-block  1
+call    6 returned 2
 branch  7 taken 0 (fallthrough)
-branch  8 taken 1
+branch  8 taken 2
     $$$$$:   26-block  2
 call    9 never executed
 branch 10 never executed
@@ -525,17 +525,17 @@ branch 31 never executed
 branch 32 never executed
     $$$$$:   26-block 10
 unconditional 33 never executed
-        1:   26-block 11
-unconditional 34 taken 1
-        1:   26-block 12
-call   35 returned 1
-branch 36 taken 1 (fallthrough)
+        2:   26-block 11
+unconditional 34 taken 2
+        2:   26-block 12
+call   35 returned 2
+branch 36 taken 2 (fallthrough)
 branch 37 taken 0 (throw)
-        1:   26-block 13
-branch 38 taken 1
+        2:   26-block 13
+branch 38 taken 2
 branch 39 taken 0
-        1:   26-block 14
-unconditional 40 taken 1
+        2:   26-block 14
+unconditional 40 taken 2
     %%%%%:   26-block 15
 call   41 never executed
 unconditional 42 never executed
@@ -552,31 +552,31 @@ unconditional 48 never executed
 unconditional 49 never executed
     %%%%%:   26-block 20
 call   50 never executed
-        1:   27:	EXPECT_TRUE(ht.search("qwe"));
-        1:   27-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   27:	EXPECT_TRUE(ht.search("qwe"));
+        2:   27-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
     $$$$$:   27-block  1
 unconditional  4 never executed
-        1:   27-block  2
-call    5 returned 1
-branch  6 taken 1 (fallthrough)
+        2:   27-block  2
+call    5 returned 2
+branch  6 taken 2 (fallthrough)
 branch  7 taken 0 (throw)
-        1:   27-block  3
-call    8 returned 1
-branch  9 taken 1 (fallthrough)
+        2:   27-block  3
+call    8 returned 2
+branch  9 taken 2 (fallthrough)
 branch 10 taken 0 (throw)
-        1:   27-block  4
-call   11 returned 1
-branch 12 taken 1 (fallthrough)
+        2:   27-block  4
+call   11 returned 2
+branch 12 taken 2 (fallthrough)
 branch 13 taken 0 (throw)
-        1:   27-block  5
-call   14 returned 1
-call   15 returned 1
+        2:   27-block  5
+call   14 returned 2
+call   15 returned 2
 branch 16 taken 0 (fallthrough)
-branch 17 taken 1
+branch 17 taken 2
     $$$$$:   27-block  6
 call   18 never executed
 branch 19 never executed
@@ -611,9 +611,9 @@ branch 40 never executed
 branch 41 never executed
     $$$$$:   27-block 14
 unconditional 42 never executed
-        1:   27-block 15
-call   43 returned 1
-branch 44 taken 1 (fallthrough)
+        2:   27-block 15
+call   43 returned 2
+branch 44 taken 2 (fallthrough)
 branch 45 taken 0 (throw)
 unconditional 46 never executed
     %%%%%:   27-block 16
@@ -636,40 +636,40 @@ call   57 never executed
 unconditional 58 never executed
     %%%%%:   27-block 22
 unconditional 59 never executed
-        1:   28:	ht.erase("qwe");
-        1:   28-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   28:	ht.erase("qwe");
+        2:   28-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   28-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   28-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   28-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   28-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   28-block  3
-call   10 returned 1
+        2:   28-block  3
+call   10 returned 2
     %%%%%:   28-block  4
 call   11 never executed
 unconditional 12 never executed
     %%%%%:   28-block  5
 call   13 never executed
 unconditional 14 never executed
-        1:   29:	EXPECT_TRUE(ht.empty());
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   29:	EXPECT_TRUE(ht.empty());
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   29-block  0
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   29-block  0
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:   29-block  1
-call    6 returned 1
+        2:   29-block  1
+call    6 returned 2
 branch  7 taken 0 (fallthrough)
-branch  8 taken 1
+branch  8 taken 2
     $$$$$:   29-block  2
 call    9 never executed
 branch 10 never executed
@@ -704,9 +704,9 @@ branch 31 never executed
 branch 32 never executed
     $$$$$:   29-block 10
 unconditional 33 never executed
-        1:   29-block 11
-call   34 returned 1
-branch 35 taken 1 (fallthrough)
+        2:   29-block 11
+call   34 returned 2
+branch 35 taken 2 (fallthrough)
 branch 36 taken 0 (throw)
     %%%%%:   29-block 12
 call   37 never executed
@@ -724,29 +724,29 @@ unconditional 44 never executed
 unconditional 45 never executed
     %%%%%:   29-block 17
 call   46 never executed
-        1:   30:	EXPECT_FALSE(ht.search("qwe"));
-        1:   30-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   30:	EXPECT_FALSE(ht.search("qwe"));
+        2:   30-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   30-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   30-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   30-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   30-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   30-block  3
-call   10 returned 1
-branch 11 taken 1 (fallthrough)
+        2:   30-block  3
+call   10 returned 2
+branch 11 taken 2 (fallthrough)
 branch 12 taken 0 (throw)
-        1:   30-block  4
-call   13 returned 1
-call   14 returned 1
+        2:   30-block  4
+call   13 returned 2
+call   14 returned 2
 branch 15 taken 0 (fallthrough)
-branch 16 taken 1
+branch 16 taken 2
     $$$$$:   30-block  5
 call   17 never executed
 branch 18 never executed
@@ -781,18 +781,18 @@ branch 39 never executed
 branch 40 never executed
     $$$$$:   30-block 13
 unconditional 41 never executed
-        1:   30-block 14
-call   42 returned 1
-branch 43 taken 1 (fallthrough)
+        2:   30-block 14
+call   42 returned 2
+branch 43 taken 2 (fallthrough)
 branch 44 taken 0 (throw)
-        1:   30-block 15
-unconditional 45 taken 1
-        1:   30-block 16
-call   46 returned 1
-branch 47 taken 1 (fallthrough)
+        2:   30-block 15
+unconditional 45 taken 2
+        2:   30-block 16
+call   46 returned 2
+branch 47 taken 2 (fallthrough)
 branch 48 taken 0 (throw)
-        1:   30-block 17
-branch 49 taken 1
+        2:   30-block 17
+branch 49 taken 2
 branch 50 taken 0
 unconditional 51 never executed
     %%%%%:   30-block 18
@@ -817,104 +817,104 @@ unconditional 63 never executed
 unconditional 64 never executed
         -:   31:}
         -:   32:
-function _ZN22HashTests_GetHash_TestD0Ev called 1 returned 100% blocks executed 100%
-function _ZN22HashTests_GetHash_TestD1Ev called 1 returned 100% blocks executed 80%
-function _ZN22HashTests_GetHash_Test8TestBodyEv called 1 returned 100% blocks executed 41%
-function _ZN22HashTests_GetHash_TestC1Ev called 1 returned 100% blocks executed 100%
-        7:   33:TEST (HashTests, GetHash)
-call    0 returned 1
-call    1 returned 1
-call    2 returned 1
-call    3 returned 1
-        1:   33-block  0
-        1:   33-block  1
-call    4 returned 1
-call    5 returned 1
-        1:   33-block  2
-        1:   33-block  3
-call    6 returned 1
-branch  7 taken 1 (fallthrough)
+function _ZN22HashTests_GetHash_TestD0Ev called 2 returned 100% blocks executed 100%
+function _ZN22HashTests_GetHash_TestD1Ev called 2 returned 100% blocks executed 80%
+function _ZN22HashTests_GetHash_Test8TestBodyEv called 2 returned 100% blocks executed 41%
+function _ZN22HashTests_GetHash_TestC1Ev called 2 returned 100% blocks executed 100%
+       14:   33:TEST (HashTests, GetHash)
+call    0 returned 2
+call    1 returned 2
+call    2 returned 2
+call    3 returned 2
+        2:   33-block  0
+        2:   33-block  1
+call    4 returned 2
+call    5 returned 2
+        2:   33-block  2
+        2:   33-block  3
+call    6 returned 2
+branch  7 taken 2 (fallthrough)
 branch  8 taken 0 (throw)
-        1:   33-block  4
+        2:   33-block  4
 branch  9 taken 0 (fallthrough)
-branch 10 taken 1
+branch 10 taken 2
     $$$$$:   33-block  5
 call   11 never executed
 unconditional 12 never executed
-        1:   33-block  6
-unconditional 13 taken 1
-        1:   33-block  7
-        1:   33-block  8
-        1:   33-block  9
-call   14 returned 1
+        2:   33-block  6
+unconditional 13 taken 2
+        2:   33-block  7
+        2:   33-block  8
+        2:   33-block  9
+call   14 returned 2
         -:   34:{
-        2:   35:	Key k = "eargaergvaefvawevajjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkjhkjguyfcytcttt1777777777777777777wefwavwfevawefawefvavregvtgvarvgawevef";
-        1:   35-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        4:   35:	Key k = "eargaergvaefvawevajjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkjhkjguyfcytcttt1777777777777777777wefwavwfevawefawefvavregvtgvarvgawevef";
+        2:   35-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   35-block  1
-call    4 returned 1
-        1:   35-block  2
-unconditional  5 taken 1
-        1:   35-block  3
-unconditional  6 taken 1
+        2:   35-block  1
+call    4 returned 2
+        2:   35-block  2
+unconditional  5 taken 2
+        2:   35-block  3
+unconditional  6 taken 2
     $$$$$:   35-block  4
 unconditional  7 never executed
-        1:   35-block  5
-unconditional  8 taken 1
+        2:   35-block  5
+unconditional  8 taken 2
     %%%%%:   35-block  6
 call    9 never executed
 unconditional 10 never executed
     %%%%%:   35-block  7
 call   11 never executed
 unconditional 12 never executed
-        2:   36:	HashTable ht;
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        4:   36:	HashTable ht;
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   36-block  0
-unconditional  3 taken 1
+        2:   36-block  0
+unconditional  3 taken 2
     $$$$$:   36-block  1
 unconditional  4 never executed
-        1:   36-block  2
-unconditional  5 taken 1
-        1:   36-block  3
-call    6 returned 1
-branch  7 taken 1 (fallthrough)
+        2:   36-block  2
+unconditional  5 taken 2
+        2:   36-block  3
+call    6 returned 2
+branch  7 taken 2 (fallthrough)
 branch  8 taken 0 (throw)
-        1:   36-block  4
-branch  9 taken 1
+        2:   36-block  4
+branch  9 taken 2
 branch 10 taken 0
     %%%%%:   36-block  5
 call   11 never executed
 unconditional 12 never executed
-        1:   37:	int hash = ht.gethash(k);
-        1:   37-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   37:	int hash = ht.gethash(k);
+        2:   37-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   37-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   37-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:   37-block  2
-call    6 returned 1
-branch  7 taken 1 (fallthrough)
+        2:   37-block  2
+call    6 returned 2
+branch  7 taken 2 (fallthrough)
 branch  8 taken 0 (throw)
     %%%%%:   37-block  3
 call    9 never executed
 unconditional 10 never executed
-        1:   38:	ASSERT_FALSE(hash < 0);
-        1:   38-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   38:	ASSERT_FALSE(hash < 0);
+        2:   38-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   38-block  1
-call    3 returned 1
+        2:   38-block  1
+call    3 returned 2
 branch  4 taken 0 (fallthrough)
-branch  5 taken 1
+branch  5 taken 2
     $$$$$:   38-block  2
 call    6 never executed
 branch  7 never executed
@@ -949,17 +949,17 @@ branch 28 never executed
 branch 29 never executed
     $$$$$:   38-block 10
 unconditional 30 never executed
-        1:   38-block 11
-unconditional 31 taken 1
-        1:   38-block 12
-call   32 returned 1
-branch 33 taken 1 (fallthrough)
+        2:   38-block 11
+unconditional 31 taken 2
+        2:   38-block 12
+call   32 returned 2
+branch 33 taken 2 (fallthrough)
 branch 34 taken 0 (throw)
-        1:   38-block 13
-branch 35 taken 1
+        2:   38-block 13
+branch 35 taken 2
 branch 36 taken 0
-        1:   38-block 14
-unconditional 37 taken 1
+        2:   38-block 14
+unconditional 37 taken 2
     %%%%%:   38-block 15
 call   38 never executed
 unconditional 39 never executed
@@ -974,21 +974,21 @@ call   44 never executed
 unconditional 45 never executed
     %%%%%:   38-block 19
 unconditional 46 never executed
-        1:   39:	ASSERT_FALSE(hash >= ht.getcapacity());
-        1:   39-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   39:	ASSERT_FALSE(hash >= ht.getcapacity());
+        2:   39-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
     $$$$$:   39-block  1
 unconditional  3 never executed
-        1:   39-block  2
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   39-block  2
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   39-block  3
-call    7 returned 1
+        2:   39-block  3
+call    7 returned 2
 branch  8 taken 0 (fallthrough)
-branch  9 taken 1
+branch  9 taken 2
     $$$$$:   39-block  4
 call   10 never executed
 branch 11 never executed
@@ -1023,27 +1023,27 @@ branch 32 never executed
 branch 33 never executed
     $$$$$:   39-block 12
 unconditional 34 never executed
-        1:   39-block 13
-unconditional 35 taken 1
-        1:   39-block 14
-call   36 returned 1
-branch 37 taken 1 (fallthrough)
+        2:   39-block 13
+unconditional 35 taken 2
+        2:   39-block 14
+call   36 returned 2
+branch 37 taken 2 (fallthrough)
 branch 38 taken 0 (throw)
-        1:   39-block 15
-branch 39 taken 1
+        2:   39-block 15
+branch 39 taken 2
 branch 40 taken 0
-        1:   39-block 16
-unconditional 41 taken 1
-        1:   39-block 17
-unconditional 42 taken 1
+        2:   39-block 16
+unconditional 41 taken 2
+        2:   39-block 17
+unconditional 42 taken 2
     $$$$$:   39-block 18
 unconditional 43 never executed
-        1:   39-block 19
-call   44 returned 1
-branch 45 taken 1 (fallthrough)
+        2:   39-block 19
+call   44 returned 2
+branch 45 taken 2 (fallthrough)
 branch 46 taken 0 (throw)
-        1:   39-block 20
-branch 47 taken 1
+        2:   39-block 20
+branch 47 taken 2
 branch 48 taken 0
     %%%%%:   39-block 21
 call   49 never executed
@@ -1061,62 +1061,62 @@ unconditional 56 never executed
 unconditional 57 never executed
         -:   40:}
         -:   41:
-function _ZN26HashTests_Constructor_TestD0Ev called 1 returned 100% blocks executed 100%
-function _ZN26HashTests_Constructor_TestD1Ev called 1 returned 100% blocks executed 80%
-function _ZN26HashTests_Constructor_Test8TestBodyEv called 1 returned 100% blocks executed 31%
-function _ZN26HashTests_Constructor_TestC1Ev called 1 returned 100% blocks executed 100%
-        7:   42:TEST (HashTests, Constructor)
-call    0 returned 1
-call    1 returned 1
-call    2 returned 1
-call    3 returned 1
-        1:   42-block  0
-        1:   42-block  1
-call    4 returned 1
-call    5 returned 1
-        1:   42-block  2
-        1:   42-block  3
-call    6 returned 1
-branch  7 taken 1 (fallthrough)
+function _ZN26HashTests_Constructor_TestD0Ev called 2 returned 100% blocks executed 100%
+function _ZN26HashTests_Constructor_TestD1Ev called 2 returned 100% blocks executed 80%
+function _ZN26HashTests_Constructor_Test8TestBodyEv called 2 returned 100% blocks executed 31%
+function _ZN26HashTests_Constructor_TestC1Ev called 2 returned 100% blocks executed 100%
+       14:   42:TEST (HashTests, Constructor)
+call    0 returned 2
+call    1 returned 2
+call    2 returned 2
+call    3 returned 2
+        2:   42-block  0
+        2:   42-block  1
+call    4 returned 2
+call    5 returned 2
+        2:   42-block  2
+        2:   42-block  3
+call    6 returned 2
+branch  7 taken 2 (fallthrough)
 branch  8 taken 0 (throw)
-        1:   42-block  4
+        2:   42-block  4
 branch  9 taken 0 (fallthrough)
-branch 10 taken 1
+branch 10 taken 2
     $$$$$:   42-block  5
 call   11 never executed
 unconditional 12 never executed
-        1:   42-block  6
-unconditional 13 taken 1
-        1:   42-block  7
-        1:   42-block  8
-        1:   42-block  9
-call   14 returned 1
+        2:   42-block  6
+unconditional 13 taken 2
+        2:   42-block  7
+        2:   42-block  8
+        2:   42-block  9
+call   14 returned 2
         -:   43:{
-        1:   44:	HashTable * pht = new HashTable;
-        1:   44-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   44:	HashTable * pht = new HashTable;
+        2:   44-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   44-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   44-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
     %%%%%:   44-block  2
 call    6 never executed
 unconditional  7 never executed
-        1:   45:	ASSERT_FALSE(pht->getcapacity() <= 0);
-        1:   45-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   45:	ASSERT_FALSE(pht->getcapacity() <= 0);
+        2:   45-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   45-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   45-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:   45-block  2
-call    6 returned 1
+        2:   45-block  2
+call    6 returned 2
 branch  7 taken 0 (fallthrough)
-branch  8 taken 1
+branch  8 taken 2
     $$$$$:   45-block  3
 call    9 never executed
 branch 10 never executed
@@ -1151,17 +1151,17 @@ branch 31 never executed
 branch 32 never executed
     $$$$$:   45-block 11
 unconditional 33 never executed
-        1:   45-block 12
-unconditional 34 taken 1
-        1:   45-block 13
-call   35 returned 1
-branch 36 taken 1 (fallthrough)
+        2:   45-block 12
+unconditional 34 taken 2
+        2:   45-block 13
+call   35 returned 2
+branch 36 taken 2 (fallthrough)
 branch 37 taken 0 (throw)
-        1:   45-block 14
-branch 38 taken 1
+        2:   45-block 14
+branch 38 taken 2
 branch 39 taken 0
-        1:   45-block 15
-unconditional 40 taken 1
+        2:   45-block 15
+unconditional 40 taken 2
     %%%%%:   45-block 16
 call   41 never executed
 unconditional 42 never executed
@@ -1176,21 +1176,21 @@ call   47 never executed
 unconditional 48 never executed
     %%%%%:   45-block 20
 unconditional 49 never executed
-        1:   46:	EXPECT_TRUE(pht->getsize() == 0);
-        1:   46-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   46:	EXPECT_TRUE(pht->getsize() == 0);
+        2:   46-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
     $$$$$:   46-block  1
 unconditional  3 never executed
-        1:   46-block  2
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   46-block  2
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   46-block  3
-call    7 returned 1
+        2:   46-block  3
+call    7 returned 2
 branch  8 taken 0 (fallthrough)
-branch  9 taken 1
+branch  9 taken 2
     $$$$$:   46-block  4
 call   10 never executed
 branch 11 never executed
@@ -1225,9 +1225,9 @@ branch 32 never executed
 branch 33 never executed
     $$$$$:   46-block 12
 unconditional 34 never executed
-        1:   46-block 13
-call   35 returned 1
-branch 36 taken 1 (fallthrough)
+        2:   46-block 13
+call   35 returned 2
+branch 36 taken 2 (fallthrough)
 branch 37 taken 0 (throw)
     %%%%%:   46-block 14
 call   38 never executed
@@ -1243,19 +1243,19 @@ call   44 never executed
 unconditional 45 never executed
     %%%%%:   46-block 18
 unconditional 46 never executed
-        1:   47:	EXPECT_TRUE(pht->empty());
-        1:   47-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   47:	EXPECT_TRUE(pht->empty());
+        2:   47-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   47-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   47-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:   47-block  2
-call    6 returned 1
+        2:   47-block  2
+call    6 returned 2
 branch  7 taken 0 (fallthrough)
-branch  8 taken 1
+branch  8 taken 2
     $$$$$:   47-block  3
 call    9 never executed
 branch 10 never executed
@@ -1290,9 +1290,9 @@ branch 31 never executed
 branch 32 never executed
     $$$$$:   47-block 11
 unconditional 33 never executed
-        1:   47-block 12
-call   34 returned 1
-branch 35 taken 1 (fallthrough)
+        2:   47-block 12
+call   34 returned 2
+branch 35 taken 2 (fallthrough)
 branch 36 taken 0 (throw)
     %%%%%:   47-block 13
 call   37 never executed
@@ -1308,57 +1308,57 @@ call   43 never executed
 unconditional 44 never executed
     %%%%%:   47-block 17
 unconditional 45 never executed
-        1:   48:	Value temp = {1, 1};
-        1:   49:	pht->insert("qwe", temp);
-        1:   49-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   48:	Value temp = {1, 1};
+        2:   49:	pht->insert("qwe", temp);
+        2:   49-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   49-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   49-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   49-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   49-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   49-block  3
-call   10 returned 1
+        2:   49-block  3
+call   10 returned 2
     %%%%%:   49-block  4
 call   11 never executed
 unconditional 12 never executed
     %%%%%:   49-block  5
 call   13 never executed
 unconditional 14 never executed
-        2:   50:	HashTable ht = *pht;
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        4:   50:	HashTable ht = *pht;
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   50-block  0
-unconditional  3 taken 1
-        1:   50-block  1
-unconditional  4 taken 1
+        2:   50-block  0
+unconditional  3 taken 2
+        2:   50-block  1
+unconditional  4 taken 2
     $$$$$:   50-block  2
 unconditional  5 never executed
-        1:   50-block  3
-unconditional  6 taken 1
+        2:   50-block  3
+unconditional  6 taken 2
     %%%%%:   50-block  4
 call    7 never executed
 unconditional  8 never executed
-        1:   51:	ASSERT_FALSE(pht->getcapacity() <= 0);
-        1:   51-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   51:	ASSERT_FALSE(pht->getcapacity() <= 0);
+        2:   51-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   51-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   51-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:   51-block  2
-call    6 returned 1
+        2:   51-block  2
+call    6 returned 2
 branch  7 taken 0 (fallthrough)
-branch  8 taken 1
+branch  8 taken 2
     $$$$$:   51-block  3
 call    9 never executed
 branch 10 never executed
@@ -1393,17 +1393,17 @@ branch 31 never executed
 branch 32 never executed
     $$$$$:   51-block 11
 unconditional 33 never executed
-        1:   51-block 12
-unconditional 34 taken 1
-        1:   51-block 13
-call   35 returned 1
-branch 36 taken 1 (fallthrough)
+        2:   51-block 12
+unconditional 34 taken 2
+        2:   51-block 13
+call   35 returned 2
+branch 36 taken 2 (fallthrough)
 branch 37 taken 0 (throw)
-        1:   51-block 14
-branch 38 taken 1
+        2:   51-block 14
+branch 38 taken 2
 branch 39 taken 0
-        1:   51-block 15
-unconditional 40 taken 1
+        2:   51-block 15
+unconditional 40 taken 2
     %%%%%:   51-block 16
 call   41 never executed
 unconditional 42 never executed
@@ -1418,21 +1418,21 @@ call   47 never executed
 unconditional 48 never executed
     %%%%%:   51-block 20
 unconditional 49 never executed
-        1:   52:	EXPECT_FALSE(ht.empty());
-        1:   52-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   52:	EXPECT_FALSE(ht.empty());
+        2:   52-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
     $$$$$:   52-block  1
 unconditional  3 never executed
-        1:   52-block  2
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   52-block  2
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   52-block  3
-call    7 returned 1
+        2:   52-block  3
+call    7 returned 2
 branch  8 taken 0 (fallthrough)
-branch  9 taken 1
+branch  9 taken 2
     $$$$$:   52-block  4
 call   10 never executed
 branch 11 never executed
@@ -1467,9 +1467,9 @@ branch 32 never executed
 branch 33 never executed
     $$$$$:   52-block 12
 unconditional 34 never executed
-        1:   52-block 13
-call   35 returned 1
-branch 36 taken 1 (fallthrough)
+        2:   52-block 13
+call   35 returned 2
+branch 36 taken 2 (fallthrough)
 branch 37 taken 0 (throw)
     %%%%%:   52-block 14
 call   38 never executed
@@ -1485,19 +1485,19 @@ call   44 never executed
 unconditional 45 never executed
     %%%%%:   52-block 18
 unconditional 46 never executed
-        1:   53:	EXPECT_FALSE(pht->getsize() == 0);
-        1:   53-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   53:	EXPECT_FALSE(pht->getsize() == 0);
+        2:   53-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   53-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   53-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:   53-block  2
-call    6 returned 1
+        2:   53-block  2
+call    6 returned 2
 branch  7 taken 0 (fallthrough)
-branch  8 taken 1
+branch  8 taken 2
     $$$$$:   53-block  3
 call    9 never executed
 branch 10 never executed
@@ -1532,9 +1532,9 @@ branch 31 never executed
 branch 32 never executed
     $$$$$:   53-block 11
 unconditional 33 never executed
-        1:   53-block 12
-call   34 returned 1
-branch 35 taken 1 (fallthrough)
+        2:   53-block 12
+call   34 returned 2
+branch 35 taken 2 (fallthrough)
 branch 36 taken 0 (throw)
     %%%%%:   53-block 13
 call   37 never executed
@@ -1550,40 +1550,40 @@ call   43 never executed
 unconditional 44 never executed
     %%%%%:   53-block 17
 unconditional 45 never executed
-        1:   54:	ht.erase("qwe");
-        1:   54-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   54:	ht.erase("qwe");
+        2:   54-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   54-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   54-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   54-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   54-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   54-block  3
-call   10 returned 1
+        2:   54-block  3
+call   10 returned 2
     %%%%%:   54-block  4
 call   11 never executed
 unconditional 12 never executed
     %%%%%:   54-block  5
 call   13 never executed
 unconditional 14 never executed
-        1:   55:	EXPECT_TRUE(ht.empty());
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   55:	EXPECT_TRUE(ht.empty());
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   55-block  0
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   55-block  0
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:   55-block  1
-call    6 returned 1
+        2:   55-block  1
+call    6 returned 2
 branch  7 taken 0 (fallthrough)
-branch  8 taken 1
+branch  8 taken 2
     $$$$$:   55-block  2
 call    9 never executed
 branch 10 never executed
@@ -1618,9 +1618,9 @@ branch 31 never executed
 branch 32 never executed
     $$$$$:   55-block 10
 unconditional 33 never executed
-        1:   55-block 11
-call   34 returned 1
-branch 35 taken 1 (fallthrough)
+        2:   55-block 11
+call   34 returned 2
+branch 35 taken 2 (fallthrough)
 branch 36 taken 0 (throw)
     %%%%%:   55-block 12
 call   37 never executed
@@ -1636,102 +1636,102 @@ call   43 never executed
 unconditional 44 never executed
     %%%%%:   55-block 16
 unconditional 45 never executed
-        1:   56:	delete pht;
-        1:   56-block  0
-branch  0 taken 1 (fallthrough)
+        2:   56:	delete pht;
+        2:   56-block  0
+branch  0 taken 2 (fallthrough)
 branch  1 taken 0
-        1:   56-block  1
-call    2 returned 1
-branch  3 taken 1 (fallthrough)
+        2:   56-block  1
+call    2 returned 2
+branch  3 taken 2 (fallthrough)
 branch  4 taken 0 (throw)
-        1:   56-block  2
-call    5 returned 1
-unconditional  6 taken 1
-        1:   56-block  3
-unconditional  7 taken 1
-        1:   56-block  4
-call    8 returned 1
-branch  9 taken 1 (fallthrough)
+        2:   56-block  2
+call    5 returned 2
+unconditional  6 taken 2
+        2:   56-block  3
+unconditional  7 taken 2
+        2:   56-block  4
+call    8 returned 2
+branch  9 taken 2 (fallthrough)
 branch 10 taken 0 (throw)
-        1:   56-block  5
-branch 11 taken 1
+        2:   56-block  5
+branch 11 taken 2
 branch 12 taken 0
         -:   57:}
         -:   58:
-function _ZN21HashTests_Insert_TestD0Ev called 1 returned 100% blocks executed 100%
-function _ZN21HashTests_Insert_TestD1Ev called 1 returned 100% blocks executed 80%
-function _ZN21HashTests_Insert_Test8TestBodyEv called 1 returned 100% blocks executed 29%
-function _ZN21HashTests_Insert_TestC1Ev called 1 returned 100% blocks executed 100%
-        7:   59:TEST (HashTests, Insert)
-call    0 returned 1
-call    1 returned 1
-call    2 returned 1
-call    3 returned 1
-        1:   59-block  0
-        1:   59-block  1
-call    4 returned 1
-call    5 returned 1
-        1:   59-block  2
-        1:   59-block  3
-call    6 returned 1
-branch  7 taken 1 (fallthrough)
+function _ZN21HashTests_Insert_TestD0Ev called 2 returned 100% blocks executed 100%
+function _ZN21HashTests_Insert_TestD1Ev called 2 returned 100% blocks executed 80%
+function _ZN21HashTests_Insert_Test8TestBodyEv called 2 returned 100% blocks executed 29%
+function _ZN21HashTests_Insert_TestC1Ev called 2 returned 100% blocks executed 100%
+       14:   59:TEST (HashTests, Insert)
+call    0 returned 2
+call    1 returned 2
+call    2 returned 2
+call    3 returned 2
+        2:   59-block  0
+        2:   59-block  1
+call    4 returned 2
+call    5 returned 2
+        2:   59-block  2
+        2:   59-block  3
+call    6 returned 2
+branch  7 taken 2 (fallthrough)
 branch  8 taken 0 (throw)
-        1:   59-block  4
+        2:   59-block  4
 branch  9 taken 0 (fallthrough)
-branch 10 taken 1
+branch 10 taken 2
     $$$$$:   59-block  5
 call   11 never executed
 unconditional 12 never executed
-        1:   59-block  6
-unconditional 13 taken 1
-        1:   59-block  7
-        1:   59-block  8
-        1:   59-block  9
-call   14 returned 1
+        2:   59-block  6
+unconditional 13 taken 2
+        2:   59-block  7
+        2:   59-block  8
+        2:   59-block  9
+call   14 returned 2
         -:   60:{
-        2:   61:	HashTable ht;
-        1:   61-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        4:   61:	HashTable ht;
+        2:   61-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   61-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   61-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
     %%%%%:   61-block  2
 call    6 never executed
 unconditional  7 never executed
-        1:   62:	Value temp = {1, 1};
-        1:   63:	bool check = ht.insert("qwe", temp);
-        1:   63-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   62:	Value temp = {1, 1};
+        2:   63:	bool check = ht.insert("qwe", temp);
+        2:   63-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   63-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   63-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   63-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   63-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   63-block  3
-call   10 returned 1
+        2:   63-block  3
+call   10 returned 2
     %%%%%:   63-block  4
 call   11 never executed
 unconditional 12 never executed
     %%%%%:   63-block  5
 call   13 never executed
 unconditional 14 never executed
-        1:   64:	EXPECT_TRUE(check);
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   64:	EXPECT_TRUE(check);
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   64-block  0
-call    3 returned 1
+        2:   64-block  0
+call    3 returned 2
 branch  4 taken 0 (fallthrough)
-branch  5 taken 1
+branch  5 taken 2
     $$$$$:   64-block  1
 call    6 never executed
 branch  7 never executed
@@ -1766,9 +1766,9 @@ branch 28 never executed
 branch 29 never executed
     $$$$$:   64-block  9
 unconditional 30 never executed
-        1:   64-block 10
-call   31 returned 1
-branch 32 taken 1 (fallthrough)
+        2:   64-block 10
+call   31 returned 2
+branch 32 taken 2 (fallthrough)
 branch 33 taken 0 (throw)
     %%%%%:   64-block 11
 call   34 never executed
@@ -1784,19 +1784,19 @@ call   40 never executed
 unconditional 41 never executed
     %%%%%:   64-block 15
 unconditional 42 never executed
-        1:   65:	EXPECT_FALSE(ht.empty());
-        1:   65-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   65:	EXPECT_FALSE(ht.empty());
+        2:   65-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   65-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   65-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:   65-block  2
-call    6 returned 1
+        2:   65-block  2
+call    6 returned 2
 branch  7 taken 0 (fallthrough)
-branch  8 taken 1
+branch  8 taken 2
     $$$$$:   65-block  3
 call    9 never executed
 branch 10 never executed
@@ -1831,9 +1831,9 @@ branch 31 never executed
 branch 32 never executed
     $$$$$:   65-block 11
 unconditional 33 never executed
-        1:   65-block 12
-call   34 returned 1
-branch 35 taken 1 (fallthrough)
+        2:   65-block 12
+call   34 returned 2
+branch 35 taken 2 (fallthrough)
 branch 36 taken 0 (throw)
     %%%%%:   65-block 13
 call   37 never executed
@@ -1851,29 +1851,29 @@ unconditional 44 never executed
 unconditional 45 never executed
     %%%%%:   65-block 18
 call   46 never executed
-        1:   66:	EXPECT_TRUE(ht.search("qwe"));
-        1:   66-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   66:	EXPECT_TRUE(ht.search("qwe"));
+        2:   66-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   66-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   66-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   66-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   66-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   66-block  3
-call   10 returned 1
-branch 11 taken 1 (fallthrough)
+        2:   66-block  3
+call   10 returned 2
+branch 11 taken 2 (fallthrough)
 branch 12 taken 0 (throw)
-        1:   66-block  4
-call   13 returned 1
-call   14 returned 1
+        2:   66-block  4
+call   13 returned 2
+call   14 returned 2
 branch 15 taken 0 (fallthrough)
-branch 16 taken 1
+branch 16 taken 2
     $$$$$:   66-block  5
 call   17 never executed
 branch 18 never executed
@@ -1908,9 +1908,9 @@ branch 39 never executed
 branch 40 never executed
     $$$$$:   66-block 13
 unconditional 41 never executed
-        1:   66-block 14
-call   42 returned 1
-branch 43 taken 1 (fallthrough)
+        2:   66-block 14
+call   42 returned 2
+branch 43 taken 2 (fallthrough)
 branch 44 taken 0 (throw)
 unconditional 45 never executed
     %%%%%:   66-block 15
@@ -1933,36 +1933,36 @@ call   56 never executed
 unconditional 57 never executed
     %%%%%:   66-block 21
 unconditional 58 never executed
-        1:   67:	check = ht.insert("qwe", temp);
-        1:   67-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   67:	check = ht.insert("qwe", temp);
+        2:   67-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   67-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   67-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   67-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   67-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   67-block  3
-call   10 returned 1
+        2:   67-block  3
+call   10 returned 2
     %%%%%:   67-block  4
 call   11 never executed
 unconditional 12 never executed
     %%%%%:   67-block  5
 call   13 never executed
 unconditional 14 never executed
-        1:   68:	EXPECT_FALSE(check);
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   68:	EXPECT_FALSE(check);
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   68-block  0
-call    3 returned 1
+        2:   68-block  0
+call    3 returned 2
 branch  4 taken 0 (fallthrough)
-branch  5 taken 1
+branch  5 taken 2
     $$$$$:   68-block  1
 call    6 never executed
 branch  7 never executed
@@ -1997,9 +1997,9 @@ branch 28 never executed
 branch 29 never executed
     $$$$$:   68-block  9
 unconditional 30 never executed
-        1:   68-block 10
-call   31 returned 1
-branch 32 taken 1 (fallthrough)
+        2:   68-block 10
+call   31 returned 2
+branch 32 taken 2 (fallthrough)
 branch 33 taken 0 (throw)
     %%%%%:   68-block 11
 call   34 never executed
@@ -2015,36 +2015,36 @@ call   40 never executed
 unconditional 41 never executed
     %%%%%:   68-block 15
 unconditional 42 never executed
-        1:   69:	check = ht.insert("abc", temp);
-        1:   69-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   69:	check = ht.insert("abc", temp);
+        2:   69-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   69-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   69-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   69-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   69-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   69-block  3
-call   10 returned 1
+        2:   69-block  3
+call   10 returned 2
     %%%%%:   69-block  4
 call   11 never executed
 unconditional 12 never executed
     %%%%%:   69-block  5
 call   13 never executed
 unconditional 14 never executed
-        1:   70:	EXPECT_TRUE(check);
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   70:	EXPECT_TRUE(check);
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   70-block  0
-call    3 returned 1
+        2:   70-block  0
+call    3 returned 2
 branch  4 taken 0 (fallthrough)
-branch  5 taken 1
+branch  5 taken 2
     $$$$$:   70-block  1
 call    6 never executed
 branch  7 never executed
@@ -2079,9 +2079,9 @@ branch 28 never executed
 branch 29 never executed
     $$$$$:   70-block  9
 unconditional 30 never executed
-        1:   70-block 10
-call   31 returned 1
-branch 32 taken 1 (fallthrough)
+        2:   70-block 10
+call   31 returned 2
+branch 32 taken 2 (fallthrough)
 branch 33 taken 0 (throw)
     %%%%%:   70-block 11
 call   34 never executed
@@ -2104,83 +2104,83 @@ unconditional 42 never executed
         -:   75:		std::string s;
         -:   76:		ht.insert(c, temp);
         -:   77:	}*/
-        1:   78:}
-        1:   78-block  0
-unconditional  0 taken 1
+        2:   78:}
+        2:   78-block  0
+unconditional  0 taken 2
         -:   79:
-function _ZN22HashTests_IndexOp_TestD0Ev called 1 returned 100% blocks executed 100%
-function _ZN22HashTests_IndexOp_TestD1Ev called 1 returned 100% blocks executed 80%
-function _ZN22HashTests_IndexOp_Test8TestBodyEv called 1 returned 100% blocks executed 32%
-function _ZN22HashTests_IndexOp_TestC1Ev called 1 returned 100% blocks executed 100%
-        7:   80:TEST (HashTests, IndexOp)
-call    0 returned 1
-call    1 returned 1
-call    2 returned 1
-call    3 returned 1
-        1:   80-block  0
-        1:   80-block  1
-call    4 returned 1
-call    5 returned 1
-        1:   80-block  2
-        1:   80-block  3
-call    6 returned 1
-branch  7 taken 1 (fallthrough)
+function _ZN22HashTests_IndexOp_TestD0Ev called 2 returned 100% blocks executed 100%
+function _ZN22HashTests_IndexOp_TestD1Ev called 2 returned 100% blocks executed 80%
+function _ZN22HashTests_IndexOp_Test8TestBodyEv called 2 returned 100% blocks executed 32%
+function _ZN22HashTests_IndexOp_TestC1Ev called 2 returned 100% blocks executed 100%
+       14:   80:TEST (HashTests, IndexOp)
+call    0 returned 2
+call    1 returned 2
+call    2 returned 2
+call    3 returned 2
+        2:   80-block  0
+        2:   80-block  1
+call    4 returned 2
+call    5 returned 2
+        2:   80-block  2
+        2:   80-block  3
+call    6 returned 2
+branch  7 taken 2 (fallthrough)
 branch  8 taken 0 (throw)
-        1:   80-block  4
+        2:   80-block  4
 branch  9 taken 0 (fallthrough)
-branch 10 taken 1
+branch 10 taken 2
     $$$$$:   80-block  5
 call   11 never executed
 unconditional 12 never executed
-        1:   80-block  6
-unconditional 13 taken 1
-        1:   80-block  7
-        1:   80-block  8
-        1:   80-block  9
-call   14 returned 1
+        2:   80-block  6
+unconditional 13 taken 2
+        2:   80-block  7
+        2:   80-block  8
+        2:   80-block  9
+call   14 returned 2
         -:   81:{
-        2:   82:	HashTable ht;
-        1:   82-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        4:   82:	HashTable ht;
+        2:   82-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   82-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   82-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
     %%%%%:   82-block  2
 call    6 never executed
 unconditional  7 never executed
-        1:   83:	Value check = ht["qwe"];
-        1:   83-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   83:	Value check = ht["qwe"];
+        2:   83-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   83-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   83-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   83-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   83-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   83-block  3
-call   10 returned 1
+        2:   83-block  3
+call   10 returned 2
     %%%%%:   83-block  4
 call   11 never executed
 unconditional 12 never executed
     %%%%%:   83-block  5
 call   13 never executed
 unconditional 14 never executed
-        1:   84:	EXPECT_EQ(check.age, -1);
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   84:	EXPECT_EQ(check.age, -1);
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   84-block  0
-call    3 returned 1
+        2:   84-block  0
+call    3 returned 2
 branch  4 taken 0 (fallthrough)
-branch  5 taken 1
+branch  5 taken 2
     $$$$$:   84-block  1
 call    6 never executed
 branch  7 never executed
@@ -2207,9 +2207,9 @@ branch 22 never executed
 branch 23 never executed
     $$$$$:   84-block  7
 unconditional 24 never executed
-        1:   84-block  8
-call   25 returned 1
-branch 26 taken 1 (fallthrough)
+        2:   84-block  8
+call   25 returned 2
+branch 26 taken 2 (fallthrough)
 branch 27 taken 0 (throw)
     %%%%%:   84-block  9
 unconditional 28 never executed
@@ -2224,15 +2224,15 @@ call   33 never executed
 unconditional 34 never executed
     %%%%%:   84-block 13
 unconditional 35 never executed
-        1:   85:	EXPECT_EQ(check.weight, -1);
-        1:   85-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   85:	EXPECT_EQ(check.weight, -1);
+        2:   85-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   85-block  1
-call    3 returned 1
+        2:   85-block  1
+call    3 returned 2
 branch  4 taken 0 (fallthrough)
-branch  5 taken 1
+branch  5 taken 2
     $$$$$:   85-block  2
 call    6 never executed
 branch  7 never executed
@@ -2259,9 +2259,9 @@ branch 22 never executed
 branch 23 never executed
     $$$$$:   85-block  8
 unconditional 24 never executed
-        1:   85-block  9
-call   25 returned 1
-branch 26 taken 1 (fallthrough)
+        2:   85-block  9
+call   25 returned 2
+branch 26 taken 2 (fallthrough)
 branch 27 taken 0 (throw)
     %%%%%:   85-block 10
 unconditional 28 never executed
@@ -2276,58 +2276,58 @@ call   33 never executed
 unconditional 34 never executed
     %%%%%:   85-block 14
 unconditional 35 never executed
-        1:   86:	Value temp = {1, 1};
-        1:   87:	ht.insert("qwe", temp);
-        1:   87-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   86:	Value temp = {1, 1};
+        2:   87:	ht.insert("qwe", temp);
+        2:   87-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   87-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   87-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   87-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   87-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   87-block  3
-call   10 returned 1
+        2:   87-block  3
+call   10 returned 2
     %%%%%:   87-block  4
 call   11 never executed
 unconditional 12 never executed
     %%%%%:   87-block  5
 call   13 never executed
 unconditional 14 never executed
-        1:   88:	check = ht["qwe"];
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   88:	check = ht["qwe"];
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   88-block  0
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   88-block  0
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   88-block  1
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   88-block  1
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   88-block  2
-call   10 returned 1
+        2:   88-block  2
+call   10 returned 2
     %%%%%:   88-block  3
 call   11 never executed
 unconditional 12 never executed
     %%%%%:   88-block  4
 call   13 never executed
 unconditional 14 never executed
-        1:   89:	EXPECT_NE(check.age, -1);
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   89:	EXPECT_NE(check.age, -1);
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   89-block  0
-call    3 returned 1
+        2:   89-block  0
+call    3 returned 2
 branch  4 taken 0 (fallthrough)
-branch  5 taken 1
+branch  5 taken 2
     $$$$$:   89-block  1
 call    6 never executed
 branch  7 never executed
@@ -2354,9 +2354,9 @@ branch 22 never executed
 branch 23 never executed
     $$$$$:   89-block  7
 unconditional 24 never executed
-        1:   89-block  8
-call   25 returned 1
-branch 26 taken 1 (fallthrough)
+        2:   89-block  8
+call   25 returned 2
+branch 26 taken 2 (fallthrough)
 branch 27 taken 0 (throw)
     %%%%%:   89-block  9
 unconditional 28 never executed
@@ -2371,15 +2371,15 @@ call   33 never executed
 unconditional 34 never executed
     %%%%%:   89-block 13
 unconditional 35 never executed
-        1:   90:	EXPECT_NE(check.weight, -1);
-        1:   90-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:   90:	EXPECT_NE(check.weight, -1);
+        2:   90-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   90-block  1
-call    3 returned 1
+        2:   90-block  1
+call    3 returned 2
 branch  4 taken 0 (fallthrough)
-branch  5 taken 1
+branch  5 taken 2
     $$$$$:   90-block  2
 call    6 never executed
 branch  7 never executed
@@ -2406,9 +2406,9 @@ branch 22 never executed
 branch 23 never executed
     $$$$$:   90-block  8
 unconditional 24 never executed
-        1:   90-block  9
-call   25 returned 1
-branch 26 taken 1 (fallthrough)
+        2:   90-block  9
+call   25 returned 2
+branch 26 taken 2 (fallthrough)
 branch 27 taken 0 (throw)
     %%%%%:   90-block 10
 unconditional 28 never executed
@@ -2423,178 +2423,178 @@ call   33 never executed
 unconditional 34 never executed
     %%%%%:   90-block 14
 unconditional 35 never executed
-        1:   91:}
-        1:   91-block  0
-unconditional  0 taken 1
+        2:   91:}
+        2:   91-block  0
+unconditional  0 taken 2
         -:   92:
-function _ZN22HashTests_ConstAt_TestD0Ev called 1 returned 100% blocks executed 100%
-function _ZN22HashTests_ConstAt_TestD1Ev called 1 returned 100% blocks executed 80%
-function _ZN22HashTests_ConstAt_Test8TestBodyEv called 1 returned 100% blocks executed 57%
-function _ZN22HashTests_ConstAt_TestC1Ev called 1 returned 100% blocks executed 100%
-        7:   93:TEST (HashTests, ConstAt)
-call    0 returned 1
-call    1 returned 1
-call    2 returned 1
-call    3 returned 1
-        1:   93-block  0
-        1:   93-block  1
-call    4 returned 1
-call    5 returned 1
-        1:   93-block  2
-        1:   93-block  3
-call    6 returned 1
-branch  7 taken 1 (fallthrough)
+function _ZN22HashTests_ConstAt_TestD0Ev called 2 returned 100% blocks executed 100%
+function _ZN22HashTests_ConstAt_TestD1Ev called 2 returned 100% blocks executed 80%
+function _ZN22HashTests_ConstAt_Test8TestBodyEv called 2 returned 100% blocks executed 57%
+function _ZN22HashTests_ConstAt_TestC1Ev called 2 returned 100% blocks executed 100%
+       14:   93:TEST (HashTests, ConstAt)
+call    0 returned 2
+call    1 returned 2
+call    2 returned 2
+call    3 returned 2
+        2:   93-block  0
+        2:   93-block  1
+call    4 returned 2
+call    5 returned 2
+        2:   93-block  2
+        2:   93-block  3
+call    6 returned 2
+branch  7 taken 2 (fallthrough)
 branch  8 taken 0 (throw)
-        1:   93-block  4
+        2:   93-block  4
 branch  9 taken 0 (fallthrough)
-branch 10 taken 1
+branch 10 taken 2
     $$$$$:   93-block  5
 call   11 never executed
 unconditional 12 never executed
-        1:   93-block  6
-unconditional 13 taken 1
-        1:   93-block  7
-        1:   93-block  8
-        1:   93-block  9
-call   14 returned 1
+        2:   93-block  6
+unconditional 13 taken 2
+        2:   93-block  7
+        2:   93-block  8
+        2:   93-block  9
+call   14 returned 2
         -:   94:{
-        2:   95:	HashTable ht;
-        1:   95-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        4:   95:	HashTable ht;
+        2:   95-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:   95-block  1
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:   95-block  1
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
     %%%%%:   95-block  2
 call    6 never executed
 unconditional  7 never executed
-        1:   96:	const Value temp = {1, 1};
-        1:   97:	ht.insert("qwe", temp);
-        1:   97-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   96:	const Value temp = {1, 1};
+        2:   97:	ht.insert("qwe", temp);
+        2:   97-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   97-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   97-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   97-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   97-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   97-block  3
-call   10 returned 1
+        2:   97-block  3
+call   10 returned 2
     %%%%%:   97-block  4
 call   11 never executed
 unconditional 12 never executed
     %%%%%:   97-block  5
 call   13 never executed
 unconditional 14 never executed
-        2:   98:	const HashTable ht2 = ht;
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        4:   98:	const HashTable ht2 = ht;
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
     %%%%%:   98-block  0
 call    6 never executed
 unconditional  7 never executed
-        1:   99:	Value check = ht2.at("qwe");
-        1:   99-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:   99:	Value check = ht2.at("qwe");
+        2:   99-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:   99-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:   99-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:   99-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:   99-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:   99-block  3
-call   10 returned 1
+        2:   99-block  3
+call   10 returned 2
     %%%%%:   99-block  4
 call   11 never executed
 unconditional 12 never executed
     %%%%%:   99-block  5
 call   13 never executed
 unconditional 14 never executed
-        1:  100:	check.age = 0;
-        1:  101:}
-        1:  101-block  0
-unconditional  0 taken 1
+        2:  100:	check.age = 0;
+        2:  101:}
+        2:  101-block  0
+unconditional  0 taken 2
         -:  102:
-function _ZN17HashTests_At_TestD0Ev called 1 returned 100% blocks executed 100%
-function _ZN17HashTests_At_TestD1Ev called 1 returned 100% blocks executed 80%
-function _ZN17HashTests_At_Test8TestBodyEv called 1 returned 100% blocks executed 52%
-function _ZN17HashTests_At_TestC1Ev called 1 returned 100% blocks executed 100%
-        7:  103:TEST (HashTests, At)
-call    0 returned 1
-call    1 returned 1
-call    2 returned 1
-call    3 returned 1
-unconditional  4 taken 1
-        1:  103-block  0
-        1:  103-block  1
-call    5 returned 1
-call    6 returned 1
-        1:  103-block  2
-        1:  103-block  3
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+function _ZN17HashTests_At_TestD0Ev called 2 returned 100% blocks executed 100%
+function _ZN17HashTests_At_TestD1Ev called 2 returned 100% blocks executed 80%
+function _ZN17HashTests_At_Test8TestBodyEv called 2 returned 100% blocks executed 52%
+function _ZN17HashTests_At_TestC1Ev called 2 returned 100% blocks executed 100%
+       14:  103:TEST (HashTests, At)
+call    0 returned 2
+call    1 returned 2
+call    2 returned 2
+call    3 returned 2
+unconditional  4 taken 2
+        2:  103-block  0
+        2:  103-block  1
+call    5 returned 2
+call    6 returned 2
+        2:  103-block  2
+        2:  103-block  3
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:  103-block  4
+        2:  103-block  4
 branch 10 taken 0 (fallthrough)
-branch 11 taken 1
+branch 11 taken 2
     $$$$$:  103-block  5
 call   12 never executed
 unconditional 13 never executed
-        1:  103-block  6
-unconditional 14 taken 1
-        1:  103-block  7
-        1:  103-block  8
-        1:  103-block  9
-call   15 returned 1
+        2:  103-block  6
+unconditional 14 taken 2
+        2:  103-block  7
+        2:  103-block  8
+        2:  103-block  9
+call   15 returned 2
         -:  104:{
-        2:  105:	HashTable ht;
-        1:  105-block  0
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        4:  105:	HashTable ht;
+        2:  105-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
     $$$$$:  105-block  1
 unconditional  3 never executed
     $$$$$:  105-block  2
 unconditional  4 never executed
-        1:  105-block  3
-unconditional  5 taken 1
-        1:  105-block  4
-unconditional  6 taken 1
+        2:  105-block  3
+unconditional  5 taken 2
+        2:  105-block  4
+unconditional  6 taken 2
     %%%%%:  105-block  5
 call    7 never executed
 unconditional  8 never executed
-        1:  106:	const Value temp = {1, 1};
-        1:  107:	ht.insert("qwe", temp);
-        1:  107-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:  106:	const Value temp = {1, 1};
+        2:  107:	ht.insert("qwe", temp);
+        2:  107-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:  107-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:  107-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:  107-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:  107-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:  107-block  3
-call   10 returned 1
+        2:  107-block  3
+call   10 returned 2
     %%%%%:  107-block  4
 call   11 never executed
 unconditional 12 never executed
@@ -2603,21 +2603,21 @@ call   13 never executed
 unconditional 14 never executed
         -:  108:	try
         -:  109:  	{
-        1:  110:    	Value ep = ht.at("qwe");
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:  110:    	Value ep = ht.at("qwe");
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:  110-block  0
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:  110-block  0
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:  110-block  1
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:  110-block  1
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:  110-block  2
-call   10 returned 1
+        2:  110-block  2
+call   10 returned 2
     %%%%%:  110-block  3
 call   11 never executed
 unconditional 12 never executed
@@ -2658,30 +2658,30 @@ branch  8 never executed
     %%%%%:  115-block  0
 unconditional  0 never executed
         -:  116:  	}
-        1:  117:  	cout << "No exception detected" << endl;
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:  117:  	cout << "No exception detected" << endl;
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:  117-block  0
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:  117-block  0
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:  118:	ht.erase("qwe");
-        1:  118-block  0
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:  118:	ht.erase("qwe");
+        2:  118-block  0
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:  118-block  1
-call    4 returned 1
-branch  5 taken 1 (fallthrough)
+        2:  118-block  1
+call    4 returned 2
+branch  5 taken 2 (fallthrough)
 branch  6 taken 0 (throw)
-        1:  118-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:  118-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:  118-block  3
-call   10 returned 1
+        2:  118-block  3
+call   10 returned 2
     %%%%%:  118-block  4
 call   11 never executed
 unconditional 12 never executed
@@ -2690,62 +2690,62 @@ call   13 never executed
 unconditional 14 never executed
         -:  119:	try
         -:  120:  	{
-        1:  121:    	Value ep = ht.at("qwe");
-call    0 returned 1
-call    1 returned 1
-branch  2 taken 1 (fallthrough)
+        2:  121:    	Value ep = ht.at("qwe");
+call    0 returned 2
+call    1 returned 2
+branch  2 taken 2 (fallthrough)
 branch  3 taken 0 (throw)
-        1:  121-block  0
-call    4 returned 1
+        2:  121-block  0
+call    4 returned 2
 branch  5 taken 0 (fallthrough)
-branch  6 taken 1 (throw)
+branch  6 taken 2 (throw)
     $$$$$:  121-block  1
 call    7 never executed
 branch  8 never executed
 branch  9 never executed
     $$$$$:  121-block  2
 call   10 never executed
-        1:  121-block  3
-call   11 returned 1
-unconditional 12 taken 1
-        1:  121-block  4
-call   13 returned 1
-unconditional 14 taken 1
-        1:  121-block  5
-unconditional 15 taken 1
-        1:  121-block  6
+        2:  121-block  3
+call   11 returned 2
+unconditional 12 taken 2
+        2:  121-block  4
+call   13 returned 2
+unconditional 14 taken 2
+        2:  121-block  5
+unconditional 15 taken 2
+        2:  121-block  6
 branch 16 taken 0 (fallthrough)
-branch 17 taken 1
+branch 17 taken 2
     %%%%%:  121-block  7
 unconditional 18 never executed
         -:  122:  	}
-        2:  123:  	catch(int a)
-        1:  123-block  0
-call    0 returned 1
-        1:  123-block  1
-call    1 returned 1
-unconditional  2 taken 1
+        4:  123:  	catch(int a)
+        2:  123-block  0
+call    0 returned 2
+        2:  123-block  1
+call    1 returned 2
+unconditional  2 taken 2
     %%%%%:  123-block  2
 call    3 never executed
 unconditional  4 never executed
         -:  124:  	{
-        1:  125:    	cout << "Caught exception number:  " << a << endl;
-call    0 returned 1
-branch  1 taken 1 (fallthrough)
+        2:  125:    	cout << "Caught exception number:  " << a << endl;
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0 (throw)
-        1:  125-block  0
-call    3 returned 1
-branch  4 taken 1 (fallthrough)
+        2:  125-block  0
+call    3 returned 2
+branch  4 taken 2 (fallthrough)
 branch  5 taken 0 (throw)
-        1:  125-block  1
-call    6 returned 1
-branch  7 taken 1 (fallthrough)
+        2:  125-block  1
+call    6 returned 2
+branch  7 taken 2 (fallthrough)
 branch  8 taken 0 (throw)
-        1:  126:    	return;
-        1:  126-block  0
-unconditional  0 taken 1
+        2:  126:    	return;
+        2:  126-block  0
+unconditional  0 taken 2
         -:  127:  	}
-        1:  128:  	cout << "No exception detected" << endl;
+        2:  128:  	cout << "No exception detected" << endl;
 call    0 never executed
 branch  1 never executed
 branch  2 never executed
@@ -2755,23 +2755,23 @@ branch  4 never executed
 branch  5 never executed
     $$$$$:  128-block  1
 unconditional  6 never executed
-        1:  128-block  2
-call    7 returned 1
-branch  8 taken 1 (fallthrough)
+        2:  128-block  2
+call    7 returned 2
+branch  8 taken 2 (fallthrough)
 branch  9 taken 0 (throw)
-        1:  128-block  3
+        2:  128-block  3
 branch 10 taken 0
-branch 11 taken 1
-function _GLOBAL__sub_I__ZN25HashTests_EqualityOp_Test10test_info_E called 1 returned 100% blocks executed 100%
-function _Z41__static_initialization_and_destruction_0ii called 1 returned 100% blocks executed 100%
-        4:  129:}
-        1:  129-block  0
-        1:  129-block  1
-call    0 returned 1
-        1:  129-block  2
-        1:  129-block  3
-branch  1 taken 1 (fallthrough)
+branch 11 taken 2
+function _GLOBAL__sub_I__ZN25HashTests_EqualityOp_Test10test_info_E called 2 returned 100% blocks executed 100%
+function _Z41__static_initialization_and_destruction_0ii called 2 returned 100% blocks executed 100%
+        8:  129:}
+        2:  129-block  0
+        2:  129-block  1
+call    0 returned 2
+        2:  129-block  2
+        2:  129-block  3
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0
-        1:  129-block  4
-branch  3 taken 1 (fallthrough)
+        2:  129-block  4
+branch  3 taken 2 (fallthrough)
 branch  4 taken 0

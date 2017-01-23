@@ -10,7 +10,7 @@ template <class T> struct Vertex {
 };
 
 
-template <class T> void depth(std::vector<T> source, int start_index, std::vector<int> (* get_neighbors)(std::vector<T> arr, int index), void (*print)(T value))
+template <class T, class X> void depth(std::vector<T> source, int start_index, X get_neighbors, void (*print)(T value))
 {
 	int size = source.size();
 	std::vector< Vertex<T> > graph(size);
@@ -52,7 +52,7 @@ template <class T> void depth(std::vector<T> source, int start_index, std::vecto
 	}
 }
 
-template <class T> void breadth(std::vector<T> source, int start_index, std::vector<int> (* get_neighbors)(std::vector<T> arr, int index), void (*print)(T value))
+template <class T, class X> void breadth(std::vector<T> source, int start_index, X get_neighbors, void (*print)(T value))
 {
 	int size = source.size();
 	std::vector< Vertex<T> > graph(size);
