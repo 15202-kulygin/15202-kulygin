@@ -4,20 +4,13 @@
 #include <queue>
 
 template <class VertexType> struct Vertex {
-	//Vertex(VertexType new_data) : data(new_data), is_visited(false) {}
-	//~Vertex() {}
-	
-
-
 	std::vector< Vertex <VertexType> * > neighbors;
 	VertexType data;
 	bool is_visited;	
 };
 
-template <class VertexType> class Graph {
+template <class VertexType, class GraphType, class NeighborFunction, class PrintFunction> class Graph {
 	public:
-		
-		
 		Graph() {}
 		~Graph() {}
 		int size()
@@ -40,7 +33,7 @@ template <class VertexType> class Graph {
 				vertexes.push_back(to_add);
 			}
 		}
-		Vertex <VertexType>& getVertexPtr(VertexType data)
+		Vertex <VertexType>& getVertex(VertexType data)
 		{
 			for (int i = 0; i < vertexes.size(); ++i)
 			{
@@ -49,9 +42,9 @@ template <class VertexType> class Graph {
 					return vertexes[i];
 				}
 			}
-			//return nullptr;
+			throw -1;
 		}
-		Vertex <VertexType> operator[](int index)
+		Vertex <VertexType>& operator[](int index)
 		{
 			if ((index >= 0) && (index < vertexes.size()))
 			{
@@ -73,71 +66,62 @@ template <class VertexType> class Graph {
         		        return;
         		    }
         		}
-        		Vertex<VertexType>& new_neighbor = getVertexPtr(to_add);
+        		Vertex<VertexType>& new_neighbor = getVertex(to_add);
 				vertexes[index].neighbors.push_back(&new_neighbor);
-				//std::cout << "ADDED " << to_add << std::endl;
-				//std::cout << "SIZE NOW " << neighbors.size() << std::endl;
 			}
 		}
-
-
-		std::vector< Vertex<VertexType> > vertexes;
-
-
-
+		void fillGraph(GraphType source)
+		{
+			for (auto src : source) // adding vertexes from container
+			{
+				Vertex<VertexType> to_add;
+				to_add.data = src;
+				to_add.is_visited = false;
+				addVertex(to_add);
+			}
+		}
+		void fillNeighbors(GraphType source, NeighborFunction get_neighbors)
+		{
+			for (int i = 0; i < vertexes.size(); ++i) // adding neighbors
+			{
+				auto indexes = get_neighbors(source, vertexes[i].data);
+				for (auto j : indexes)
+				{
+					addNeighbor(i, j);
+				}
+			}
+		}
+		void printGraph(PrintFunction print)
+		{
+			for (int i = 0; i < vertexes.size(); ++i)
+			{
+				std::cout << "Vertex " << i << std::endl;
+				Vertex < VertexType > vertex = vertexes[i];
+				print(vertex.data);
+				std::cout << std::endl << "Neighbors: " << std::endl;
+				for (int j = 0; j < vertex.neighbors.size(); ++j)
+				{
+					print(vertex.neighbors[j]->data); 
+				}
+				std::cout << std::endl << std::endl;;
+			}
+		}
 	private:
-		
-
+		std::vector< Vertex<VertexType> > vertexes;
 };
 
 
 template <class VertexType, class GraphType, class NeighborFunction, class PrintFunction> 
-void depth(VertexType start_index, GraphType source, NeighborFunction get_neighbors, PrintFunction print) //std::vector<VertexType> ---> зашаблонить
+void depth(VertexType start_index, GraphType source, NeighborFunction get_neighbors, PrintFunction print) 
 {
-	Graph<VertexType> graph;
-	
-	for (auto src : source) // adding vertexes from container
-	{
-		Vertex<VertexType> to_add;
-		to_add.data = src;
-		to_add.is_visited = false;
-		graph.addVertex(to_add);
-	}
-
-	int size = graph.size();
-	for (int i = 0; i < size; ++i)
-	{
-		//std::cout << " CHJBJHB " << i << std::endl; 
-		auto indexes = get_neighbors(source, i);
-		//std::cout << i << " check " << indexes[0] << std::endl;
-		//std::cout << "Vertex ";
-		//print(graph[i].data);
-		//std::cout << ":" << std::endl;
-		for (auto j : indexes)
-		{
-			
-			graph.addNeighbor(i, j);
-			//print(graph[indexes[j]].data);
-			//std::cout << " ";
-		}
-		//std::cout << std::endl;
-	}
-	//std::cout << graph[0].neighbors.size() << " CHECK";
-	for (int i = 0; i < graph.size(); ++i)
-	{
-		std::cout << "Vertex " << i << std::endl;
-		Vertex < VertexType > vertex = graph[i];
-		print(vertex.data);
-		std::cout << std::endl << "Neighbors: " << std::endl;
-		for (int j = 0; j < vertex.neighbors.size(); ++j)
-		{
-			print(vertex.neighbors[j]->data);
-			std::cout << std::endl << std::endl; 
-		}
-	}/*
-	std::stack < Vertex <VertexType> *> stk;
-	stk.push(&graph[start_index]);
-	while (0 != stk.size())
+	std::cout << "DFS" << std::endl;
+	Graph<VertexType, GraphType, NeighborFunction, PrintFunction> graph;
+	graph.fillGraph(source);
+	graph.fillNeighbors(source, get_neighbors);
+	//graph.printGraph(print);
+	std::stack < Vertex <VertexType> *> stk; 
+	stk.push(&graph.getVertex(start_index));
+	while (!stk.empty())
 	{
 		Vertex<VertexType> * popped = stk.top();
 		stk.pop();
@@ -151,30 +135,21 @@ void depth(VertexType start_index, GraphType source, NeighborFunction get_neighb
 				stk.push(popped->neighbors[i]);
 			}
 		}
-	}*/
+	}
+	std::cout << std::endl << std::endl;
 }
 
-/*template <class VertexType, class NeighborFunction, class PrintFunction> 
-void breadth(std::vector<VertexType> source, int start_index, NeighborFunction get_neighbors, PrintFunction print)
+template <class VertexType, class GraphType, class NeighborFunction, class PrintFunction> 
+void breadth(VertexType start_index, GraphType source, NeighborFunction get_neighbors, PrintFunction print) 
 {
-	int size = source.size();
-	std::vector< Vertex<VertexType> > graph(size);
-	for (int i = 0; i < size; ++i)
-	{
-		graph[i].data = source[i];
-		graph[i].is_visited = false;
-	}
-	for (int i = 0; i < size; ++i)
-	{
-		std::vector<int> indexes = get_neighbors(source, i);
-		for (int j = 0; j < indexes.size(); ++j)
-		{
-			graph[i].neighbors.push_back(&graph[indexes[j]]);
-		}
-	}
-	std::queue < Vertex <VertexType> *> que;
-	que.push(&graph[start_index]);
-	while (0 != que.size())
+	std::cout << "BFS" << std::endl;
+	Graph<VertexType, GraphType, NeighborFunction, PrintFunction> graph;
+	graph.fillGraph(source);
+	graph.fillNeighbors(source, get_neighbors);
+	//graph.printGraph(print);
+	std::queue < Vertex <VertexType> *> que; 
+	que.push(&graph.getVertex(start_index));
+	while (!que.empty())
 	{
 		Vertex<VertexType> * popped = que.front();
 		que.pop();
@@ -189,6 +164,7 @@ void breadth(std::vector<VertexType> source, int start_index, NeighborFunction g
 			}
 		}
 	}
-}*/
+	std::cout << std::endl << std::endl;
+}
 
 

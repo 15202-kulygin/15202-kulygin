@@ -1,7 +1,7 @@
 #include <iostream>
-#include <vector>
+#include <list>
 
-std::vector<int> INT_get_neighbors (std::vector<int> arr, int index)
+/*std::vector<int> INT_get_neighbors (std::vector<int> arr, int index)
 {
 	std::vector<int> result;
 	for (int i = 0; i < arr.size(); ++i)
@@ -9,11 +9,11 @@ std::vector<int> INT_get_neighbors (std::vector<int> arr, int index)
 		result.push_back(i);
 	}
 	return result;
-}
+}*/
 
-/*std::vector<int> INT_get_neighbors (std::vector<int> arr, int index) //TREE
+std::list<int> INT_get_neighbors (std::list<int> arr, int index) //TREE
 {
-	std::vector<int> result;
+	std::list<int> result;
 	if (0 == index)
 	{
 		result.push_back(7);
@@ -41,14 +41,9 @@ std::vector<int> INT_get_neighbors (std::vector<int> arr, int index)
 		result.push_back(9);
 	}
 	return result;
-}*/
+}
 
 void INT_print(int value)
 {
 	std::cout << value << " "; 
-}
-
-int INT_get_size(std::vector<int> arr)
-{
-	return arr.size();
 }
