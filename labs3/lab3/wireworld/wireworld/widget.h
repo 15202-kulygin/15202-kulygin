@@ -20,8 +20,7 @@ public:
     ~Widget();
     void clearField();
     void resizeField(int h, int w);
-    void saveToFile(std::string text);
-    void loadFromFile(std::string text);
+    Field * get_field();
 
 public slots:
     void makeStep();
