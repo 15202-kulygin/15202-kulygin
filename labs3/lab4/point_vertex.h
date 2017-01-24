@@ -26,3 +26,8 @@ void POINT_print(Point to_print)
 {
 	std::cout << to_print.name << " " << to_print.distance << " " << to_print.population << " "; 
 }
+
+int POINT_get_size(std::vector<Point> points)
+{
+	return points.size();
+}

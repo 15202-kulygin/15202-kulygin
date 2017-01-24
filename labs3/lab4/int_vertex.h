@@ -45,5 +45,10 @@ std::vector<int> INT_get_neighbors (std::vector<int> arr, int index)
 
 void INT_print(int value)
 {
-	std::cout << value; 
+	std::cout << value << " "; 
+}
+
+int INT_get_size(std::vector<int> arr)
+{
+	return arr.size();
 }
