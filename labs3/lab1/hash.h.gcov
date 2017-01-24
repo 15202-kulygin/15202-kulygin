@@ -52,39 +52,39 @@
         -:   50:
         -:   51:    bool empty() const;
         -:   52:
-function _ZeqRK9HashTableS1_ called 8 returned 100% blocks executed 80%
-        8:   53:    friend bool operator==(const HashTable & a, const HashTable & b)
-        8:   53-block  0
+function _ZeqRK9HashTableS1_ called 4 returned 100% blocks executed 80%
+        4:   53:    friend bool operator==(const HashTable & a, const HashTable & b)
+        4:   53-block  0
         -:   54:    {
-        8:   55:      if (a.size == b.size)
-        8:   55-block  0
-branch  0 taken 8 (fallthrough)
+        4:   55:      if (a.size == b.size)
+        4:   55-block  0
+branch  0 taken 4 (fallthrough)
 branch  1 taken 0
         -:   56:      {
-        8:   57:        for (int i = 0; i < a.capacity; ++i)
-        8:   57-block  0
-branch  0 taken 8 (fallthrough)
+        4:   57:        for (int i = 0; i < a.capacity; ++i)
+        4:   57-block  0
+branch  0 taken 4 (fallthrough)
 branch  1 taken 0
         -:   58:        {
-        8:   59:          if (true == a.table[i].is_filled)
-        8:   59-block  0
-branch  0 taken 4 (fallthrough)
-branch  1 taken 4
+        4:   59:          if (true == a.table[i].is_filled)
+        4:   59-block  0
+branch  0 taken 2 (fallthrough)
+branch  1 taken 2
         -:   60:          {
-        4:   61:            if (false == b.search(a.table[i].key))
-        4:   61-block  0
-call    0 returned 4
-branch  1 taken 4 (fallthrough)
+        2:   61:            if (false == b.search(a.table[i].key))
+        2:   61-block  0
+call    0 returned 2
+branch  1 taken 2 (fallthrough)
 branch  2 taken 0
         -:   62:            {
-        4:   63:              return false;
-        4:   63-block  0
-unconditional  0 taken 4
+        2:   63:              return false;
+        2:   63-block  0
+unconditional  0 taken 2
         -:   64:            }
         -:   65:          }
-        4:   66:          return true;
-        4:   66-block  0
-unconditional  0 taken 4
+        2:   66:          return true;
+        2:   66-block  0
+unconditional  0 taken 2
     $$$$$:   66-block  1
 unconditional  1 never executed
         -:   67:        }
@@ -94,15 +94,15 @@ unconditional  1 never executed
 unconditional  0 never executed
         -:   70:    }
         -:   71:
-function _ZneRK9HashTableS1_ called 2 returned 100% blocks executed 80%
-        2:   72:    friend bool operator!=(const HashTable & a, const HashTable & b)
-        2:   72-block  0
+function _ZneRK9HashTableS1_ called 1 returned 100% blocks executed 80%
+        1:   72:    friend bool operator!=(const HashTable & a, const HashTable & b)
+        1:   72-block  0
         -:   73:    {
-        2:   74:      if (a == b)
-        2:   74-block  0
-call    0 returned 2
+        1:   74:      if (a == b)
+        1:   74-block  0
+call    0 returned 1
 branch  1 taken 0 (fallthrough)
-branch  2 taken 2
+branch  2 taken 1
         -:   75:      {
     #####:   76:        return false;
     $$$$$:   76-block  0
@@ -110,9 +110,9 @@ unconditional  0 never executed
         -:   77:      }
         -:   78:      else
         -:   79:      {
-        2:   80:        return true;
-        2:   80-block  0
-unconditional  0 taken 2
+        1:   80:        return true;
+        1:   80-block  0
+unconditional  0 taken 1
         -:   81:      }
         -:   82:    }
         -:   83:    void rehash();

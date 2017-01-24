@@ -1,3 +1,7 @@
+#ifndef GRAPH_H
+#define GRAPH_H
+
+
 #include <iostream>
 #include <vector>
 #include <stack>
@@ -168,3 +172,4 @@ void breadth(VertexType start_index, GraphType source, NeighborFunction get_neig
 }
 
 
+#endif

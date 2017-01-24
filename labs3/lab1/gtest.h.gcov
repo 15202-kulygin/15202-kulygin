@@ -255,32 +255,32 @@
         -:  253://   Expected: Foo() is even
         -:  254://     Actual: it's 5
         -:  255://
-function _ZN7testing15AssertionResultD1Ev called 52 returned 100% blocks executed 100%
-       52:  256:class GTEST_API_ AssertionResult {
-       52:  256-block  0
-       52:  256-block  1
-call    0 returned 52
-branch  1 taken 52 (fallthrough)
+function _ZN7testing15AssertionResultD1Ev called 32 returned 100% blocks executed 100%
+       32:  256:class GTEST_API_ AssertionResult {
+       32:  256-block  0
+       32:  256-block  1
+call    0 returned 32
+branch  1 taken 32 (fallthrough)
 branch  2 taken 0 (throw)
-       52:  256-block  2
-unconditional  3 taken 52
+       32:  256-block  2
+unconditional  3 taken 32
         -:  257: public:
         -:  258:  // Copy constructor.
         -:  259:  // Used in EXPECT_TRUE/FALSE(assertion_result).
         -:  260:  AssertionResult(const AssertionResult& other);
         -:  261:  // Used in the EXPECT_TRUE/FALSE(bool_expression).
-function _ZN7testing15AssertionResultC1Eb called 52 returned 100% blocks executed 100%
-      104:  262:  explicit AssertionResult(bool success) : success_(success) {}
-       52:  262-block  0
-       52:  262-block  1
-call    0 returned 52
+function _ZN7testing15AssertionResultC1Eb called 32 returned 100% blocks executed 100%
+       64:  262:  explicit AssertionResult(bool success) : success_(success) {}
+       32:  262-block  0
+       32:  262-block  1
+call    0 returned 32
         -:  263:
         -:  264:  // Returns true iff the assertion succeeded.
-function _ZNK7testing15AssertionResultcvbEv called 52 returned 100% blocks executed 100%
-      104:  265:  operator bool() const { return success_; }  // NOLINT
-       52:  265-block  0
-       52:  265-block  1
-unconditional  0 taken 52
+function _ZNK7testing15AssertionResultcvbEv called 32 returned 100% blocks executed 100%
+       64:  265:  operator bool() const { return success_; }  // NOLINT
+       32:  265-block  0
+       32:  265-block  1
+unconditional  0 taken 32
         -:  266:
         -:  267:  // Returns the assertion's negation. Used with EXPECT/ASSERT_FALSE.
         -:  268:  AssertionResult operator!() const;
@@ -521,9 +521,9 @@ unconditional  0 never executed
         -:  362:  // test in test case Foo.  Hence a sub-class can define its own
         -:  363:  // SetUpTestCase() method to shadow the one defined in the super
         -:  364:  // class.
-function _ZN7testing4Test13SetUpTestCaseEv called 2 returned 100% blocks executed 100%
-        2:  365:  static void SetUpTestCase() {}
-        2:  365-block  0
+function _ZN7testing4Test13SetUpTestCaseEv called 1 returned 100% blocks executed 100%
+        1:  365:  static void SetUpTestCase() {}
+        1:  365-block  0
         -:  366:
         -:  367:  // Tears down the stuff shared by all tests in this test case.
         -:  368:  //
@@ -531,9 +531,9 @@ function _ZN7testing4Test13SetUpTestCaseEv called 2 returned 100% blocks execute
         -:  370:  // test in test case Foo.  Hence a sub-class can define its own
         -:  371:  // TearDownTestCase() method to shadow the one defined in the super
         -:  372:  // class.
-function _ZN7testing4Test16TearDownTestCaseEv called 2 returned 100% blocks executed 100%
-        2:  373:  static void TearDownTestCase() {}
-        2:  373-block  0
+function _ZN7testing4Test16TearDownTestCaseEv called 1 returned 100% blocks executed 100%
+        1:  373:  static void TearDownTestCase() {}
+        1:  373-block  0
         -:  374:
         -:  375:  // Returns true iff the current test has a fatal failure.
         -:  376:  static bool HasFatalFailure();
@@ -1618,9 +1618,9 @@ call    1 never executed
         -: 1435:
         -: 1436:// The helper function for {ASSERT|EXPECT}_EQ.
         -: 1437:template <typename T1, typename T2>
-function _ZN7testing8internal11CmpHelperEQIjiEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 4 returned 100% blocks executed 31%
-        4: 1438:AssertionResult CmpHelperEQ(const char* expected_expression,
-        4: 1438-block  0
+function _ZN7testing8internal11CmpHelperEQIjiEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 2 returned 100% blocks executed 31%
+        2: 1438:AssertionResult CmpHelperEQ(const char* expected_expression,
+        2: 1438-block  0
         -: 1439:                            const char* actual_expression,
         -: 1440:                            const T1& expected,
         -: 1441:                            const T2& actual) {
@@ -1630,14 +1630,14 @@ function _ZN7testing8internal11CmpHelperEQIjiEENS_15AssertionResultEPKcS4_RKT_RK
         -: 1445:                                // signed/unsigned mismatch.
         -: 1446:#endif
         -: 1447:
-        4: 1448:  if (expected == actual) {
-        4: 1448-block  0
-branch  0 taken 4 (fallthrough)
+        2: 1448:  if (expected == actual) {
+        2: 1448-block  0
+branch  0 taken 2 (fallthrough)
 branch  1 taken 0
-        4: 1449:    return AssertionSuccess();
-        4: 1449-block  0
-call    0 returned 4
-unconditional  1 taken 4
+        2: 1449:    return AssertionSuccess();
+        2: 1449-block  0
+call    0 returned 2
+unconditional  1 taken 2
         -: 1450:  }
         -: 1451:
         -: 1452:#ifdef _MSC_VER
@@ -1648,7 +1648,7 @@ unconditional  1 taken 4
         -: 1457:                   actual_expression,
         -: 1458:                   FormatForComparisonFailureMessage(expected, actual),
         -: 1459:                   FormatForComparisonFailureMessage(actual, expected),
-        4: 1460:                   false);
+        2: 1460:                   false);
     $$$$$: 1460-block  0
 call    0 never executed
 call    1 never executed
@@ -1665,8 +1665,8 @@ branch  9 never executed
     $$$$$: 1460-block  3
 call   10 never executed
 unconditional 11 never executed
-        4: 1460-block  4
-unconditional 12 taken 4
+        2: 1460-block  4
+unconditional 12 taken 2
     %%%%%: 1460-block  5
 call   13 never executed
 unconditional 14 never executed
@@ -1691,16 +1691,16 @@ call   15 never executed
         -: 1477: public:
         -: 1478:  // This templatized version is for the general case.
         -: 1479:  template <typename T1, typename T2>
-function _ZN7testing8internal8EqHelperILb0EE7CompareIjiEENS_15AssertionResultEPKcS6_RKT_RKT0_ called 4 returned 100% blocks executed 100%
-        4: 1480:  static AssertionResult Compare(const char* expected_expression,
-        4: 1480-block  0
+function _ZN7testing8internal8EqHelperILb0EE7CompareIjiEENS_15AssertionResultEPKcS6_RKT_RKT0_ called 2 returned 100% blocks executed 100%
+        2: 1480:  static AssertionResult Compare(const char* expected_expression,
+        2: 1480-block  0
         -: 1481:                                 const char* actual_expression,
         -: 1482:                                 const T1& expected,
         -: 1483:                                 const T2& actual) {
         -: 1484:    return CmpHelperEQ(expected_expression, actual_expression, expected,
-        4: 1485:                       actual);
-        4: 1485-block  0
-call    0 returned 4
+        2: 1485:                       actual);
+        2: 1485-block  0
+call    0 returned 2
         -: 1486:  }
         -: 1487:
         -: 1488:  // With this overloaded version, we allow anonymous enums to be used
@@ -1792,15 +1792,15 @@ call    0 returned 4
         -: 1574:// INTERNAL IMPLEMENTATION - DO NOT USE IN A USER PROGRAM.
         -: 1575:
         -: 1576:// Implements the helper function for {ASSERT|EXPECT}_NE
-function _ZN7testing8internal11CmpHelperNEIjiEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 4 returned 100% blocks executed 15%
-        4: 1577:GTEST_IMPL_CMP_HELPER_(NE, !=);
-        4: 1577-block  0
-        4: 1577-block  1
-branch  0 taken 4 (fallthrough)
+function _ZN7testing8internal11CmpHelperNEIjiEENS_15AssertionResultEPKcS4_RKT_RKT0_ called 2 returned 100% blocks executed 15%
+        2: 1577:GTEST_IMPL_CMP_HELPER_(NE, !=);
+        2: 1577-block  0
+        2: 1577-block  1
+branch  0 taken 2 (fallthrough)
 branch  1 taken 0
-        4: 1577-block  2
-call    2 returned 4
-unconditional  3 taken 4
+        2: 1577-block  2
+call    2 returned 2
+unconditional  3 taken 2
     $$$$$: 1577-block  3
 call    4 never executed
 call    5 never executed
@@ -1859,8 +1859,8 @@ branch 44 never executed
     $$$$$: 1577-block 17
 call   45 never executed
 unconditional 46 never executed
-        4: 1577-block 18
-unconditional 47 taken 4
+        2: 1577-block 18
+unconditional 47 taken 2
     %%%%%: 1577-block 19
 call   48 never executed
 unconditional 49 never executed
@@ -2578,14 +2578,14 @@ call   52 never executed
         -: 2284:// namespace and has an all-caps name.
         -: 2285:int RUN_ALL_TESTS() GTEST_MUST_USE_RESULT_;
         -: 2286:
-function _Z13RUN_ALL_TESTSv called 2 returned 100% blocks executed 100%
-        2: 2287:inline int RUN_ALL_TESTS() {
-        2: 2287-block  0
-        2: 2288:  return ::testing::UnitTest::GetInstance()->Run();
-        2: 2288-block  0
-call    0 returned 2
-call    1 returned 2
-unconditional  2 taken 2
+function _Z13RUN_ALL_TESTSv called 1 returned 100% blocks executed 100%
+        1: 2287:inline int RUN_ALL_TESTS() {
+        1: 2287-block  0
+        1: 2288:  return ::testing::UnitTest::GetInstance()->Run();
+        1: 2288-block  0
+call    0 returned 1
+call    1 returned 1
+unconditional  2 taken 1
         -: 2289:}
         -: 2290:
         -: 2291:#endif  // GTEST_INCLUDE_GTEST_GTEST_H_

@@ -84,15 +84,15 @@
         -:   82:// latter (it causes an access violation if you do).  The Message
         -:   83:// class hides this difference by treating a NULL char pointer as
         -:   84:// "(null)".
-function _ZN7testing7MessageD1Ev called 98 returned 100% blocks executed 100%
-       98:   85:class GTEST_API_ Message {
-       98:   85-block  0
-       98:   85-block  1
-call    0 returned 98
-branch  1 taken 98 (fallthrough)
+function _ZN7testing7MessageD1Ev called 50 returned 100% blocks executed 100%
+       50:   85:class GTEST_API_ Message {
+       50:   85-block  0
+       50:   85-block  1
+call    0 returned 50
+branch  1 taken 50 (fallthrough)
 branch  2 taken 0 (throw)
-       98:   85-block  2
-unconditional  3 taken 98
+       50:   85-block  2
+unconditional  3 taken 50
         -:   86: private:
         -:   87:  // The type of basic IO manipulators (endl, ends, and flush) for
         -:   88:  // narrow streams.
@@ -124,12 +124,12 @@ unconditional  3 taken 98
         -:  114:  template <typename T>
 function _ZN7testing7MessagelsIA5_cEERS0_RKT_ called 0 returned 0% blocks executed 0%
 function _ZN7testing7MessagelsINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEERS0_RKT_ called 0 returned 0% blocks executed 0%
-function _ZN7testing7MessagelsIA7_cEERS0_RKT_ called 30 returned 100% blocks executed 100%
+function _ZN7testing7MessagelsIA7_cEERS0_RKT_ called 15 returned 100% blocks executed 100%
 function _ZN7testing7MessagelsIA12_cEERS0_RKT_ called 0 returned 0% blocks executed 0%
-       30:  115:  inline Message& operator <<(const T& val) {
+       15:  115:  inline Message& operator <<(const T& val) {
     $$$$$:  115-block  0
     $$$$$:  115-block  1
-       30:  115-block  2
+       15:  115-block  2
     $$$$$:  115-block  3
         -:  116:    // Some libraries overload << for STL containers.  These
         -:  117:    // overloads are defined in the global namespace instead of ::std.
@@ -146,23 +146,23 @@ function _ZN7testing7MessagelsIA12_cEERS0_RKT_ called 0 returned 0% blocks execu
         -:  128:    // overloads of << defined in the global namespace and those
         -:  129:    // visible via Koenig lookup are both exposed in this function.
         -:  130:    using ::operator <<;
-       30:  131:    *ss_ << val;
+       15:  131:    *ss_ << val;
     $$$$$:  131-block  0
 call    0 never executed
 call    1 never executed
     $$$$$:  131-block  1
 call    2 never executed
 call    3 never executed
-       30:  131-block  2
-call    4 returned 30
-call    5 returned 30
+       15:  131-block  2
+call    4 returned 15
+call    5 returned 15
     $$$$$:  131-block  3
 call    6 never executed
 call    7 never executed
-       30:  132:    return *this;
+       15:  132:    return *this;
 unconditional  0 never executed
 unconditional  1 never executed
-unconditional  2 taken 30
+unconditional  2 taken 15
 unconditional  3 never executed
         -:  133:  }
         -:  134:
@@ -180,28 +180,28 @@ unconditional  3 never executed
         -:  146:  // ensure consistent result across compilers, we always treat NULL
         -:  147:  // as "(null)".
         -:  148:  template <typename T>
-function _ZN7testing7MessagelsIKcEERS0_RKPT_ called 30 returned 100% blocks executed 71%
-       30:  149:  inline Message& operator <<(T* const& pointer) {  // NOLINT
-       30:  149-block  0
-       30:  150:    if (pointer == NULL) {
-       30:  150-block  0
+function _ZN7testing7MessagelsIKcEERS0_RKPT_ called 15 returned 100% blocks executed 71%
+       15:  149:  inline Message& operator <<(T* const& pointer) {  // NOLINT
+       15:  149-block  0
+       15:  150:    if (pointer == NULL) {
+       15:  150-block  0
 branch  0 taken 0 (fallthrough)
-branch  1 taken 30
+branch  1 taken 15
     #####:  151:      *ss_ << "(null)";
     $$$$$:  151-block  0
 call    0 never executed
 call    1 never executed
 unconditional  2 never executed
         -:  152:    } else {
-       30:  153:      *ss_ << pointer;
-       30:  153-block  0
-call    0 returned 30
-call    1 returned 30
-unconditional  2 taken 30
+       15:  153:      *ss_ << pointer;
+       15:  153-block  0
+call    0 returned 15
+call    1 returned 15
+unconditional  2 taken 15
         -:  154:    }
-       30:  155:    return *this;
-       30:  155-block  0
-unconditional  0 taken 30
+       15:  155:    return *this;
+       15:  155-block  0
+unconditional  0 taken 15
         -:  156:  }
         -:  157:#endif  // GTEST_OS_SYMBIAN
         -:  158:

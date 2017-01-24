@@ -1,3 +1,6 @@
+#include <iostream>
+#include <fstream>
+#include <string>
 #include "include/gtest/gtest.h"
 #include "hash.h"
 
@@ -105,6 +108,7 @@ TEST (HashTests, At)
 	HashTable ht;
 	const Value temp = {1, 1};
 	ht.insert("qwe", temp);
+	bool check = true;
 	try
   	{
     	Value ep = ht.at("qwe");
@@ -112,8 +116,10 @@ TEST (HashTests, At)
   	catch(int a)
   	{
     	cout << "Caught exception number:  " << a << endl;
-    	return;
+    	check = false;
   	}
+  	EXPECT_TRUE(check);
+  	check = false;
   	cout << "No exception detected" << endl;
 	ht.erase("qwe");
 	try
@@ -123,9 +129,78 @@ TEST (HashTests, At)
   	catch(int a)
   	{
     	cout << "Caught exception number:  " << a << endl;
-    	return;
+    	check = true;
   	}
-  	cout << "No exception detected" << endl;
+  	//cout << "No exception detected" << endl;
+  	EXPECT_TRUE(check);
+}
+
+TEST (HashTests, Rehash)
+{
+	std::string str;
+    std::ifstream input;
+    input.open("crusoe.txt");
+    HashTable ht;
+    //std::cout << "REHASH TEST" << std::endl;
+    int i = 0;
+    HashTable ht2;
+    while (getline(input, str))
+    {
+    	if (1000 == i)
+    	{
+    		ht2 = ht;
+    	}
+    	if (0 == i % 1000)
+    	{
+    		//std::cout << "ADDED " << i << std::endl;
+    	}
+        Key key = str;
+        Value value;
+        getkey(str, key);
+        getvalue(str, value);
+        ht.insert(key, value);
+        ++i;
+    }
+    input.close();
+    //std::cout << "FILE ADDED" << std::endl;
+    bool safe_check = true;
+    bool correct_check = true;
+    bool full_check = true;
+    bool size_check = true;
+    for (int j = 0; i < ht2.getsize(); ++j)
+    {
+    	if (false == ht.search(ht2.get_data()[i].key))
+    	{
+    		safe_check = false;
+    	}
+    }
+    Value temp = {1, 1};
+    ht2.insert("rrrrr", temp);
+    //ht.insert("rrrrr", temp);
+    if (true == ht.search("rrrrr"))
+    {
+    	correct_check = false;
+    }
+    input.open("crusoe.txt");
+    while (getline(input, str))
+    {
+        Key key = str;
+        getkey(str, key);
+       	if (false == ht.search(key))
+       	{
+       		full_check = false;
+       	}
+    }
+    if (ht.getsize() != i)
+    {
+    	size_check = false;
+    }
+    input.close();
+    EXPECT_TRUE(safe_check);
+    EXPECT_TRUE(correct_check);
+    EXPECT_TRUE(full_check);
+    EXPECT_TRUE(size_check);
+    
 }
 
 

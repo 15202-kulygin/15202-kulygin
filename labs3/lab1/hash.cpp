@@ -77,9 +77,6 @@ void HashTable::rehash()
 {
     Table * temp = new Table[capacity]; // creating temporary array of tables
     int current_ind = 0;
-
-    //std::cout << "CHECK " <<std::endl;
-    //print();
     std::copy(table, table + capacity, temp);
     for (int i = 0; i < capacity; ++i)
     {
@@ -94,14 +91,8 @@ void HashTable::rehash()
         }
     }
     delete [] table; // deleting the old array of tables
-    capacity *= 2;  // define
+    capacity *= 2;  
     table = new Table[capacity];
-    /*Table to_fill;
-    to_fill.is_filled = false;
-    to_fill.key = " ";
-    to_fill.value.age = -1;
-    to_fill.value.weight = -1;
-    std::fill(table, table + capacity, to_fill);*/
     for (int i = 0; i < capacity; ++i)
     {
         table[i].is_filled = false;
@@ -117,7 +108,6 @@ void HashTable::rehash()
         insert(temp[i].key, temp[i].value);
     }
     delete [] temp;
-    
 }
 
 // Проверка наличия значения по заданному ключу.
@@ -278,7 +268,11 @@ Value& HashTable::at(const Key& k)
 {
     if (false == HashTable::search(k))
     {
-        throw 0;
+        /*Value * temp = new Value;
+        temp->age = 0;
+        temp->weight = 0;
+        return *temp;*/ // ------------------ Hashtest "At" failed with this code
+        throw -1;
     }
     else
     {
@@ -324,14 +318,15 @@ Value& HashTable::operator[](const Key& k)
     }
 }
 
-
-
-
 const Value& HashTable::at(const Key& k) const
 {
     if (false == HashTable::search(k))
     {
-        throw 0;
+        /*Value * temp = new Value;
+        temp->age = 0;
+        temp->weight = 0;
+        return *temp;*/
+        throw -1;
     }
     else
     {

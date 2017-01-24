@@ -1,3 +1,6 @@
+#ifndef MYVERTEX_H
+#define MYVERTEX_H
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -37,3 +40,5 @@ void MY_print(City value)
 {
 	std::cout << value.name << " " << value.distance << " ";
 }
+
+#endif

@@ -893,32 +893,32 @@
         -:  891: public:
         -:  892:  typedef T element_type;
         -:  893:
-function _ZN7testing8internal10scoped_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEC1EPS7_ called 52 returned 100% blocks executed 100%
-       52:  894:  explicit scoped_ptr(T* p = NULL) : ptr_(p) {}
-       52:  894-block  0
-function _ZN7testing8internal10scoped_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEED1Ev called 52 returned 100% blocks executed 100%
-function _ZN7testing8internal10scoped_ptrINSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEEED1Ev called 98 returned 100% blocks executed 100%
-      150:  895:  ~scoped_ptr() { reset(); }
-       52:  895-block  0
-       52:  895-block  1
-call    0 returned 52
-branch  1 taken 52 (fallthrough)
+function _ZN7testing8internal10scoped_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEC1EPS7_ called 32 returned 100% blocks executed 100%
+       32:  894:  explicit scoped_ptr(T* p = NULL) : ptr_(p) {}
+       32:  894-block  0
+function _ZN7testing8internal10scoped_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEED1Ev called 32 returned 100% blocks executed 100%
+function _ZN7testing8internal10scoped_ptrINSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEEED1Ev called 50 returned 100% blocks executed 100%
+       82:  895:  ~scoped_ptr() { reset(); }
+       32:  895-block  0
+       32:  895-block  1
+call    0 returned 32
+branch  1 taken 32 (fallthrough)
 branch  2 taken 0 (throw)
-       52:  895-block  2
-unconditional  3 taken 52
-       98:  895-block  3
-       98:  895-block  4
-call    4 returned 98
-branch  5 taken 98 (fallthrough)
+       32:  895-block  2
+unconditional  3 taken 32
+       50:  895-block  3
+       50:  895-block  4
+call    4 returned 50
+branch  5 taken 50 (fallthrough)
 branch  6 taken 0 (throw)
-       98:  895-block  5
-unconditional  7 taken 98
+       50:  895-block  5
+unconditional  7 taken 50
         -:  896:
-function _ZNK7testing8internal10scoped_ptrINSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEEEdeEv called 756 returned 100% blocks executed 100%
-     1512:  897:  T& operator*() const { return *ptr_; }
-      756:  897-block  0
-      756:  897-block  1
-unconditional  0 taken 756
+function _ZNK7testing8internal10scoped_ptrINSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEEEdeEv called 380 returned 100% blocks executed 100%
+      760:  897:  T& operator*() const { return *ptr_; }
+      380:  897-block  0
+      380:  897-block  1
+unconditional  0 taken 380
 function _ZNK7testing8internal10scoped_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEptEv called 0 returned 0% blocks executed 0%
     #####:  898:  T* operator->() const { return ptr_; }
     $$$$$:  898-block  0
@@ -936,34 +936,34 @@ unconditional  0 never executed
         -:  904:    return ptr;
         -:  905:  }
         -:  906:
-function _ZN7testing8internal10scoped_ptrINSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEEE5resetEPS7_ called 98 returned 100% blocks executed 100%
-function _ZN7testing8internal10scoped_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE5resetEPS7_ called 52 returned 100% blocks executed 25%
-      150:  907:  void reset(T* p = NULL) {
-       98:  907-block  0
-       52:  907-block  1
-      150:  908:    if (p != ptr_) {
-       98:  908-block  0
-branch  0 taken 98 (fallthrough)
+function _ZN7testing8internal10scoped_ptrINSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEEEE5resetEPS7_ called 50 returned 100% blocks executed 100%
+function _ZN7testing8internal10scoped_ptrINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE5resetEPS7_ called 32 returned 100% blocks executed 25%
+       82:  907:  void reset(T* p = NULL) {
+       50:  907-block  0
+       32:  907-block  1
+       82:  908:    if (p != ptr_) {
+       50:  908-block  0
+branch  0 taken 50 (fallthrough)
 branch  1 taken 0
-       52:  908-block  1
+       32:  908-block  1
 branch  2 taken 0 (fallthrough)
-branch  3 taken 52
-       98:  909:      if (IsTrue(sizeof(T) > 0)) {  // Makes sure T is a complete type.
-       98:  909-block  0
-call    0 returned 98
-branch  1 taken 98 (fallthrough)
+branch  3 taken 32
+       50:  909:      if (IsTrue(sizeof(T) > 0)) {  // Makes sure T is a complete type.
+       50:  909-block  0
+call    0 returned 50
+branch  1 taken 50 (fallthrough)
 branch  2 taken 0
     $$$$$:  909-block  1
 call    3 never executed
 branch  4 never executed
 branch  5 never executed
-       98:  910:        delete ptr_;
-       98:  910-block  0
-branch  0 taken 98 (fallthrough)
+       50:  910:        delete ptr_;
+       50:  910-block  0
+branch  0 taken 50 (fallthrough)
 branch  1 taken 0
-       98:  910-block  1
-call    2 returned 98
-unconditional  3 taken 98
+       50:  910-block  1
+call    2 returned 50
+unconditional  3 taken 50
     $$$$$:  910-block  2
 branch  4 never executed
 branch  5 never executed
@@ -972,13 +972,13 @@ call    6 never executed
 call    7 never executed
 unconditional  8 never executed
         -:  911:      }
-       98:  912:      ptr_ = p;
-       98:  912-block  0
-unconditional  0 taken 98
+       50:  912:      ptr_ = p;
+       50:  912-block  0
+unconditional  0 taken 50
     $$$$$:  912-block  1
 unconditional  1 never executed
         -:  913:    }
-      150:  914:  }
+       82:  914:  }
         -:  915:
         -:  916: private:
         -:  917:  T* ptr_;

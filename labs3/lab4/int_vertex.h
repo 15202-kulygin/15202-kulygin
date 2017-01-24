@@ -1,3 +1,6 @@
+#ifndef INTVERTEX_H
+#define INTVERTEX_H
+
 #include <iostream>
 #include <list>
 
@@ -47,3 +50,5 @@ void INT_print(int value)
 {
 	std::cout << value << " "; 
 }
+
+#endif

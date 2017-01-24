@@ -296,12 +296,12 @@ call    0 returned 104
         -:  290:
         -:  291:  template<typename _Iterator>
         -:  292:    inline typename _Miter_base<_Iterator>::iterator_type
-function _ZSt12__miter_baseIP5TableENSt11_Miter_baseIT_E13iterator_typeES3_ called 40 returned 100% blocks executed 100%
-       40:  293:    __miter_base(_Iterator __it)
-       40:  293-block  0
-       40:  294:    { return std::_Miter_base<_Iterator>::_S_base(__it); }
-       40:  294-block  0
-call    0 returned 40
+function _ZSt12__miter_baseIP5TableENSt11_Miter_baseIT_E13iterator_typeES3_ called 52 returned 100% blocks executed 100%
+       52:  293:    __miter_base(_Iterator __it)
+       52:  293-block  0
+       52:  294:    { return std::_Miter_base<_Iterator>::_S_base(__it); }
+       52:  294-block  0
+call    0 returned 52
         -:  295:
         -:  296:  // All of these auxiliary structs serve two purposes.  (1) Replace
         -:  297:  // calls to copy with memmove whenever possible.  (Memmove, not memcpy,
@@ -342,28 +342,28 @@ call    0 returned 40
         -:  332:    {
         -:  333:      template<typename _II, typename _OI>
         -:  334:        static _OI
-function _ZNSt11__copy_moveILb0ELb0ESt26random_access_iterator_tagE8__copy_mIP5TableS4_EET0_T_S6_S5_ called 20 returned 100% blocks executed 100%
-       20:  335:        __copy_m(_II __first, _II __last, _OI __result)
-       20:  335-block  0
+function _ZNSt11__copy_moveILb0ELb0ESt26random_access_iterator_tagE8__copy_mIP5TableS4_EET0_T_S6_S5_ called 26 returned 100% blocks executed 100%
+       26:  335:        __copy_m(_II __first, _II __last, _OI __result)
+       26:  335-block  0
         -:  336:        { 
         -:  337:	  typedef typename iterator_traits<_II>::difference_type _Distance;
-      140:  338:	  for(_Distance __n = __last - __first; __n > 0; --__n)
-       20:  338-block  0
-unconditional  0 taken 20
-      140:  338-block  1
-branch  1 taken 120 (fallthrough)
-branch  2 taken 20
-unconditional  3 taken 120
+   262226:  338:	  for(_Distance __n = __last - __first; __n > 0; --__n)
+       26:  338-block  0
+unconditional  0 taken 26
+   262226:  338-block  1
+branch  1 taken 262200 (fallthrough)
+branch  2 taken 26
+unconditional  3 taken 262200
         -:  339:	    {
-      120:  340:	      *__result = *__first;
-      120:  340-block  0
-call    0 returned 120
-      120:  341:	      ++__first;
-      120:  342:	      ++__result;
+   262200:  340:	      *__result = *__first;
+   262200:  340-block  0
+call    0 returned 262200
+   262200:  341:	      ++__first;
+   262200:  342:	      ++__result;
         -:  343:	    }
-       20:  344:	  return __result;
-       20:  344-block  0
-unconditional  0 taken 20
+       26:  344:	  return __result;
+       26:  344-block  0
+unconditional  0 taken 26
         -:  345:	}
         -:  346:    };
         -:  347:
@@ -408,9 +408,9 @@ unconditional  0 taken 20
         -:  386:
         -:  387:  template<bool _IsMove, typename _II, typename _OI>
         -:  388:    inline _OI
-function _ZSt13__copy_move_aILb0EP5TableS1_ET1_T0_S3_S2_ called 20 returned 100% blocks executed 100%
-       20:  389:    __copy_move_a(_II __first, _II __last, _OI __result)
-       20:  389-block  0
+function _ZSt13__copy_move_aILb0EP5TableS1_ET1_T0_S3_S2_ called 26 returned 100% blocks executed 100%
+       26:  389:    __copy_move_a(_II __first, _II __last, _OI __result)
+       26:  389-block  0
         -:  390:    {
         -:  391:      typedef typename iterator_traits<_II>::value_type _ValueTypeI;
         -:  392:      typedef typename iterator_traits<_OI>::value_type _ValueTypeO;
@@ -418,13 +418,13 @@ function _ZSt13__copy_move_aILb0EP5TableS1_ET1_T0_S3_S2_ called 20 returned 100%
         -:  394:      const bool __simple = (__is_trivial(_ValueTypeI)
         -:  395:	                     && __is_pointer<_II>::__value
         -:  396:	                     && __is_pointer<_OI>::__value
-       20:  397:			     && __are_same<_ValueTypeI, _ValueTypeO>::__value);
+       26:  397:			     && __are_same<_ValueTypeI, _ValueTypeO>::__value);
         -:  398:
         -:  399:      return std::__copy_move<_IsMove, __simple,
-       20:  400:	                      _Category>::__copy_m(__first, __last, __result);
-       20:  400-block  0
-call    0 returned 20
-unconditional  1 taken 20
+       26:  400:	                      _Category>::__copy_m(__first, __last, __result);
+       26:  400-block  0
+call    0 returned 26
+unconditional  1 taken 26
         -:  401:    }
         -:  402:
         -:  403:  // Helpers for streambuf iterators (either istream or ostream).
@@ -458,19 +458,19 @@ unconditional  1 taken 20
         -:  431:
         -:  432:  template<bool _IsMove, typename _II, typename _OI>
         -:  433:    inline _OI
-function _ZSt14__copy_move_a2ILb0EP5TableS1_ET1_T0_S3_S2_ called 20 returned 100% blocks executed 100%
-       20:  434:    __copy_move_a2(_II __first, _II __last, _OI __result)
-       20:  434-block  0
+function _ZSt14__copy_move_a2ILb0EP5TableS1_ET1_T0_S3_S2_ called 26 returned 100% blocks executed 100%
+       26:  434:    __copy_move_a2(_II __first, _II __last, _OI __result)
+       26:  434-block  0
         -:  435:    {
-       20:  436:      return _OI(std::__copy_move_a<_IsMove>(std::__niter_base(__first),
-       20:  436-block  0
-call    0 returned 20
-call    1 returned 20
-call    2 returned 20
+       26:  436:      return _OI(std::__copy_move_a<_IsMove>(std::__niter_base(__first),
+       26:  436-block  0
+call    0 returned 26
+call    1 returned 26
+call    2 returned 26
         -:  437:					     std::__niter_base(__last),
-       20:  438:					     std::__niter_base(__result)));
-call    0 returned 20
-unconditional  1 taken 20
+       26:  438:					     std::__niter_base(__result)));
+call    0 returned 26
+unconditional  1 taken 26
         -:  439:    }
         -:  440:
         -:  441:  /**
@@ -492,9 +492,9 @@ unconditional  1 taken 20
         -:  457:  */
         -:  458:  template<typename _II, typename _OI>
         -:  459:    inline _OI
-function _ZSt4copyIP5TableS1_ET0_T_S3_S2_ called 20 returned 100% blocks executed 100%
-       20:  460:    copy(_II __first, _II __last, _OI __result)
-       20:  460-block  0
+function _ZSt4copyIP5TableS1_ET0_T_S3_S2_ called 26 returned 100% blocks executed 100%
+       26:  460:    copy(_II __first, _II __last, _OI __result)
+       26:  460-block  0
         -:  461:    {
         -:  462:      // concept requirements
         -:  463:      __glibcxx_function_requires(_InputIteratorConcept<_II>)
@@ -503,13 +503,13 @@ function _ZSt4copyIP5TableS1_ET0_T_S3_S2_ called 20 returned 100% blocks execute
         -:  466:      __glibcxx_requires_valid_range(__first, __last);
         -:  467:
         -:  468:      return (std::__copy_move_a2<__is_move_iterator<_II>::__value>
-       20:  469:	      (std::__miter_base(__first), std::__miter_base(__last),
-       20:  469-block  0
-call    0 returned 20
-call    1 returned 20
-       20:  470:	       __result));
-call    0 returned 20
-unconditional  1 taken 20
+       26:  469:	      (std::__miter_base(__first), std::__miter_base(__last),
+       26:  469-block  0
+call    0 returned 26
+call    1 returned 26
+       26:  470:	       __result));
+call    0 returned 26
+unconditional  1 taken 26
         -:  471:    }
         -:  472:
         -:  473:#if __cplusplus >= 201103L
@@ -732,20 +732,20 @@ unconditional  1 taken 20
         -:  690:  template<typename _ForwardIterator, typename _Tp>
         -:  691:    inline typename
         -:  692:    __gnu_cxx::__enable_if<!__is_scalar<_Tp>::__value, void>::__type
-function _ZSt8__fill_aIP5TableS0_EN9__gnu_cxx11__enable_ifIXntsrSt11__is_scalarIT0_E7__valueEvE6__typeET_S9_RKS5_ called 22 returned 100% blocks executed 100%
-       22:  693:    __fill_a(_ForwardIterator __first, _ForwardIterator __last,
-       22:  693-block  0
+function _ZSt8__fill_aIP5TableS0_EN9__gnu_cxx11__enable_ifIXntsrSt11__is_scalarIT0_E7__valueEvE6__typeET_S9_RKS5_ called 13 returned 100% blocks executed 100%
+       13:  693:    __fill_a(_ForwardIterator __first, _ForwardIterator __last,
+       13:  693-block  0
         -:  694: 	     const _Tp& __value)
         -:  695:    {
-      110:  696:      for (; __first != __last; ++__first)
-      110:  696-block  0
-branch  0 taken 88 (fallthrough)
-branch  1 taken 22
-unconditional  2 taken 88
-       88:  697:	*__first = __value;
-       88:  697-block  0
-call    0 returned 88
-       22:  698:    }
+       65:  696:      for (; __first != __last; ++__first)
+       65:  696-block  0
+branch  0 taken 52 (fallthrough)
+branch  1 taken 13
+unconditional  2 taken 52
+       52:  697:	*__first = __value;
+       52:  697-block  0
+call    0 returned 52
+       13:  698:    }
         -:  699:    
         -:  700:  template<typename _ForwardIterator, typename _Tp>
         -:  701:    inline typename
@@ -783,22 +783,22 @@ call    0 returned 88
         -:  733:  */
         -:  734:  template<typename _ForwardIterator, typename _Tp>
         -:  735:    inline void
-function _ZSt4fillIP5TableS0_EvT_S2_RKT0_ called 22 returned 100% blocks executed 100%
-       22:  736:    fill(_ForwardIterator __first, _ForwardIterator __last, const _Tp& __value)
-       22:  736-block  0
+function _ZSt4fillIP5TableS0_EvT_S2_RKT0_ called 13 returned 100% blocks executed 100%
+       13:  736:    fill(_ForwardIterator __first, _ForwardIterator __last, const _Tp& __value)
+       13:  736-block  0
         -:  737:    {
         -:  738:      // concept requirements
         -:  739:      __glibcxx_function_requires(_Mutable_ForwardIteratorConcept<
         -:  740:				  _ForwardIterator>)
         -:  741:      __glibcxx_requires_valid_range(__first, __last);
         -:  742:
-       22:  743:      std::__fill_a(std::__niter_base(__first), std::__niter_base(__last),
-       22:  743-block  0
-call    0 returned 22
-call    1 returned 22
-call    2 returned 22
+       13:  743:      std::__fill_a(std::__niter_base(__first), std::__niter_base(__last),
+       13:  743-block  0
+call    0 returned 13
+call    1 returned 13
+call    2 returned 13
         -:  744:		    __value);
-       22:  745:    }
+       13:  745:    }
         -:  746:
         -:  747:  template<typename _OutputIterator, typename _Size, typename _Tp>
         -:  748:    inline typename

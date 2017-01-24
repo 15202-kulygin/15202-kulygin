@@ -214,12 +214,12 @@
         -:  212:    struct _Iter_base
         -:  213:    {
         -:  214:      typedef _Iterator iterator_type;
-function _ZNSt10_Iter_baseIP5TableLb0EE7_S_baseES1_ called 144 returned 100% blocks executed 100%
-      144:  215:      static iterator_type _S_base(_Iterator __it)
-      144:  215-block  0
-      144:  216:      { return __it; }
-      144:  216-block  0
-unconditional  0 taken 144
+function _ZNSt10_Iter_baseIP5TableLb0EE7_S_baseES1_ called 156 returned 100% blocks executed 100%
+      156:  215:      static iterator_type _S_base(_Iterator __it)
+      156:  215-block  0
+      156:  216:      { return __it; }
+      156:  216-block  0
+unconditional  0 taken 156
         -:  217:    };
         -:  218:
         -:  219:  template<typename _Iterator>
