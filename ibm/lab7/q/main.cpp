@@ -9,7 +9,7 @@
 #include "MatrixHand.h"
 
 
-//4218
+//4218d
 
 //g++ -std=c++11 -O3 main.cpp -lblas
 
@@ -17,13 +17,13 @@ int main() {
     srand(time(NULL));
 
 //  
-    unsigned matrixSize = 2048;
+    unsigned matrixSize = 4;
     if (0 != matrixSize % 4)
     {
         std::cout << "Wrong matrix size - it should be times four" << std::endl;
         return -1;
     }
-    unsigned countRepeat = 10;
+    unsigned countRepeat = 10000;
     //unsigned matrixSize = 8;
     //std::vector<float> arr = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1};
     /*std::vector<float> arr = 
@@ -41,16 +41,14 @@ int main() {
     */
     std::vector<float> arr(matrixSize*matrixSize);
     //arr.reserve(matrixSize*matrixSize);
-    for (size_t i = 0; i < matrixSize; i++) 
-    {
-        for (size_t j = 0; j < matrixSize; j++) 
-        {
-            arr[i*matrixSize+j]=rand()%10;
-        }
+    for (size_t i = 0; i < matrixSize; i++) {
+    for (size_t j = 0; j < matrixSize; j++) {
+      arr[i*matrixSize+j]=rand()%10;
     }
+  }
 
 
-    {
+    /*{
         Matrix matrix(matrixSize, arr);
         
         auto start = clock();
@@ -86,7 +84,7 @@ int main() {
 
 
         std::cout << (double) (clock() - start) / CLOCKS_PER_SEC << std::endl;
-    }
+    }*/
 
     {
         MatrixHand matrix(matrixSize, arr);
@@ -100,7 +98,7 @@ int main() {
         MatrixHand matrix2 = matrix * matrix1;
         MatrixHand check = I - matrix2;
         std::cout << "CHECK HANDMADE" << std::endl;
-        //check.print();
+        check.print();
 
 
         std::cout << (double) (clock() - start) / CLOCKS_PER_SEC << std::endl;
