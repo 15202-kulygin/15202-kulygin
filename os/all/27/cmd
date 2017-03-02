@@ -1,0 +1,1 @@
+cat text | grep -e '^$' | wc -l
