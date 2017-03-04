@@ -12,21 +12,34 @@ public class Factory
 	public Factory()
 	{
 		config = new Properties();
+		InputStream input_stream = null;
 		try
 		{
-			InputStream input_stream = Factory.class.getResourceAsStream("config.properties");
+			input_stream = Factory.class.getResourceAsStream("config.properties");
 			config.load(input_stream);
+			//input_stream.close();
 		}
 		catch (Exception exc)
 		{
 			System.out.println("Cannot open config file");
+		}
+		finally
+		{
+			try
+			{
+				input_stream.close();
+			}
+			catch (Exception exc)
+			{
+				System.out.println("Cannot close input file");
+			}
 		}
 	}
 	public Class loadCommand(String command_name)
 	{
 		try
 		{
-			//System.out.println("Loading " + command_name);
+			// System.out.println("Loading " + command_name);
 			Class command_class = Factory.class.forName(config.getProperty(command_name));
 			return command_class;
 			

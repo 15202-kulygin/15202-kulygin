@@ -1,5 +1,8 @@
 package brainfuck;
 
+
+//сделать класс Контекст Исполнения --- у него есть методы, обрабатывающие текущий указатель
+
 import java.io.*;
 import java.util.HashMap;
 import java.lang.reflect.*;	
@@ -27,8 +30,8 @@ public class Main
     	}
     	int file_size = (int)input_file.length();
     	Factory factory = new Factory();
-    	HashMap<Character, Class> hashmap = new HashMap<Character, Class>();
-    	hashmap.put('+', null);
+    	Map<Character, Class> hashmap = new HashMap<Character, Class>();
+    	hashmap.put('+', null); // это убрать - проверять следующим образом : если фабркиа вернула класс -> норм символ, иначе нет
     	hashmap.put('-', null);
     	hashmap.put('>', null);
     	hashmap.put('<', null);
