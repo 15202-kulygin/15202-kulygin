@@ -33,15 +33,6 @@ void subtract_vectors(double * v1, double * v2, int size, double * result)// v1 
 		result[i] = v1[i] - v2[i];
 	}
 }
-double schalar_multiply(double * v1, double * v2, int size)
-{
-	double result = 0;
-	for (int i = 0; i < size; ++i)
-	{
-		result += v1[i] * v2[i];
-	}
-	return result;
-}
 double vector_norm(double * v, int size)
 {
 	double result = 0;

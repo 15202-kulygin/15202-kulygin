@@ -43,14 +43,15 @@ int main(int argc, char ** argv)
 		printf("Too many processes\n");
 		return -1;
 	}
-
+	double * vector_u = (double *) calloc(MATRIX_SIZE, sizeof(double));
 	double * vector_b = (double *) calloc(MATRIX_SIZE, sizeof(double));
 	double * vector_x = (double *) calloc(MATRIX_SIZE, sizeof(double));
 	double * vector_y = (double *) calloc(MATRIX_SIZE, sizeof(double));
 	for (int i = 0; i < MATRIX_SIZE; ++i)
 	{
-		vector_b[i] = i + 1;
-		// vector_b[i] = 1;
+		//vector_b[i] = i + 1;
+		 vector_b[i] = 11;
+		//vector_u = 2*PI*i / MATRIX_SIZE;
 	}
 	int lines_per_process = -1;
 	int max_lines_per_process = -1;
@@ -87,55 +88,49 @@ int main(int argc, char ** argv)
 	{
 		for (int j = 0; j < MATRIX_SIZE; ++j)
 		{
-			// --------------- IDENTITY MATRIX 
-			matrix_piece[i*MATRIX_SIZE + j] = (j == start_line + i) ? 1 : 0;
+			// // --------------- IDENTITY MATRIX 
+			// matrix_piece[i*MATRIX_SIZE + j] = (j == start_line + i) ? 1 : 0;
 			
-			// // --------------- 1 VAR MATRIX
-			// matrix_piece[i*MATRIX_SIZE + j] = (j == start_line + i) ? 2 : 1;
+			// --------------- 1 VAR MATRIX
+			matrix_piece[i*MATRIX_SIZE + j] = (j == start_line + i) ? 2 : 1;
 		}
 	}
 	// if (0 == current_process)
 	// 	print_matrix(vector_x, MATRIX_SIZE, 1);
+
+	double criterion = 1;
 
 	int piece_size = final_line - start_line + 1;
 	double * vector_Ax_piece = (double *) calloc (max_lines_per_process, sizeof(double));
 	double * vector_Ay_piece = (double *) calloc (max_lines_per_process, sizeof(double));
 	double * vector_y_piece = (double *) calloc (max_lines_per_process, sizeof(double));
 	double * vector_x_piece = (double *) calloc (max_lines_per_process, sizeof(double));
-
-	multiply_matrix_vector(matrix_piece, vector_x, piece_size, MATRIX_SIZE, vector_Ax_piece); // A*x(n) (кусочек)
-	subtract_vectors(vector_Ax_piece, vector_b + start_line, piece_size, vector_y_piece); // A*x(n) - b = y(n) (кусочек)
-	gather_vector(vector_y_piece, process_lines_information, max_lines_per_process, process_count, vector_y); // собираем y(n)
-	multiply_matrix_vector(matrix_piece, vector_y, piece_size, MATRIX_SIZE, vector_Ay_piece); // A*y(n) (кусочек)
-
-	double * schalar_pieces = (double *) calloc (process_count, sizeof(double));
-	double single_schalar_piece = schalar_multiply(vector_Ay_piece, vector_y_piece, piece_size);
-	MPI_Allgather(&single_schalar_piece, 1, MPI_DOUBLE, schalar_pieces, 1, MPI_DOUBLE, MPI_COMM_WORLD);
-	double schalar_mpl_A_yn = 0;
-	for (int i = 0; i < process_count; ++i)
+	double b_norm = vector_norm(vector_b, MATRIX_SIZE);
+	double parameter = 0.01;
+	while (criterion > EPS)
 	{
-		schalar_mpl_A_yn += schalar_pieces[i];   // (y(n), Ay(n))
+		multiply_matrix_vector(matrix_piece, vector_x, piece_size, MATRIX_SIZE, vector_Ax_piece); // A*x(n) (кусочек)
+		subtract_vectors(vector_Ax_piece, vector_b + start_line, piece_size, vector_y_piece); // A*x(n) - b = y(n) (кусочек)
+		gather_vector(vector_y_piece, process_lines_information, max_lines_per_process, process_count, vector_y); // собираем y(n)
+		multiply_matrix_vector(matrix_piece, vector_y, piece_size, MATRIX_SIZE, vector_Ay_piece); // A*y(n) (кусочек)
+
+		criterion = vector_norm(vector_y, MATRIX_SIZE) / b_norm;
+		
+		if (0 == current_process)
+		{
+			print_matrix(vector_y, MATRIX_SIZE, 1);
+		}
+
+		multiply_vector_by_schalar(vector_y_piece, parameter, piece_size); // y(n) = t * y(n) (кусочек)
+		subtract_vectors(vector_x + start_line, vector_y_piece, piece_size, vector_x_piece); 
+		gather_vector(vector_x_piece, process_lines_information, max_lines_per_process, process_count, vector_x); // собираем x(n+1)
 	}
 
-	single_schalar_piece = schalar_multiply(vector_y_piece, vector_y_piece, piece_size);
-	MPI_Allgather(&single_schalar_piece, 1, MPI_DOUBLE, schalar_pieces, 1, MPI_DOUBLE, MPI_COMM_WORLD);
-	double schalar_mpl_yn_yn = 0;
-	for (int i = 0; i < process_count; ++i)
+	if (0 == current_process)
 	{
-		schalar_mpl_yn_yn += schalar_pieces[i]; // (y(n), y(n))
-	}
-	free(schalar_pieces);
-
-	double parameter = schalar_mpl_A_yn / schalar_mpl_yn_yn; // t = (y(n), Ay(n)) / (y(n), y(n))
-	if (0 == current_process)
-		printf("%.1f %.1f schalar\n", schalar_mpl_A_yn, schalar_mpl_yn_yn);
-	
-	multiply_vector_by_schalar(vector_y_piece, parameter, piece_size); // y(n) = t * y(n) (кусочек)
-	subtract_vectors(vector_x + start_line, vector_y_piece, piece_size, vector_x_piece); 
-	gather_vector(vector_x_piece, process_lines_information, max_lines_per_process, process_count, vector_x); // собираем x(n+1)
-	if (0 == current_process)
+		printf("Result :\n");
 		print_matrix(vector_x, MATRIX_SIZE, 1);	
-
+	}
 
 
 	// double * result_piece = (double *) calloc (piece_size, sizeof(double));
