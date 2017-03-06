@@ -82,14 +82,16 @@ int main(int argc, char ** argv)
 		max_lines_per_process = lines_per_process;
 	}
 
-	int process_lines_information[2*process_count]; // массив, содержащий информацию о начальных и конечных строках ВСЕХ процессов (чтобы потом выбрать нужные куски из результирующего вектора)
+	int * recvcounts = (int *) calloc (process_count, sizeof(int));
+	int * displacements = (int *) calloc (process_count, sizeof(int)); // массивы, содержащие информацию о начальных и конечных строках ВСЕХ процессов (чтобы потом выбрать нужные куски из результирующего вектора)
 	for (int i = 0; i < process_count; ++i)
 	{
-		process_lines_information[2*i] = i * lines_per_process;
-		process_lines_information[2*i+1] = (i == process_count - 1) ? MATRIX_SIZE - 1 : process_lines_information[2*i] + lines_per_process - 1;	
+		displacements[i] = i * lines_per_process; // по сути - стартовая строка для каждого процесса
+		int current_final_line = (i == process_count - 1) ? MATRIX_SIZE - 1 : displacements[i] + lines_per_process - 1; // конечная строка для каждого процесса
+		recvcounts[i] = current_final_line - displacements[i] + 1;	
 	}	
-	int start_line = process_lines_information[2*current_process];
-	int final_line = process_lines_information[2*current_process+1];
+	int start_line = displacements[current_process];
+	int final_line = displacements[current_process] + recvcounts[current_process] - 1;
 
 	
 	double * matrix_piece = (double *) calloc (MATRIX_SIZE * max_lines_per_process, sizeof(double));
@@ -120,9 +122,8 @@ int main(int argc, char ** argv)
 	{
 		multiply_matrix_vector(matrix_piece, vector_x, piece_size, MATRIX_SIZE, vector_Ax_piece); // A*x(n) (кусочек)
 		subtract_vectors(vector_Ax_piece, vector_b + start_line, piece_size, vector_y_piece); // A*x(n) - b = y(n) (кусочек)
-		gather_vector(vector_y_piece, process_lines_information, max_lines_per_process, process_count, vector_y); // собираем y(n)
-		//multiply_matrix_vector(matrix_piece, vector_y, piece_size, MATRIX_SIZE, vector_Ay_piece); // A*y(n) (кусочек)
-
+		MPI_Allgatherv(vector_y_piece, piece_size, MPI_DOUBLE, vector_y, recvcounts, displacements, MPI_DOUBLE, MPI_COMM_WORLD);
+		
 		criterion = vector_norm(vector_y, MATRIX_SIZE) / b_norm;
 		
 		if (0 == current_process)
@@ -133,7 +134,7 @@ int main(int argc, char ** argv)
 
 		multiply_vector_by_schalar(vector_y_piece, parameter, piece_size); // y(n) = t * y(n) (кусочек)
 		subtract_vectors(vector_x + start_line, vector_y_piece, piece_size, vector_x_piece); 
-		gather_vector(vector_x_piece, process_lines_information, max_lines_per_process, process_count, vector_x); // собираем x(n+1)
+		MPI_Allgatherv(vector_x_piece, piece_size, MPI_DOUBLE, vector_x, recvcounts, displacements, MPI_DOUBLE, MPI_COMM_WORLD); // собираем x(n+1)
 	}
 
 	if (0 == current_process)
@@ -150,8 +151,8 @@ int main(int argc, char ** argv)
 	// double * result_piece = (double *) calloc (piece_size, sizeof(double));
 	// multiply_matrix_vector(matrix_piece, vector_b, piece_size, MATRIX_SIZE, result_piece);
 	// double * result = (double *) calloc (MATRIX_SIZE, sizeof(double));
-	// gather_vector(result_piece, process_lines_information, max_lines_per_process, process_count, result);
-	
+	// собрать
+		
 	free(matrix);
 	free(vector_x_piece);
 	free(vector_y_piece);
