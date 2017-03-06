@@ -1,8 +1,9 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#define MATRIX_SIZE 10
+#define MATRIX_SIZE 100
 #define EPS 0.001
+#define PI 3.14159265358979323846
 
 void print_matrix(double * matrix, int height, int width);
 void multiply_matrix_vector(double * m, double * v, int height, int width, double * result);

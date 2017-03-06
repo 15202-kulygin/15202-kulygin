@@ -18,7 +18,7 @@ void gather_vector(double * piece, int * process_lines_information, int max_line
 	int result_size = (0 == MATRIX_SIZE % process_count) ? MATRIX_SIZE : max_lines_per_process * process_count;
 
 	double * result_with_trash = (double *) calloc (result_size, sizeof(double));
-	MPI_Allgather(piece, max_lines_per_process, MPI_DOUBLE, result_with_trash, max_lines_per_process, MPI_DOUBLE, MPI_COMM_WORLD); 
+	MPI_Allgather(piece, max_lines_per_process, MPI_DOUBLE, result_with_trash, max_lines_per_process, MPI_DOUBLE, MPI_COMM_WORLD); //MPI_Allgatherv
 	int j = 0;
 	for (int i = 0; i < process_count; ++i)
 	{
@@ -43,6 +43,14 @@ int main(int argc, char ** argv)
 		printf("Too many processes\n");
 		return -1;
 	}
+	double * matrix = (double *) calloc (MATRIX_SIZE*MATRIX_SIZE, sizeof(double));
+	for (int i = 0; i < MATRIX_SIZE; ++i)
+	{
+		for (int j = 0; j < MATRIX_SIZE; ++j)
+		{
+			matrix[i*MATRIX_SIZE + j] = (i == j) ? 2 : 1;
+		}
+	}
 	double * vector_u = (double *) calloc(MATRIX_SIZE, sizeof(double));
 	double * vector_b = (double *) calloc(MATRIX_SIZE, sizeof(double));
 	double * vector_x = (double *) calloc(MATRIX_SIZE, sizeof(double));
@@ -50,9 +58,10 @@ int main(int argc, char ** argv)
 	for (int i = 0; i < MATRIX_SIZE; ++i)
 	{
 		//vector_b[i] = i + 1;
-		 vector_b[i] = 11;
-		//vector_u = 2*PI*i / MATRIX_SIZE;
+		//vector_b[i] = MATRIX_SIZE + 1;
+		vector_u[i] = sin(2*PI*i / MATRIX_SIZE);
 	}
+	multiply_matrix_vector(matrix, vector_u, MATRIX_SIZE, MATRIX_SIZE, vector_b);
 	int lines_per_process = -1;
 	int max_lines_per_process = -1;
 	if ((0 == MATRIX_SIZE % process_count) || (1 == MATRIX_SIZE / process_count))// если матрица делится на одинаковые части по всем процессам ИЛИ число процессов больше половины размера матрицы
@@ -106,19 +115,20 @@ int main(int argc, char ** argv)
 	double * vector_y_piece = (double *) calloc (max_lines_per_process, sizeof(double));
 	double * vector_x_piece = (double *) calloc (max_lines_per_process, sizeof(double));
 	double b_norm = vector_norm(vector_b, MATRIX_SIZE);
-	double parameter = 0.01;
+	double parameter = 0.00001;
 	while (criterion > EPS)
 	{
 		multiply_matrix_vector(matrix_piece, vector_x, piece_size, MATRIX_SIZE, vector_Ax_piece); // A*x(n) (кусочек)
 		subtract_vectors(vector_Ax_piece, vector_b + start_line, piece_size, vector_y_piece); // A*x(n) - b = y(n) (кусочек)
 		gather_vector(vector_y_piece, process_lines_information, max_lines_per_process, process_count, vector_y); // собираем y(n)
-		multiply_matrix_vector(matrix_piece, vector_y, piece_size, MATRIX_SIZE, vector_Ay_piece); // A*y(n) (кусочек)
+		//multiply_matrix_vector(matrix_piece, vector_y, piece_size, MATRIX_SIZE, vector_Ay_piece); // A*y(n) (кусочек)
 
 		criterion = vector_norm(vector_y, MATRIX_SIZE) / b_norm;
 		
 		if (0 == current_process)
 		{
-			print_matrix(vector_y, MATRIX_SIZE, 1);
+			//print_matrix(vector_y, MATRIX_SIZE, 1);
+			printf("criterion %.6f\n", criterion);
 		}
 
 		multiply_vector_by_schalar(vector_y_piece, parameter, piece_size); // y(n) = t * y(n) (кусочек)
@@ -129,7 +139,11 @@ int main(int argc, char ** argv)
 	if (0 == current_process)
 	{
 		printf("Result :\n");
-		print_matrix(vector_x, MATRIX_SIZE, 1);	
+		print_matrix(vector_x, MATRIX_SIZE, 1);
+		// printf("Expected result :\n");
+		// print_matrix(vector_u, MATRIX_SIZE, 1);	
+		// subtract_vectors(vector_x, vector_u, MATRIX_SIZE, vector_x);
+		// print_matrix(vector_x, MATRIX_SIZE, 1);
 	}
 
 
@@ -138,29 +152,32 @@ int main(int argc, char ** argv)
 	// double * result = (double *) calloc (MATRIX_SIZE, sizeof(double));
 	// gather_vector(result_piece, process_lines_information, max_lines_per_process, process_count, result);
 	
+	free(matrix);
+	free(vector_x_piece);
+	free(vector_y_piece);
+	free(vector_Ax_piece);
+	free(vector_Ay_piece);
+	free(vector_b);
+	free(vector_y);
+	free(vector_x);
+	free(vector_u);
+	free(matrix_piece);
+	//free(result);
+ 	MPI_Finalize();
 	
-	// free(vector_x_piece);
-	// free(vector_y_piece);
-	// free(vector_b);
-	// free(vector_y);
-	// free(vector_x);
-	// free(matrix_piece);
-	// free(result);
-	MPI_Finalize();
-	
-}
+ }
 
 
 
 
 
 
-// получаем скалярный квадрат параллельно
-// double * schalar_pieces = (double *) calloc (process_count, sizeof(double));
-// double single_schalar_piece = schalar_multiply(vector_b + start_line, vector_b + start_line, piece_size);
-// MPI_Allgather(&single_schalar_piece, 1, MPI_DOUBLE, schalar_pieces, 1, MPI_DOUBLE, MPI_COMM_WORLD);
-// double schalar_mpl = 0;
-// for (int i = 0; i < process_count; ++i)
-// {
-// 	schalar_mpl += schalar_pieces[i];
-// }
+// // получаем скалярный квадрат параллельно
+// // double * schalar_pieces = (double *) calloc (process_count, sizeof(double));
+// // double single_schalar_piece = schalar_multiply(vector_b + start_line, vector_b + start_line, piece_size);
+// // MPI_Allgather(&single_schalar_piece, 1, MPI_DOUBLE, schalar_pieces, 1, MPI_DOUBLE, MPI_COMM_WORLD);
+// // double schalar_mpl = 0;
+// // for (int i = 0; i < process_count; ++i)
+// // {
+// // 	schalar_mpl += schalar_pieces[i];
+// // }
