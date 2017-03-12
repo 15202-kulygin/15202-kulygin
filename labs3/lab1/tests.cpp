@@ -199,8 +199,7 @@ TEST (HashTests, Rehash)
     EXPECT_TRUE(safe_check);
     EXPECT_TRUE(correct_check);
     EXPECT_TRUE(full_check);
-    EXPECT_TRUE(size_check);
-    
+    EXPECT_TRUE(size_check);  
 }
 
 

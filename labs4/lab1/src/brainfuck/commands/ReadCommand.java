@@ -5,7 +5,7 @@ import brainfuck.Command;
 public class ReadCommand implements Command
 {
 	@Override
-	public void execute(char array[])
+	public void execute(CommandExecutionContext exec_interface)
 	{
 		try
 		{

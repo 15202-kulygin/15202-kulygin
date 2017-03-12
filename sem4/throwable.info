@@ -1,0 +1,14 @@
+Throwable : 
+1. Exception
+	1.1 Checked
+	1.2 RuntimeException
+		1.2.1 Unchecked Exception
+2. Error - программе плохо (stack overflow, out of memory)
+
+// популярная ошибка:
+try {}
+catch (...)
+{
+	...
+	throw new MyException("..."); // забывают писать throw
+}
