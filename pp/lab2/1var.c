@@ -47,9 +47,10 @@ int main(int argc, char ** argv)
 	double start = omp_get_wtime();
 	while (criterion > EPS)
 	{
-		#pragma omp parallel for 
+		#pragma omp parallel for
 		for (int i = 0; i < MATRIX_SIZE; ++i) // y = A*x(n)
 		{
+			//#pragma omp parallel for 
 			for (int j = 0; j < MATRIX_SIZE; ++j)
 			{
 				vector_y[i] += matrix[i*MATRIX_SIZE + j] * vector_x[j];
@@ -59,7 +60,7 @@ int main(int argc, char ** argv)
 		
 		
 		
-		criterion = vector_norm(vector_y, MATRIX_SIZE) / b_norm;
+		criterion = vector_norm(vector_y, MATRIX_SIZE) / b_norm;//reduction - норму тоже распараллелить
 		//printf("criterion %.6f\n", criterion);
 		
 		#pragma omp parallel for
