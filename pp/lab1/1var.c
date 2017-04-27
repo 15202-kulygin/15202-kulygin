@@ -24,7 +24,7 @@ int main(int argc, char ** argv)
 		printf("Too many processes\n");
 		return -1;
 	}
-	double * matrix = (double *) calloc (MATRIX_SIZE*MATRIX_SIZE, sizeof(double));
+	/*double * matrix = (double *) calloc (MATRIX_SIZE*MATRIX_SIZE, sizeof(double));
 	for (int i = 0; i < MATRIX_SIZE; ++i)
 	{
 		for (int j = 0; j < MATRIX_SIZE; ++j)
@@ -33,16 +33,16 @@ int main(int argc, char ** argv)
 		}
 	}
 	double * vector_u = (double *) calloc(MATRIX_SIZE, sizeof(double));
-	double * vector_b = (double *) calloc(MATRIX_SIZE, sizeof(double));
+	*/double * vector_b = (double *) calloc(MATRIX_SIZE, sizeof(double));
 	double * vector_x = (double *) calloc(MATRIX_SIZE, sizeof(double));
 	double * vector_y = (double *) calloc(MATRIX_SIZE, sizeof(double));
 	for (int i = 0; i < MATRIX_SIZE; ++i)
 	{
 		//vector_b[i] = i + 1;
-		//vector_b[i] = MATRIX_SIZE + 1;
-		vector_u[i] = sin(2*PI*i / MATRIX_SIZE);
+		vector_b[i] = MATRIX_SIZE + 1;
+		//vector_u[i] = sin(2*PI*i / MATRIX_SIZE);
 	}
-	multiply_matrix_vector(matrix, vector_u, MATRIX_SIZE, MATRIX_SIZE, vector_b);
+	//multiply_matrix_vector(matrix, vector_u, MATRIX_SIZE, MATRIX_SIZE, vector_b);
 	int lines_per_process = -1;
 	int max_lines_per_process = -1;
 	if ((0 == MATRIX_SIZE % process_count) || (1 == MATRIX_SIZE / process_count))// если матрица делится на одинаковые части по всем процессам ИЛИ число процессов больше половины размера матрицы
@@ -134,7 +134,7 @@ int main(int argc, char ** argv)
 	// double * result = (double *) calloc (MATRIX_SIZE, sizeof(double));
 	// собрать
 
-	free(matrix);
+	//free(matrix);
 	free(vector_x_piece);
 	free(vector_y_piece);
 	free(vector_Ax_piece);
@@ -142,7 +142,7 @@ int main(int argc, char ** argv)
 	free(vector_b);
 	free(vector_y);
 	free(vector_x);
-	free(vector_u);
+	//free(vector_u);
 	free(matrix_piece);
 	//free(result);
  	MPI_Finalize();

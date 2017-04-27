@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
 	int c, invalid = 0;
 	long int limit;
 	struct rlimit rlimit_struct;
+	int check;
 	while ((c = getopt(argc, argv, options)) != EOF) 
 	{
 		switch (c) 
@@ -43,8 +44,8 @@ int main(int argc, char *argv[])
 					break;
 				}
 				// printf("qwe %ld\n", limit);
-				ulimit(UL_SETFSIZE, limit);
-	        	if(ulimit(UL_GETFSIZE) != limit)
+				check = ulimit(UL_SETFSIZE, limit);
+	        	if(-1 == check)
 	    		    printf("Error while changing ulimit\n");
 	    		break;
 		    case 'c':
@@ -69,8 +70,8 @@ int main(int argc, char *argv[])
 				system("printenv");
 	        	break;
 	    	case 'V':
-        		putenv(optarg);
-    			break;
+	    		putenv(optarg);
+        		break;
 			case '?':
 				printf("Invalid option : %c\n\n", optopt);
 				invalid++;
@@ -80,8 +81,8 @@ int main(int argc, char *argv[])
 	printf("\n\n\nargc equals %d\n", argc);
 	printf("invalid equals %d\n", invalid);
 	printf("optind equals %d\n", optind);
-	if(optind < argc)
-	{
-		printf("next parameter = %s\n", argv[optind]);
-	}
+	// if(optind < argc)
+	// {
+	// 	printf("next parameter = %s\n", argv[optind]);
+	// }
 }

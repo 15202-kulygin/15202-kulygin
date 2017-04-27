@@ -122,8 +122,10 @@ int main(int argc, char ** argv)
 	{
 		printf("Result :\n");
 		print_matrix(vector_x, MATRIX_SIZE, 1);
-		// printf("Expected result :\n");
-		// print_matrix(vector_u, MATRIX_SIZE, 1);	
+		printf("Expected result :\n");
+		print_matrix(vector_u, MATRIX_SIZE, 1);
+		printf("Vector b :\n");
+		print_matrix(vector_b, MATRIX_SIZE, 1);	
 		// subtract_vectors(vector_x, vector_u, MATRIX_SIZE, vector_x);
 		// print_matrix(vector_x, MATRIX_SIZE, 1);
 	}

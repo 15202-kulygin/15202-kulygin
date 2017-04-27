@@ -13,15 +13,12 @@ void add_node(List * head, char * new_str)
 	{
 		head->str = (char *) calloc (10, sizeof(char));
 		strncpy(head->str, new_str, 10);
-		//printf("%d eeeeee\n", (int)strlen(head->str));
-		
 	}
 	else
 	{
 		List * new_node = (List *) calloc (1, sizeof(List));
 		new_node->str = (char *) calloc (10, sizeof(char));
 		strncpy(new_node->str, new_str, 10);
-		
 		new_node->next = NULL;
 		while (head->next != NULL)
 		{
