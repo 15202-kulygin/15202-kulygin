@@ -1,0 +1,41 @@
+// intellij, netbeans/eclipse, sublime ( :-) )/atom, vim (lul)
+
+class SqlQuery @ShouldNotBeOptimized constructor(
+	sqlDialect: String)
+
+class SqlQuery(sqlDialect: String) {
+	val _sqlDialect = sqlDialect
+}
+
+class SqlQuery(val sqlDialect: String)
+
+class SqlQuery(val name: String) {
+	val isDefault: Boolean
+		get() { 
+			return "" == name
+		}
+}
+
+class SqlQuery(val name: String) {
+	val isDefault: Boolean
+		get() = "" == name
+}
+
+class SqlQuery(val name: String) {
+	val hasCaching = false
+		get() {
+			println("Getting hasCaching: $field")
+			return field
+			set(value) // ...
+		} 
+}
+
+class SqlQuery(val name: String) {
+	val hasCaching = false
+		get() {
+			println("Getting hasCaching: $field")
+			return field
+			set(value) // ...
+		} 
+}
+

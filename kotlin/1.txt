@@ -1,0 +1,30 @@
+fun main(args: Array<String>) 
+{
+	require(args.size > 0)
+	val firstName: String = args[0]
+	var lastName = args[args.lastIndex]
+	lastName = "qwe"
+	println("Hello, $firstName $lastName")
+}
+
+
+
+// val - неизменяемая переменная
+// var - изменяемая переменная
+// если тип возвращаемого объекта с вопросиком (например fun kek(): String? {}) - значит возвращаемое значение может принимать null
+// function body format - сразу возвращаем функции ее значение
+// возвращаемый тип можно не писать, если она возвращает Unit (по сути аналог войда в java)
+// elvis operator - (val namr = getName(args) ?: "soska") - если возвращаемое значение - не ноль, оставляем, иначе берем то что справа
+// safe call operator (?.) ----- a.foo() - если а - ноль, то хуево
+// a?.foo() - если а - не ноль, вернет результат функции (так избегаем null pointer exception), иначе вернет просто ноль
+// оператор !! : из типа T? делает T, если ноль - NPE
+// smart casts
+// оператор when - что-то типа switch 
+// метод to - синтаксис заведения пар
+// import Sex.Male as M
+// import Sex.Female as F ---- это мы дали псевдонимы типам
+// оператор ..
+// циклы for/while
+
+
+// 
