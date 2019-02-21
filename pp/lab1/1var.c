@@ -6,11 +6,11 @@
 
 
 
-// mpicc -std=c99 main.c -lm
+// mpicc -std=c99 1var.c matrix.c -lm
 
 // mpecc -mpilog -o mpetest mpitest.c
 
-// mpirun -np 2 ./a.out qwe.matrix
+// mpirun -np 2 ./a.out 
 
 
 int main(int argc, char ** argv)
