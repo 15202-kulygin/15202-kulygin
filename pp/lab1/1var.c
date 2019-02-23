@@ -109,7 +109,7 @@ int main(int argc, char ** argv)
 		
 		if (0 == current_process)
 		{
-			criterion = criterion / b_norm;
+			criterion = sqrt(criterion) / b_norm; 
 			printf("criterion %.6f\n", criterion);
 		}
 		
@@ -133,6 +133,8 @@ int main(int argc, char ** argv)
 	free(vector_y_piece);
 	free(vector_x);
 	free(matrix_piece);
+	free(recvcounts);
+	free(displacements);
  	MPI_Finalize();
 	
  }
