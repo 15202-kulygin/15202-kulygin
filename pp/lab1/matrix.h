@@ -1,7 +1,7 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#define MATRIX_SIZE 1000
+#define MATRIX_SIZE 10000
 #define EPS 0.001
 #define PI 3.14159265358979323846
 
