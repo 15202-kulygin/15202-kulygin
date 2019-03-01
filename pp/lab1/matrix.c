@@ -14,7 +14,7 @@ void print_matrix(double * matrix, int height, int width)
 	}
 	printf("\n");
 }
-void multiply_matrix_vector(double * m, double * v, int height, int width, double * result)
+void multiply_matrix_vector(double * m, double * v, int height, int width, double * result, int displacement)
 {
 	//printf("Check1 %d %d\n", lines_per_process, height);
 	for (int i = 0; i < height; ++i)
@@ -22,7 +22,7 @@ void multiply_matrix_vector(double * m, double * v, int height, int width, doubl
 		result[i] = 0;
 		for (int j = 0; j < width; ++j)
 		{
-			result[i] += m[i*width + j] * v[j];
+			result[i] += m[i*width + j + displacement] * v[j];
 		}
 	}
 }

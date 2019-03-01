@@ -12,6 +12,7 @@
 
 // mpirun -np 2 ./a.out 
 
+// hm
 
 int main(int argc, char ** argv)
 { 	
@@ -52,8 +53,8 @@ int main(int argc, char ** argv)
 	}
 	else // если число строк матрицы не кратно числу процессов И число процессов меньше половины размера матрицы (т.е. по крайней мере во все процессы, кроме последнего, уходит хотя бы по 2 строки)
 	{
-		lines_per_process = (MATRIX_SIZE / process_count) + 1;
-		max_lines_per_process = lines_per_process;
+		lines_per_process = (MATRIX_SIZE / process_count);
+		max_lines_per_process = lines_per_process + MATRIX_SIZE % process_count;
 	}
 
 	int * recvcounts = (int *) calloc (process_count, sizeof(int));
@@ -95,11 +96,11 @@ int main(int argc, char ** argv)
 	double * vector_y_piece = (double *) calloc (max_lines_per_process, sizeof(double));
 	
 
-
+	double start_time = MPI_Wtime();
 	while (criterion > EPS)
 	{
 		
-		multiply_matrix_vector(matrix_piece, vector_x, piece_size, MATRIX_SIZE, vector_y_piece); // A*x(n) (кусочек)
+		multiply_matrix_vector(matrix_piece, vector_x, piece_size, MATRIX_SIZE, vector_y_piece, 0); // A*x(n) (кусочек)
 		subtract_vectors(vector_y_piece, vector_b + start_line, piece_size, vector_y_piece); // A*x(n) - b = y(n) (кусочек)
 
 		for (int i = 0; i < piece_size; ++i) // собиаем кусочек суммы для номы
@@ -110,7 +111,7 @@ int main(int argc, char ** argv)
 		if (0 == current_process)
 		{
 			criterion = sqrt(criterion) / b_norm; 
-			printf("criterion %.6f\n", criterion);
+			//printf("criterion %.6f\n", criterion);
 		}
 		
 		MPI_Bcast(&criterion, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
@@ -122,12 +123,17 @@ int main(int argc, char ** argv)
 		MPI_Allgatherv(vector_y_piece, piece_size, MPI_DOUBLE, vector_x, recvcounts, displacements, MPI_DOUBLE, MPI_COMM_WORLD); // собираем x(n+1)
 	}
 	
+	double end_time = MPI_Wtime();
 
 	if (0 == current_process)
-	{
-		printf("Result :\n");
-		print_matrix(vector_x, MATRIX_SIZE, 1);
-	}
+		printf("time : %.3f sec\n", end_time - start_time); 
+
+
+	// if (0 == current_process)
+	// {
+	// 	printf("Result :\n");
+	// 	print_matrix(vector_x, MATRIX_SIZE, 1);
+	// }
 
 	free(vector_b);
 	free(vector_y_piece);
