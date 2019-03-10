@@ -10,12 +10,11 @@
 
 int main(int argc, char ** argv)
 {
-	printf("Number of threads : ");
-	int number_of_threads = 0;
-	scanf("%d", &number_of_threads);
+	//printf("Number of threads : ");
+	int number_of_threads = atoi(argv[1]);
 	if (1 > number_of_threads)
 	{
-		printf("Wrong number of threads\n");
+		printf("Wrong number of threads %d\n", argc);
 		return -1;
 	}
 	omp_set_num_threads(number_of_threads);
