@@ -4,7 +4,7 @@
 #include <omp.h>
 #include "matrix.h"
 
-//gcc -fopenmp 1var.c matrix.c -lm
+//gcc -fopenmp 2var.c matrix.c -lm
 
 //hm
 
@@ -44,30 +44,36 @@ int main(int argc, char ** argv)
 	double b_norm = vector_norm(vector_b, MATRIX_SIZE);
 	double parameter = 0.001;
 	
-
+	double s = 0;
 
 	double start = omp_get_wtime();
-	while (criterion > EPS)
+	#pragma omp parallel 
 	{
-		double s = 0;
-		//#pragma omp parallel for reduction(+:s) schedule(dynamic, 16)
-		#pragma omp parallel for reduction(+:s) 
-		for (int i = 0; i < MATRIX_SIZE; ++i) // y = A*x(n)
+		while (criterion > EPS)
 		{
-			//#pragma omp parallel for --- не стоит, так даже долше, тк каждый поток может начат поpождат еще потоки
-			for (int j = 0; j < MATRIX_SIZE; ++j)
+			
+			//#pragma omp for reduction(+:s) schedule(dynamic,16)
+			#pragma omp for reduction(+:s) 
+			for (int i = 0; i < MATRIX_SIZE; ++i) // y = A*x(n)
 			{
-				vector_y[i] += matrix[i*MATRIX_SIZE + j] * vector_x[j];
+				//#pragma omp parallel for --- не стоит, так даже долше, тк каждый поток может начат поpождат еще потоки
+				for (int j = 0; j < MATRIX_SIZE; ++j)
+				{
+					vector_y[i] += matrix[i*MATRIX_SIZE + j] * vector_x[j];
+				}
+				vector_y[i] -= vector_b[i]; // y = A*x(n) - b
+				s += vector_y[i]*vector_y[i]; // counting norm
+
+				vector_y[i] *= parameter;
+				vector_x[i] -= vector_y[i];
 			}
-			vector_y[i] -= vector_b[i]; // y = A*x(n) - b
-			s += vector_y[i]*vector_y[i]; // counting norm
-
-			vector_y[i] *= parameter;
-			vector_x[i] -= vector_y[i];
+			#pragma omp single 
+			{
+				criterion = sqrt(s) / b_norm;
+				//printf("criterion %.6f\n", criterion);
+				s = 0;
+			}
 		}
-
-		criterion = sqrt(s) / b_norm;
-		//printf("criterion %.6f\n", criterion);
 	}
 	double finish = omp_get_wtime();
 
